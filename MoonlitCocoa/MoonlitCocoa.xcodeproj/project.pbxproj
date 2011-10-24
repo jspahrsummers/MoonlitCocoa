@@ -19,10 +19,10 @@
 		D02A03C014550C1E00CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
 		D02A03C114550C2400CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
 		D02A03C314550C7E00CAD6D9 /* liblua.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */; };
-		D02A03C614550CEA00CAD6D9 /* MLCLuaState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D02A03C714550CEA00CAD6D9 /* MLCLuaState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D02A03C814550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
-		D02A03C914550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
+		D02A03C614550CEA00CAD6D9 /* MLCState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03C714550CEA00CAD6D9 /* MLCState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03C814550CEA00CAD6D9 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCState.m */; };
+		D02A03C914550CEA00CAD6D9 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCState.m */; };
 		D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,8 +73,8 @@
 		D02A03BD14550C0F00CAD6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
-		D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaState.h; sourceTree = "<group>"; };
-		D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCLuaState.m; sourceTree = "<group>"; };
+		D02A03C414550CEA00CAD6D9 /* MLCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCState.h; sourceTree = "<group>"; };
+		D02A03C514550CEA00CAD6D9 /* MLCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCState.m; sourceTree = "<group>"; };
 		D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaValue.h; sourceTree = "<group>"; };
 		D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLCExtensions.h"; sourceTree = "<group>"; };
 		D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLCExtensions.m"; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 		D02A03AD1455093900CAD6D9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */,
-				D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */,
+				D02A03C414550CEA00CAD6D9 /* MLCState.h */,
+				D02A03C514550CEA00CAD6D9 /* MLCState.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */,
-				D02A03C614550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
+				D02A03C614550CEA00CAD6D9 /* MLCState.h in Headers */,
 				D02A03E614551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
 				D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
 			);
@@ -317,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */,
-				D02A03C714550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
+				D02A03C714550CEA00CAD6D9 /* MLCState.h in Headers */,
 				D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */,
 				D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
 				D02A03E714551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
@@ -489,7 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D02A03C814550CEA00CAD6D9 /* MLCLuaState.m in Sources */,
+				D02A03C814550CEA00CAD6D9 /* MLCState.m in Sources */,
 				D02A03E814551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,7 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D02A03C914550CEA00CAD6D9 /* MLCLuaState.m in Sources */,
+				D02A03C914550CEA00CAD6D9 /* MLCState.m in Sources */,
 				D02A03E914551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

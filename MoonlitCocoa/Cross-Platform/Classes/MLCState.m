@@ -1,12 +1,12 @@
 //
-//  MLCLuaState.m
+//  MLCState.m
 //  MoonlitCocoa
 //
 //  Created by Justin Spahr-Summers on 23.10.11.
 //  Released into the public domain.
 //
 
-#import "MLCLuaState.h"
+#import "MLCState.h"
 #import "NSString+MLCExtensions.h"
 #import <lauxlib.h>
 #import <lualib.h>
@@ -14,12 +14,12 @@
 
 char * const MLCLuaStateLuaPathsKey = "LuaPaths";
 
-@interface MLCLuaState ()
+@interface MLCState ()
 @property (nonatomic, readwrite) lua_State *state;
 @property (nonatomic, assign) BOOL closeWhenDone;
 @end
 
-@implementation MLCLuaState
+@implementation MLCState
 @synthesize state = m_state;
 @synthesize closeWhenDone = m_closeWhenDone;
 

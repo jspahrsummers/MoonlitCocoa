@@ -1,5 +1,5 @@
 //
-//  MLCLuaState.h
+//  MLCState.h
 //  MoonlitCocoa
 //
 //  Created by Justin Spahr-Summers on 23.10.11.
@@ -14,7 +14,7 @@
  * Multiple Lua state objects may share the same global state, if some are
  * threads created from one original.
  */
-@interface MLCLuaState : NSObject
+@interface MLCState : NSObject
 /**
  * The Lua state object owned by the receiver.
  */

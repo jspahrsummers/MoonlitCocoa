@@ -6,6 +6,6 @@
 //  Released into the public domain.
 //
 
-#import <MoonlitCocoa/MLCLuaState.h>
+#import <MoonlitCocoa/MLCState.h>
 #import <MoonlitCocoa/MLCLuaValue.h>
 #import <MoonlitCocoa/NSString+MLCExtensions.h>
