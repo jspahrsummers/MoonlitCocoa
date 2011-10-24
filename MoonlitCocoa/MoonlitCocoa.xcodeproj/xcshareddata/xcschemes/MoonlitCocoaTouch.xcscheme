@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D02A0385145508C900CAD6D9"
-               BuildableName = "libMoonlitCocoaTouch.a"
+               BuildableName = "libMoonlitCocoa.a"
                BlueprintName = "MoonlitCocoaTouch"
                ReferencedContainer = "container:MoonlitCocoa.xcodeproj">
             </BuildableReference>
