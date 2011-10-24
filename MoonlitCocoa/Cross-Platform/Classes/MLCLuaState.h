@@ -21,6 +21,21 @@
 @property (nonatomic, readonly) lua_State *state;
 
 /**
+ * The paths to search for Lua libraries, as previously set with #setLuaPaths:.
+ * If #setLuaPaths: was never called, this returns \c nil.
+ */
++ (NSArray *)luaPaths;
+
+/**
+ * Sets the paths to search for Lua libraries. The specified paths are appended
+ * to the default path. Any \c ? in a path is replaced with the name of the file
+ * being searched for.
+ *
+ * This only affects MLCLuaState objects created after the call to this method.
+ */
++ (void)setLuaPaths:(NSArray *)paths;
+
+/**
  * Initializes the receiver as a new Lua state, using the default allocator.
  * Once the state has been initialized, all standard Lua libraries are
  * automatically loaded.
@@ -34,4 +49,26 @@
  * This is the designated initializer for this class.
  */
 - (id)initWithState:(lua_State *)state closeWhenDone:(BOOL)closeWhenDone;
+
+/**
+ * Attempts to compile and load \a source, which can be Metalua or Lua source.
+ * If there are no errors, the compiled chunk is pushed as a Lua function on top
+ * of the stack and \c YES is returned. Otherwise, an error message is pushed,
+ * and \c NO is returned.
+ */
+- (BOOL)loadString:(NSString *)source;
+
+/**
+ * Returns the value at \a index as a string. If the value at \a index is
+ * a number, it is converted to a string, changing the actual value in the stack
+ * as a side effect.
+ *
+ * If the value at \a index is not a string or number, \c nil is returned.
+ */
+- (NSString *)getStringAtIndex:(int)index;
+
+/**
+ * Pushes \a str on top of the Lua stack.
+ */
+- (void)pushString:(NSString *)str;
 @end
