@@ -7,3 +7,4 @@
 //
 
 #import <MoonlitCocoa/MLCLuaState.h>
+#import <MoonlitCocoa/MLCLuaValue.h>

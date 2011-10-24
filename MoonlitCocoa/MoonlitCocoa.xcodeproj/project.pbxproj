@@ -24,6 +24,8 @@
 		D02A03C814550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
 		D02A03C914550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
 		D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,7 @@
 		D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
 		D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaState.h; sourceTree = "<group>"; };
 		D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCLuaState.m; sourceTree = "<group>"; };
+		D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaValue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,7 @@
 				D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */,
 				D02A03AD1455093900CAD6D9 /* Classes */,
 				D02A03B614550B4300CAD6D9 /* Extensions */,
+				D02A03DC14551A2700CAD6D9 /* Protocols */,
 				D02A03AE1455094100CAD6D9 /* Tests */,
 			);
 			path = "Cross-Platform";
@@ -278,6 +282,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D02A03DC14551A2700CAD6D9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -287,6 +299,7 @@
 			files = (
 				D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */,
 				D02A03C614550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
+				D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +310,7 @@
 				D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */,
 				D02A03C714550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
 				D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */,
+				D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +765,7 @@
 				D02A037C145508BF00CAD6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D02A0380145508BF00CAD6D9 /* Build configuration list for PBXNativeTarget "MoonlitCocoaTests" */ = {
 			isa = XCConfigurationList;
@@ -759,6 +774,7 @@
 				D02A037E145508BF00CAD6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D02A03A5145508C900CAD6D9 /* Build configuration list for PBXNativeTarget "MoonlitCocoaTouch" */ = {
 			isa = XCConfigurationList;
@@ -767,6 +783,7 @@
 				D02A03A7145508C900CAD6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D02A03A8145508C900CAD6D9 /* Build configuration list for PBXNativeTarget "MoonlitCocoaTouchTests" */ = {
 			isa = XCConfigurationList;
@@ -775,6 +792,7 @@
 				D02A03AA145508C900CAD6D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
