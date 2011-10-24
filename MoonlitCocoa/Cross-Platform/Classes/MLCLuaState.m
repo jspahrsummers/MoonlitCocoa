@@ -8,6 +8,7 @@
 
 #import "MLCLuaState.h"
 #import <lauxlib.h>
+#import <lualib.h>
 
 @interface MLCLuaState ()
 @property (nonatomic, readwrite) lua_State *state;
@@ -20,11 +21,15 @@
 
 - (id)init {
 	lua_State *state = luaL_newstate();
-	if (!state) {
+	if (!state)
 		return nil;
-	}
 
-	return [self initWithState:state closeWhenDone:YES];
+	self = [self initWithState:state closeWhenDone:YES];
+	if (!self)
+		return nil;
+
+	luaL_openlibs(self.state);
+	return self;
 }
 
 - (id)initWithState:(lua_State *)state closeWhenDone:(BOOL)closeWhenDone; {

@@ -22,6 +22,8 @@
 
 /**
  * Initializes the receiver as a new Lua state, using the default allocator.
+ * Once the state has been initialized, all standard Lua libraries are
+ * automatically loaded.
  */
 - (id)init;
 
