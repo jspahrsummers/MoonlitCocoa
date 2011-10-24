@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0A6CD341455E10E00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD331455E10E00B99D78 /* Cocoa.framework */; };
+		D0A6CD3E1455E10E00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD3C1455E10E00B99D78 /* InfoPlist.strings */; };
+		D0A6CD401455E10E00B99D78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD3F1455E10E00B99D78 /* main.m */; };
+		D0A6CD441455E10E00B99D78 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD421455E10E00B99D78 /* Credits.rtf */; };
+		D0A6CD471455E10E00B99D78 /* MLCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD461455E10E00B99D78 /* MLCAppDelegate.m */; };
+		D0A6CD4A1455E10E00B99D78 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD481455E10E00B99D78 /* MainMenu.xib */; };
+		D0A6CD521455E10F00B99D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD511455E10F00B99D78 /* SenTestingKit.framework */; };
+		D0A6CD531455E10F00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD331455E10E00B99D78 /* Cocoa.framework */; };
+		D0A6CD5B1455E10F00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD591455E10F00B99D78 /* InfoPlist.strings */; };
+		D0A6CD5E1455E10F00B99D78 /* MLC_OS_X_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD5D1455E10F00B99D78 /* MLC_OS_X_DemoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0A6CD541455E10F00B99D78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0A6CD261455E10E00B99D78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0A6CD2E1455E10E00B99D78;
+			remoteInfo = "MLC OS X Demo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D0A6CD2F1455E10E00B99D78 /* MLC OS X Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLC OS X Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A6CD331455E10E00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D0A6CD361455E10E00B99D78 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D0A6CD371455E10E00B99D78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D0A6CD381455E10E00B99D78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0A6CD3B1455E10E00B99D78 /* MLC OS X Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLC OS X Demo-Info.plist"; sourceTree = "<group>"; };
+		D0A6CD3D1455E10E00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0A6CD3F1455E10E00B99D78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0A6CD411455E10E00B99D78 /* MLC OS X Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MLC OS X Demo-Prefix.pch"; sourceTree = "<group>"; };
+		D0A6CD431455E10E00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D0A6CD451455E10E00B99D78 /* MLCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLCAppDelegate.h; sourceTree = "<group>"; };
+		D0A6CD461455E10E00B99D78 /* MLCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLCAppDelegate.m; sourceTree = "<group>"; };
+		D0A6CD491455E10E00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D0A6CD501455E10F00B99D78 /* MLC OS X DemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MLC OS X DemoTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A6CD511455E10F00B99D78 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D0A6CD581455E10F00B99D78 /* MLC OS X DemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MLC OS X DemoTests-Info.plist"; sourceTree = "<group>"; };
+		D0A6CD5A1455E10F00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0A6CD5C1455E10F00B99D78 /* MLC_OS_X_DemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLC_OS_X_DemoTests.h; sourceTree = "<group>"; };
+		D0A6CD5D1455E10F00B99D78 /* MLC_OS_X_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLC_OS_X_DemoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0A6CD2C1455E10E00B99D78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD341455E10E00B99D78 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD4C1455E10F00B99D78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD521455E10F00B99D78 /* SenTestingKit.framework in Frameworks */,
+				D0A6CD531455E10F00B99D78 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0A6CD241455E10E00B99D78 = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD391455E10E00B99D78 /* MLC OS X Demo */,
+				D0A6CD561455E10F00B99D78 /* MLC OS X DemoTests */,
+				D0A6CD321455E10E00B99D78 /* Frameworks */,
+				D0A6CD301455E10E00B99D78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0A6CD301455E10E00B99D78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD2F1455E10E00B99D78 /* MLC OS X Demo.app */,
+				D0A6CD501455E10F00B99D78 /* MLC OS X DemoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0A6CD321455E10E00B99D78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD331455E10E00B99D78 /* Cocoa.framework */,
+				D0A6CD511455E10F00B99D78 /* SenTestingKit.framework */,
+				D0A6CD351455E10E00B99D78 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0A6CD351455E10E00B99D78 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD361455E10E00B99D78 /* AppKit.framework */,
+				D0A6CD371455E10E00B99D78 /* CoreData.framework */,
+				D0A6CD381455E10E00B99D78 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D0A6CD391455E10E00B99D78 /* MLC OS X Demo */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD451455E10E00B99D78 /* MLCAppDelegate.h */,
+				D0A6CD461455E10E00B99D78 /* MLCAppDelegate.m */,
+				D0A6CD481455E10E00B99D78 /* MainMenu.xib */,
+				D0A6CD3A1455E10E00B99D78 /* Supporting Files */,
+			);
+			path = "MLC OS X Demo";
+			sourceTree = "<group>";
+		};
+		D0A6CD3A1455E10E00B99D78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD3B1455E10E00B99D78 /* MLC OS X Demo-Info.plist */,
+				D0A6CD3C1455E10E00B99D78 /* InfoPlist.strings */,
+				D0A6CD3F1455E10E00B99D78 /* main.m */,
+				D0A6CD411455E10E00B99D78 /* MLC OS X Demo-Prefix.pch */,
+				D0A6CD421455E10E00B99D78 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A6CD561455E10F00B99D78 /* MLC OS X DemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD5C1455E10F00B99D78 /* MLC_OS_X_DemoTests.h */,
+				D0A6CD5D1455E10F00B99D78 /* MLC_OS_X_DemoTests.m */,
+				D0A6CD571455E10F00B99D78 /* Supporting Files */,
+			);
+			path = "MLC OS X DemoTests";
+			sourceTree = "<group>";
+		};
+		D0A6CD571455E10F00B99D78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD581455E10F00B99D78 /* MLC OS X DemoTests-Info.plist */,
+				D0A6CD591455E10F00B99D78 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0A6CD2E1455E10E00B99D78 /* MLC OS X Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A6CD611455E10F00B99D78 /* Build configuration list for PBXNativeTarget "MLC OS X Demo" */;
+			buildPhases = (
+				D0A6CD2B1455E10E00B99D78 /* Sources */,
+				D0A6CD2C1455E10E00B99D78 /* Frameworks */,
+				D0A6CD2D1455E10E00B99D78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MLC OS X Demo";
+			productName = "MLC OS X Demo";
+			productReference = D0A6CD2F1455E10E00B99D78 /* MLC OS X Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0A6CD4F1455E10F00B99D78 /* MLC OS X DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A6CD641455E10F00B99D78 /* Build configuration list for PBXNativeTarget "MLC OS X DemoTests" */;
+			buildPhases = (
+				D0A6CD4B1455E10F00B99D78 /* Sources */,
+				D0A6CD4C1455E10F00B99D78 /* Frameworks */,
+				D0A6CD4D1455E10F00B99D78 /* Resources */,
+				D0A6CD4E1455E10F00B99D78 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0A6CD551455E10F00B99D78 /* PBXTargetDependency */,
+			);
+			name = "MLC OS X DemoTests";
+			productName = "MLC OS X DemoTests";
+			productReference = D0A6CD501455E10F00B99D78 /* MLC OS X DemoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0A6CD261455E10E00B99D78 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = D0A6CD291455E10E00B99D78 /* Build configuration list for PBXProject "MLC OS X Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0A6CD241455E10E00B99D78;
+			productRefGroup = D0A6CD301455E10E00B99D78 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0A6CD2E1455E10E00B99D78 /* MLC OS X Demo */,
+				D0A6CD4F1455E10F00B99D78 /* MLC OS X DemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0A6CD2D1455E10E00B99D78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD3E1455E10E00B99D78 /* InfoPlist.strings in Resources */,
+				D0A6CD441455E10E00B99D78 /* Credits.rtf in Resources */,
+				D0A6CD4A1455E10E00B99D78 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD4D1455E10F00B99D78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD5B1455E10F00B99D78 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0A6CD4E1455E10F00B99D78 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0A6CD2B1455E10E00B99D78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD401455E10E00B99D78 /* main.m in Sources */,
+				D0A6CD471455E10E00B99D78 /* MLCAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD4B1455E10F00B99D78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD5E1455E10F00B99D78 /* MLC_OS_X_DemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0A6CD551455E10F00B99D78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0A6CD2E1455E10E00B99D78 /* MLC OS X Demo */;
+			targetProxy = D0A6CD541455E10F00B99D78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D0A6CD3C1455E10E00B99D78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD3D1455E10E00B99D78 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D0A6CD421455E10E00B99D78 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD431455E10E00B99D78 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D0A6CD481455E10E00B99D78 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD491455E10E00B99D78 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D0A6CD591455E10F00B99D78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD5A1455E10F00B99D78 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0A6CD5F1455E10F00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D0A6CD601455E10F00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D0A6CD621455E10F00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
+				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D0A6CD631455E10F00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
+				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D0A6CD651455E10F00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLC OS X Demo.app/Contents/MacOS/MLC OS X Demo";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
+				INFOPLIST_FILE = "MLC OS X DemoTests/MLC OS X DemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D0A6CD661455E10F00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLC OS X Demo.app/Contents/MacOS/MLC OS X Demo";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
+				INFOPLIST_FILE = "MLC OS X DemoTests/MLC OS X DemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0A6CD291455E10E00B99D78 /* Build configuration list for PBXProject "MLC OS X Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD5F1455E10F00B99D78 /* Debug */,
+				D0A6CD601455E10F00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0A6CD611455E10F00B99D78 /* Build configuration list for PBXNativeTarget "MLC OS X Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD621455E10F00B99D78 /* Debug */,
+				D0A6CD631455E10F00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0A6CD641455E10F00B99D78 /* Build configuration list for PBXNativeTarget "MLC OS X DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD651455E10F00B99D78 /* Debug */,
+				D0A6CD661455E10F00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0A6CD261455E10E00B99D78 /* Project object */;
+}

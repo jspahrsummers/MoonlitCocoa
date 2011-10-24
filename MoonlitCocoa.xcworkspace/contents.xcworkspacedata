@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Demos/MLC OS X Demo/MLC OS X Demo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Framework/MoonlitCocoa/MoonlitCocoa.xcodeproj">
    </FileRef>
 </Workspace>
