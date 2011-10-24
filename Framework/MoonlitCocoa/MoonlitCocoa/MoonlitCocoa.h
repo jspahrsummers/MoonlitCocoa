@@ -6,8 +6,3 @@
 //  Released into the public domain.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface MoonlitCocoa : NSObject
-
-@end
