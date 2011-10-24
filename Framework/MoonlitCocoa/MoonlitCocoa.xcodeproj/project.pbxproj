@@ -16,6 +16,8 @@
 		D0A6CD1B1455E09D00B99D78 /* MoonlitCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD1A1455E09D00B99D78 /* MoonlitCocoaTests.m */; };
 		D0A6CD961455E73E00B99D78 /* liblua.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD951455E73E00B99D78 /* liblua.5.1.dylib */; };
 		D0A6CDB6145604EE00B99D78 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0A6CDBA1456052F00B99D78 /* MLCState.h in Headers */ = {isa = PBXBuildFile; fileRef = D0A6CDB81456052F00B99D78 /* MLCState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0A6CDBB1456052F00B99D78 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CDB91456052F00B99D78 /* MLCState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		D0A6CD7B1455E20000B99D78 /* Mac OS X.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac OS X.xcconfig"; sourceTree = "<group>"; };
 		D0A6CD7C1455E20000B99D78 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D0A6CD951455E73E00B99D78 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
+		D0A6CDB81456052F00B99D78 /* MLCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCState.h; sourceTree = "<group>"; };
+		D0A6CDB91456052F00B99D78 /* MLCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */,
+				D0A6CDB71456050C00B99D78 /* Classes */,
 				D0A6CCFE1455E09D00B99D78 /* Supporting Files */,
 			);
 			path = MoonlitCocoa;
@@ -167,6 +172,15 @@
 			path = ../../Configuration;
 			sourceTree = "<group>";
 		};
+		D0A6CDB71456050C00B99D78 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CDB81456052F00B99D78 /* MLCState.h */,
+				D0A6CDB91456052F00B99D78 /* MLCState.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -175,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0A6CDB6145604EE00B99D78 /* MoonlitCocoa.h in Headers */,
+				D0A6CDBA1456052F00B99D78 /* MLCState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0A6CDBB1456052F00B99D78 /* MLCState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
