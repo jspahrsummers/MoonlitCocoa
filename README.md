@@ -1,6 +1,6 @@
 This project is released into the public domain.
 
-h1. Requirements
+# Requirements
 
 * Lua 5.1
 * Metalua
