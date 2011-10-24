@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <lua.h>
 
 /**
  * Represents a Lua state.
  */
 @interface MLCState : NSObject
+/**
+ * The state object managed by the receiver.
+ */
+@property (nonatomic, readonly) lua_State *state;
+
 /**
  * Returns an autoreleased Lua state initialized with #init.
  */

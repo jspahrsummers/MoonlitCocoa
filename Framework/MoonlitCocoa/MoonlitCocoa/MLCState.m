@@ -7,12 +7,11 @@
 //
 
 #import "MLCState.h"
-#import <lua.h>
 #import <lauxlib.h>
 #import <lualib.h>
 
 @interface MLCState ()
-@property (nonatomic) lua_State *state;
+@property (nonatomic, readwrite) lua_State *state;
 @end
 
 @implementation MLCState
