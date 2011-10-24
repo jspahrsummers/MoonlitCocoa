@@ -25,16 +25,13 @@
 		NSLog(@"Could not load Metalua compiler: %s", lua_tostring(state.state, -1));
 	}
 
-	NSString *helloPath = [[NSBundle mainBundle] pathForResource:@"hello" ofType:@"lua"];
-	
-	lua_getglobal(state.state, "compiler");
-	lua_getfield(state.state, -1, "loadfile");
-	lua_pushstring(state.state, [helloPath UTF8String]);
-
-	lua_pcall(state.state, 1, 1, 0);
-	NSLog(@"top of stack: %s", lua_tostring(state.state, -1));
-
-	lua_pcall(state.state, 0, 0, 0);
+	NSURL *helloURL = [[NSBundle mainBundle] URLForResource:@"hello" withExtension:@"lua"];
+	NSError *error = nil;
+	if (![state loadScriptAtURL:helloURL error:&error]) {
+		NSLog(@"Error loading hello.lua: %@", error);
+	} else {
+		lua_pcall(state.state, 0, 0, 0);
+	}
 }
 
 @end
