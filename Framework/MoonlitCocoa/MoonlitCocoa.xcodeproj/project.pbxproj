@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0A6CCF81455E09D00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF71455E09D00B99D78 /* Cocoa.framework */; };
+		D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD001455E09D00B99D78 /* InfoPlist.strings */; };
+		D0A6CD061455E09D00B99D78 /* MoonlitCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD051455E09D00B99D78 /* MoonlitCocoa.m */; };
+		D0A6CD0E1455E09D00B99D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */; };
+		D0A6CD0F1455E09D00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF71455E09D00B99D78 /* Cocoa.framework */; };
+		D0A6CD121455E09D00B99D78 /* MoonlitCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */; };
+		D0A6CD181455E09D00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD161455E09D00B99D78 /* InfoPlist.strings */; };
+		D0A6CD1B1455E09D00B99D78 /* MoonlitCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD1A1455E09D00B99D78 /* MoonlitCocoaTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0A6CD101455E09D00B99D78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0A6CCEA1455E09D00B99D78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0A6CCF31455E09D00B99D78;
+			remoteInfo = MoonlitCocoa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoonlitCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A6CCF71455E09D00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D0A6CCFA1455E09D00B99D78 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D0A6CCFB1455E09D00B99D78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D0A6CCFC1455E09D00B99D78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D0A6CCFF1455E09D00B99D78 /* MoonlitCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoa-Info.plist"; sourceTree = "<group>"; };
+		D0A6CD011455E09D00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0A6CD031455E09D00B99D78 /* MoonlitCocoa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoonlitCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlitCocoa.h; sourceTree = "<group>"; };
+		D0A6CD051455E09D00B99D78 /* MoonlitCocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlitCocoa.m; sourceTree = "<group>"; };
+		D0A6CD0C1455E09D00B99D78 /* MoonlitCocoaTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonlitCocoaTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D0A6CD151455E09D00B99D78 /* MoonlitCocoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoaTests-Info.plist"; sourceTree = "<group>"; };
+		D0A6CD171455E09D00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D0A6CD191455E09D00B99D78 /* MoonlitCocoaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoonlitCocoaTests.h; sourceTree = "<group>"; };
+		D0A6CD1A1455E09D00B99D78 /* MoonlitCocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoonlitCocoaTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0A6CCF01455E09D00B99D78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CCF81455E09D00B99D78 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD081455E09D00B99D78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD0E1455E09D00B99D78 /* SenTestingKit.framework in Frameworks */,
+				D0A6CD0F1455E09D00B99D78 /* Cocoa.framework in Frameworks */,
+				D0A6CD121455E09D00B99D78 /* MoonlitCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0A6CCE81455E09D00B99D78 = {
+			isa = PBXGroup;
+			children = (
+				D0A6CCFD1455E09D00B99D78 /* MoonlitCocoa */,
+				D0A6CD131455E09D00B99D78 /* MoonlitCocoaTests */,
+				D0A6CCF61455E09D00B99D78 /* Frameworks */,
+				D0A6CCF51455E09D00B99D78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0A6CCF51455E09D00B99D78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */,
+				D0A6CD0C1455E09D00B99D78 /* MoonlitCocoaTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0A6CCF61455E09D00B99D78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CCF71455E09D00B99D78 /* Cocoa.framework */,
+				D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */,
+				D0A6CCF91455E09D00B99D78 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0A6CCF91455E09D00B99D78 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CCFA1455E09D00B99D78 /* AppKit.framework */,
+				D0A6CCFB1455E09D00B99D78 /* CoreData.framework */,
+				D0A6CCFC1455E09D00B99D78 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D0A6CCFD1455E09D00B99D78 /* MoonlitCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */,
+				D0A6CD051455E09D00B99D78 /* MoonlitCocoa.m */,
+				D0A6CCFE1455E09D00B99D78 /* Supporting Files */,
+			);
+			path = MoonlitCocoa;
+			sourceTree = "<group>";
+		};
+		D0A6CCFE1455E09D00B99D78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CCFF1455E09D00B99D78 /* MoonlitCocoa-Info.plist */,
+				D0A6CD001455E09D00B99D78 /* InfoPlist.strings */,
+				D0A6CD031455E09D00B99D78 /* MoonlitCocoa-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A6CD131455E09D00B99D78 /* MoonlitCocoaTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD191455E09D00B99D78 /* MoonlitCocoaTests.h */,
+				D0A6CD1A1455E09D00B99D78 /* MoonlitCocoaTests.m */,
+				D0A6CD141455E09D00B99D78 /* Supporting Files */,
+			);
+			path = MoonlitCocoaTests;
+			sourceTree = "<group>";
+		};
+		D0A6CD141455E09D00B99D78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CD151455E09D00B99D78 /* MoonlitCocoaTests-Info.plist */,
+				D0A6CD161455E09D00B99D78 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D0A6CCF11455E09D00B99D78 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D0A6CCF31455E09D00B99D78 /* MoonlitCocoa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A6CD1E1455E09D00B99D78 /* Build configuration list for PBXNativeTarget "MoonlitCocoa" */;
+			buildPhases = (
+				D0A6CCEF1455E09D00B99D78 /* Sources */,
+				D0A6CCF01455E09D00B99D78 /* Frameworks */,
+				D0A6CCF11455E09D00B99D78 /* Headers */,
+				D0A6CCF21455E09D00B99D78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoonlitCocoa;
+			productName = MoonlitCocoa;
+			productReference = D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D0A6CD0B1455E09D00B99D78 /* MoonlitCocoaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A6CD211455E09D00B99D78 /* Build configuration list for PBXNativeTarget "MoonlitCocoaTests" */;
+			buildPhases = (
+				D0A6CD071455E09D00B99D78 /* Sources */,
+				D0A6CD081455E09D00B99D78 /* Frameworks */,
+				D0A6CD091455E09D00B99D78 /* Resources */,
+				D0A6CD0A1455E09D00B99D78 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0A6CD111455E09D00B99D78 /* PBXTargetDependency */,
+			);
+			name = MoonlitCocoaTests;
+			productName = MoonlitCocoaTests;
+			productReference = D0A6CD0C1455E09D00B99D78 /* MoonlitCocoaTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0A6CCEA1455E09D00B99D78 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = D0A6CCED1455E09D00B99D78 /* Build configuration list for PBXProject "MoonlitCocoa" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D0A6CCE81455E09D00B99D78;
+			productRefGroup = D0A6CCF51455E09D00B99D78 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0A6CCF31455E09D00B99D78 /* MoonlitCocoa */,
+				D0A6CD0B1455E09D00B99D78 /* MoonlitCocoaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0A6CCF21455E09D00B99D78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD091455E09D00B99D78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD181455E09D00B99D78 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0A6CD0A1455E09D00B99D78 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0A6CCEF1455E09D00B99D78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD061455E09D00B99D78 /* MoonlitCocoa.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6CD071455E09D00B99D78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6CD1B1455E09D00B99D78 /* MoonlitCocoaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0A6CD111455E09D00B99D78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0A6CCF31455E09D00B99D78 /* MoonlitCocoa */;
+			targetProxy = D0A6CD101455E09D00B99D78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D0A6CD001455E09D00B99D78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD011455E09D00B99D78 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D0A6CD161455E09D00B99D78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A6CD171455E09D00B99D78 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0A6CD1C1455E09D00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D0A6CD1D1455E09D00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D0A6CD1F1455E09D00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
+				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		D0A6CD201455E09D00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
+				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		D0A6CD221455E09D00B99D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
+				INFOPLIST_FILE = "MoonlitCocoaTests/MoonlitCocoaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D0A6CD231455E09D00B99D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
+				INFOPLIST_FILE = "MoonlitCocoaTests/MoonlitCocoaTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0A6CCED1455E09D00B99D78 /* Build configuration list for PBXProject "MoonlitCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD1C1455E09D00B99D78 /* Debug */,
+				D0A6CD1D1455E09D00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0A6CD1E1455E09D00B99D78 /* Build configuration list for PBXNativeTarget "MoonlitCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD1F1455E09D00B99D78 /* Debug */,
+				D0A6CD201455E09D00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0A6CD211455E09D00B99D78 /* Build configuration list for PBXNativeTarget "MoonlitCocoaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6CD221455E09D00B99D78 /* Debug */,
+				D0A6CD231455E09D00B99D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0A6CCEA1455E09D00B99D78 /* Project object */;
+}
