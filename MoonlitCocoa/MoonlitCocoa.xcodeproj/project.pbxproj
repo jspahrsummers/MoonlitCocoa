@@ -44,6 +44,11 @@
 		D02A0394145508C900CAD6D9 /* MoonlitCocoaTouchTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoonlitCocoaTouchTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D02A039E145508C900CAD6D9 /* MoonlitCocoaTouchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoaTouchTests-Info.plist"; sourceTree = "<group>"; };
 		D02A03A0145508C900CAD6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D02A03B1145509E500CAD6D9 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		D02A03B2145509E500CAD6D9 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		D02A03B3145509E500CAD6D9 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D02A03B414550AC100CAD6D9 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
+		D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac OS X.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,7 @@
 				D02A03AF1455096D00CAD6D9 /* Mac OS X */,
 				D02A03AB1455090500CAD6D9 /* iOS */,
 				D02A0355145508BF00CAD6D9 /* Frameworks */,
+				D02A03B0145509E500CAD6D9 /* Configuration */,
 				D02A0354145508BF00CAD6D9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -216,6 +222,19 @@
 				D02A0372145508BF00CAD6D9 /* MoonlitCocoaTests */,
 			);
 			name = "Mac OS X";
+			sourceTree = "<group>";
+		};
+		D02A03B0145509E500CAD6D9 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				D02A03B1145509E500CAD6D9 /* Base.xcconfig */,
+				D02A03B2145509E500CAD6D9 /* Debug.xcconfig */,
+				D02A03B3145509E500CAD6D9 /* Release.xcconfig */,
+				D02A03B414550AC100CAD6D9 /* iOS.xcconfig */,
+				D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */,
+			);
+			name = Configuration;
+			path = ../Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,44 +488,28 @@
 /* Begin XCBuildConfiguration section */
 		D01315761454CF7B00ACC02F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B2145509E500CAD6D9 /* Debug.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		D01315771454CF7B00ACC02F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B3145509E500CAD6D9 /* Release.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		D02A037B145508BF00CAD6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -516,26 +519,15 @@
 		};
 		D02A037C145508BF00CAD6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
@@ -544,6 +536,7 @@
 		};
 		D02A037D145508BF00CAD6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -577,6 +570,7 @@
 		};
 		D02A037E145508BF00CAD6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -603,28 +597,11 @@
 		};
 		D02A03A6145508C900CAD6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B414550AC100CAD6D9 /* iOS.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/MoonlitCocoaTouch.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonlitCocoaTouch/MoonlitCocoaTouch-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -633,21 +610,11 @@
 		};
 		D02A03A7145508C900CAD6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B414550AC100CAD6D9 /* iOS.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/MoonlitCocoaTouch.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoonlitCocoaTouch/MoonlitCocoaTouch-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -657,6 +624,7 @@
 		};
 		D02A03A9145508C900CAD6D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B414550AC100CAD6D9 /* iOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -690,6 +658,7 @@
 		};
 		D02A03AA145508C900CAD6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02A03B414550AC100CAD6D9 /* iOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
