@@ -12,12 +12,18 @@
 		D02A0377145508BF00CAD6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D02A0375145508BF00CAD6D9 /* InfoPlist.strings */; };
 		D02A039B145508C900CAD6D9 /* libMoonlitCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A0386145508C900CAD6D9 /* libMoonlitCocoa.a */; };
 		D02A03A1145508C900CAD6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D02A039F145508C900CAD6D9 /* InfoPlist.strings */; };
-		D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; };
-		D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B914550BB100CAD6D9 /* MoonlitCocoaTouch.h */; };
+		D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B914550BB100CAD6D9 /* MoonlitCocoaTouch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03BC14550C0A00CAD6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BB14550C0A00CAD6D9 /* Foundation.framework */; };
 		D02A03BE14550C0F00CAD6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BD14550C0F00CAD6D9 /* Foundation.framework */; };
 		D02A03C014550C1E00CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
 		D02A03C114550C2400CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
+		D02A03C314550C7E00CAD6D9 /* liblua.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */; };
+		D02A03C614550CEA00CAD6D9 /* MLCLuaState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03C714550CEA00CAD6D9 /* MLCLuaState.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03C814550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
+		D02A03C914550CEA00CAD6D9 /* MLCLuaState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */; };
+		D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +66,9 @@
 		D02A03BB14550C0A00CAD6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D02A03BD14550C0F00CAD6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
+		D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaState.h; sourceTree = "<group>"; };
+		D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCLuaState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03C314550C7E00CAD6D9 /* liblua.5.1.dylib in Frameworks */,
 				D02A03BC14550C0A00CAD6D9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +139,7 @@
 				D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */,
 				D02A03BD14550C0F00CAD6D9 /* Foundation.framework */,
 				D02A03BB14550C0A00CAD6D9 /* Foundation.framework */,
+				D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,6 +236,8 @@
 		D02A03AD1455093900CAD6D9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D02A03C414550CEA00CAD6D9 /* MLCLuaState.h */,
+				D02A03C514550CEA00CAD6D9 /* MLCLuaState.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */,
+				D02A03C614550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +295,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */,
+				D02A03C714550CEA00CAD6D9 /* MLCLuaState.h in Headers */,
+				D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03C814550CEA00CAD6D9 /* MLCLuaState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03C914550CEA00CAD6D9 /* MLCLuaState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
