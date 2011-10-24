@@ -36,6 +36,12 @@ NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
 	lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
 	lua_setfield(self.state, -2, "path");
 
+	// initialize Metalua compiler
+	NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
+	if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
+		NSLog(@"Could not load Metalua compiler: %s", lua_tostring(self.state, -1));
+	}
+
 	return self;
 }
 

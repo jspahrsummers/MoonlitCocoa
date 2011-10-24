@@ -20,11 +20,6 @@
 {
 	MLCState *state = [MLCState state];
 
-	NSString *compilerPath = [[NSBundle mainBundle] pathForResource:@"compiler" ofType:@"lua"];
-	if (0 != luaL_dofile(state.state, [compilerPath UTF8String])) {
-		NSLog(@"Could not load Metalua compiler: %s", lua_tostring(state.state, -1));
-	}
-
 	NSURL *helloURL = [[NSBundle mainBundle] URLForResource:@"hello" withExtension:@"lua"];
 	NSError *error = nil;
 	if (![state loadScriptAtURL:helloURL error:&error]) {

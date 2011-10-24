@@ -1,5 +1,3 @@
-print(package.path)
-
 require 'metalua.compiler'
 require 'metalua.mlc'
 require 'serialize'

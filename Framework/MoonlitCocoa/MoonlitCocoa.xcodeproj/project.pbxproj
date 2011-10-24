@@ -18,6 +18,7 @@
 		D0A6CDB6145604EE00B99D78 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0A6CDBA1456052F00B99D78 /* MLCState.h in Headers */ = {isa = PBXBuildFile; fileRef = D0A6CDB81456052F00B99D78 /* MLCState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0A6CDBB1456052F00B99D78 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CDB91456052F00B99D78 /* MLCState.m */; };
+		D0A6CDCD145631E400B99D78 /* compiler.lua in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CDCC145631E400B99D78 /* compiler.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D0A6CD951455E73E00B99D78 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
 		D0A6CDB81456052F00B99D78 /* MLCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCState.h; sourceTree = "<group>"; };
 		D0A6CDB91456052F00B99D78 /* MLCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCState.m; sourceTree = "<group>"; };
+		D0A6CDCC145631E400B99D78 /* compiler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compiler.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			children = (
 				D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */,
 				D0A6CDB71456050C00B99D78 /* Classes */,
+				D0A6CDC91456317400B99D78 /* Scripts */,
 				D0A6CCFE1455E09D00B99D78 /* Supporting Files */,
 			);
 			path = MoonlitCocoa;
@@ -179,6 +182,14 @@
 				D0A6CDB91456052F00B99D78 /* MLCState.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		D0A6CDC91456317400B99D78 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6CDCC145631E400B99D78 /* compiler.lua */,
+			);
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */,
+				D0A6CDCD145631E400B99D78 /* compiler.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
