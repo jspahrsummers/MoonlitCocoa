@@ -1,9 +1,11 @@
-print('harro')
 print(package.path)
 
-package.path = "?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua"
-print(package.path)
-
+require 'metalua.compiler'
 require 'metalua.mlc'
+require 'serialize'
 
-print(tostring(mlc.convert))
+compiler = {}
+
+compiler.loadfile = function (file)
+	return mlc.luafile_to_function(file)
+end

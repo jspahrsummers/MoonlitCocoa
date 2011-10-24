@@ -1,3 +1,5 @@
--{ require 'metalua.base' }-
+-{ extension "match" }
+
+require 'metalua.runtime'
 
 print 'Hello world!'
