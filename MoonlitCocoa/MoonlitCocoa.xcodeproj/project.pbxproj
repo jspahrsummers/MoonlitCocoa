@@ -24,8 +24,8 @@
 		D02A03C814550CEA00CAD6D9 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCState.m */; };
 		D02A03C914550CEA00CAD6D9 /* MLCState.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03C514550CEA00CAD6D9 /* MLCState.m */; };
 		D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03DF14551A5600CAD6D9 /* MLCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03E014551A5600CAD6D9 /* MLCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03DE14551A5600CAD6D9 /* MLCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03E614551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03E714551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03E814551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */; };
@@ -75,7 +75,7 @@
 		D02A03C214550C7E00CAD6D9 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
 		D02A03C414550CEA00CAD6D9 /* MLCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCState.h; sourceTree = "<group>"; };
 		D02A03C514550CEA00CAD6D9 /* MLCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCState.m; sourceTree = "<group>"; };
-		D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCLuaValue.h; sourceTree = "<group>"; };
+		D02A03DE14551A5600CAD6D9 /* MLCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCValue.h; sourceTree = "<group>"; };
 		D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLCExtensions.h"; sourceTree = "<group>"; };
 		D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLCExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -293,7 +293,7 @@
 		D02A03DC14551A2700CAD6D9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D02A03DE14551A5600CAD6D9 /* MLCLuaValue.h */,
+				D02A03DE14551A5600CAD6D9 /* MLCValue.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */,
 				D02A03C614550CEA00CAD6D9 /* MLCState.h in Headers */,
 				D02A03E614551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
-				D02A03DF14551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
+				D02A03DF14551A5600CAD6D9 /* MLCValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +319,7 @@
 				D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */,
 				D02A03C714550CEA00CAD6D9 /* MLCState.h in Headers */,
 				D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */,
-				D02A03E014551A5600CAD6D9 /* MLCLuaValue.h in Headers */,
+				D02A03E014551A5600CAD6D9 /* MLCValue.h in Headers */,
 				D02A03E714551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

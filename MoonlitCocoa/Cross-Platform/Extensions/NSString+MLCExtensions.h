@@ -6,7 +6,7 @@
 //  Released into the public domain.
 //
 
-#import <MoonlitCocoa/MLCLuaValue.h>
+#import <MoonlitCocoa/MLCValue.h>
 
-@interface NSString (MLCExtensions) <MLCLuaValue>
+@interface NSString (MLCExtensions) <MLCValue>
 @end

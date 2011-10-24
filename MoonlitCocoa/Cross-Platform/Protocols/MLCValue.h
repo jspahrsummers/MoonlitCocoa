@@ -1,5 +1,5 @@
 //
-//  MLCLuaValue.h
+//  MLCValue.h
 //  MoonlitCocoa
 //
 //  Created by Justin Spahr-Summers on 23.10.11.
@@ -13,7 +13,7 @@
 /**
  * An object that can be converted to and from a valid Lua value.
  */
-@protocol MLCLuaValue <NSObject>
+@protocol MLCValue <NSObject>
 @required
 /**
  * Returns whether the value at \a index in the stack of the given Lua state is

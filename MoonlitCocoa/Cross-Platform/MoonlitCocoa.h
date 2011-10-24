@@ -7,5 +7,5 @@
 //
 
 #import <MoonlitCocoa/MLCState.h>
-#import <MoonlitCocoa/MLCLuaValue.h>
+#import <MoonlitCocoa/MLCValue.h>
 #import <MoonlitCocoa/NSString+MLCExtensions.h>
