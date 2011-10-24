@@ -57,18 +57,4 @@
  * and \c NO is returned.
  */
 - (BOOL)loadString:(NSString *)source;
-
-/**
- * Returns the value at \a index as a string. If the value at \a index is
- * a number, it is converted to a string, changing the actual value in the stack
- * as a side effect.
- *
- * If the value at \a index is not a string or number, \c nil is returned.
- */
-- (NSString *)getStringAtIndex:(int)index;
-
-/**
- * Pushes \a str on top of the Lua stack.
- */
-- (void)pushString:(NSString *)str;
 @end

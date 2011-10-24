@@ -7,6 +7,7 @@
 //
 
 #import "MLCLuaState.h"
+#import "NSString+MLCExtensions.h"
 #import <lauxlib.h>
 #import <lualib.h>
 #import <objc/runtime.h>
@@ -52,12 +53,12 @@ char * const MLCLuaStateLuaPathsKey = "LuaPaths";
 		self.closeWhenDone = closeWhenDone;
 
 		lua_getglobal(self.state, "package.path");
-		NSString *packagePath = [self getStringAtIndex:-1];
+		NSString *packagePath = [NSString valueFromStack:self atIndex:-1];
 		
 		NSString *additionalPaths = [[[self class] luaPaths] componentsJoinedByString:@";"];
 		packagePath = [packagePath stringByAppendingFormat:@";%@", additionalPaths];
 
-		[self pushString:packagePath];
+		[packagePath pushOntoStack:self];
 		lua_setglobal(self.state, "package.path");
 	}
 
@@ -71,29 +72,15 @@ char * const MLCLuaStateLuaPathsKey = "LuaPaths";
 	}
 }
 
-- (NSString *)getStringAtIndex:(int)index; {
-  	size_t length = 0;
-	const char *str = lua_tolstring(self.state, index, &length);
-	if (!str)
-		return nil;
-	
-	return [[NSString alloc] initWithBytes:str length:length encoding:NSUTF8StringEncoding];
-}
-
 - (BOOL)loadString:(NSString *)source; {
   	// use the 'loadstring' loaded into Lua, because Metalua overrides the
 	// default behavior to additionally compile Metalua code
   	lua_getglobal(self.state, "loadstring");
 
-	[self pushString:source];
+	[source pushOntoStack:self];
 	lua_call(self.state, 1, 1);
 
 	return !lua_isnil(self.state, -1);
-}
-
-- (void)pushString:(NSString *)str; {
-  	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-  	lua_pushlstring(self.state, [data bytes], [data length]);
 }
 
 @end
