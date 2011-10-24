@@ -14,6 +14,10 @@
 		D02A03A1145508C900CAD6D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D02A039F145508C900CAD6D9 /* InfoPlist.strings */; };
 		D02A03B814550B6900CAD6D9 /* MoonlitCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */; };
 		D02A03BA14550BB100CAD6D9 /* MoonlitCocoaTouch.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03B914550BB100CAD6D9 /* MoonlitCocoaTouch.h */; };
+		D02A03BC14550C0A00CAD6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BB14550C0A00CAD6D9 /* Foundation.framework */; };
+		D02A03BE14550C0F00CAD6D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BD14550C0F00CAD6D9 /* Foundation.framework */; };
+		D02A03C014550C1E00CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
+		D02A03C114550C2400CAD6D9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,9 @@
 		D02A03B514550AC100CAD6D9 /* Mac OS X.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac OS X.xcconfig"; sourceTree = "<group>"; };
 		D02A03B714550B6900CAD6D9 /* MoonlitCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonlitCocoa.h; sourceTree = "<group>"; };
 		D02A03B914550BB100CAD6D9 /* MoonlitCocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoonlitCocoaTouch.h; sourceTree = "<group>"; };
+		D02A03BB14550C0A00CAD6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D02A03BD14550C0F00CAD6D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03BC14550C0A00CAD6D9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03C114550C2400CAD6D9 /* SenTestingKit.framework in Frameworks */,
 				D02A0371145508BF00CAD6D9 /* MoonlitCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03BE14550C0F00CAD6D9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02A03C014550C1E00CAD6D9 /* SenTestingKit.framework in Frameworks */,
 				D02A039B145508C900CAD6D9 /* libMoonlitCocoa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +126,9 @@
 		D02A0355145508BF00CAD6D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D02A03BF14550C1E00CAD6D9 /* SenTestingKit.framework */,
+				D02A03BD14550C0F00CAD6D9 /* Foundation.framework */,
+				D02A03BB14550C0A00CAD6D9 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
