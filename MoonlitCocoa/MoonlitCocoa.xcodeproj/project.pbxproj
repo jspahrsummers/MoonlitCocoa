@@ -196,23 +196,24 @@
 			isa = PBXGroup;
 			children = (
 				D02A03AD1455093900CAD6D9 /* Classes */,
+				D02A03B614550B4300CAD6D9 /* Extensions */,
 				D02A03AE1455094100CAD6D9 /* Tests */,
 			);
-			name = "Cross-Platform";
+			path = "Cross-Platform";
 			sourceTree = "<group>";
 		};
 		D02A03AD1455093900CAD6D9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		D02A03AE1455094100CAD6D9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		D02A03AF1455096D00CAD6D9 /* Mac OS X */ = {
@@ -235,6 +236,13 @@
 			);
 			name = Configuration;
 			path = ../Configuration;
+			sourceTree = "<group>";
+		};
+		D02A03B614550B4300CAD6D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
