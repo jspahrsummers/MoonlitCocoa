@@ -20,8 +20,18 @@
 	lua_State *state = luaL_newstate();
 	luaL_openlibs(state);
 
+	lua_pushliteral(state, "?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
+	lua_setglobal(state, "package.path");
+
+	NSString *compilerPath = [[NSBundle mainBundle] pathForResource:@"compiler" ofType:@"lua"];
+	if (0 != luaL_dofile(state, [compilerPath UTF8String])) {
+		NSLog(@"Could not load Metalua compiler: %s", lua_tostring(state, -1));
+	}
+
 	NSString *helloPath = [[NSBundle mainBundle] pathForResource:@"hello" ofType:@"lua"];
-	luaL_dofile(state, [helloPath UTF8String]);
+	if (0 != luaL_dofile(state, [helloPath UTF8String])) {
+		NSLog(@"Could not load hello.lua: %s", lua_tostring(state, -1));
+	}
 
 	lua_close(state);
 }

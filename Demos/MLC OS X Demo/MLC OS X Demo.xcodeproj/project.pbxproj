@@ -20,6 +20,7 @@
 		D0A6CD9C1455E7D000B99D78 /* hello.lua in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD9B1455E7D000B99D78 /* hello.lua */; };
 		D0A6CD9E1455E8DF00B99D78 /* MoonlitCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD9D1455E8DF00B99D78 /* MoonlitCocoa.framework */; };
 		D0A6CDA01455E90200B99D78 /* liblua.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */; };
+		D0A6CDA21455EBF400B99D78 /* compiler.lua in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CDA11455EBF400B99D78 /* compiler.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		D0A6CD9B1455E7D000B99D78 /* hello.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hello.lua; sourceTree = "<group>"; };
 		D0A6CD9D1455E8DF00B99D78 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = MoonlitCocoa.framework; path = ../../Framework/MoonlitCocoa/build/Release/MoonlitCocoa.framework; sourceTree = "<group>"; };
 		D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
+		D0A6CDA11455EBF400B99D78 /* compiler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compiler.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		D0A6CD9A1455E7A900B99D78 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				D0A6CDA11455EBF400B99D78 /* compiler.lua */,
 				D0A6CD9B1455E7D000B99D78 /* hello.lua */,
 			);
 			name = Scripts;
@@ -273,6 +276,7 @@
 				D0A6CD441455E10E00B99D78 /* Credits.rtf in Resources */,
 				D0A6CD4A1455E10E00B99D78 /* MainMenu.xib in Resources */,
 				D0A6CD9C1455E7D000B99D78 /* hello.lua in Resources */,
+				D0A6CDA21455EBF400B99D78 /* compiler.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
