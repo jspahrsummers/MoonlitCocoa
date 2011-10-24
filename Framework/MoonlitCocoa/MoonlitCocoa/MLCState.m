@@ -30,6 +30,11 @@
 	self.state = luaL_newstate();
 	luaL_openlibs(self.state);
 
+	// add additional package paths (including the path used by Homebrew)
+	lua_getglobal(self.state, "package");
+	lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
+	lua_setfield(self.state, -2, "path");
+
 	return self;
 }
 
