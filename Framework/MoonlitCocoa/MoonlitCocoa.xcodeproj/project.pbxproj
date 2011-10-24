@@ -327,9 +327,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD791455E20000B99D78 /* Debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -337,9 +334,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD7C1455E20000B99D78 /* Release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
