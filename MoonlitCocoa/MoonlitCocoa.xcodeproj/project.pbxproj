@@ -30,6 +30,10 @@
 		D02A03E714551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02A03E814551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */; };
 		D02A03E914551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */; };
+		D02A03F1145520A300CAD6D9 /* MLCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03EF145520A300CAD6D9 /* MLCObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03F2145520A300CAD6D9 /* MLCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03F0145520A300CAD6D9 /* MLCObject.m */; };
+		D02A03F3145520A800CAD6D9 /* MLCObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D02A03EF145520A300CAD6D9 /* MLCObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D02A03F4145520AA00CAD6D9 /* MLCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D02A03F0145520A300CAD6D9 /* MLCObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,8 @@
 		D02A03DE14551A5600CAD6D9 /* MLCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCValue.h; sourceTree = "<group>"; };
 		D02A03E414551CBD00CAD6D9 /* NSString+MLCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MLCExtensions.h"; sourceTree = "<group>"; };
 		D02A03E514551CBD00CAD6D9 /* NSString+MLCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MLCExtensions.m"; sourceTree = "<group>"; };
+		D02A03EF145520A300CAD6D9 /* MLCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCObject.h; sourceTree = "<group>"; };
+		D02A03F0145520A300CAD6D9 /* MLCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +252,8 @@
 		D02A03AD1455093900CAD6D9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D02A03EF145520A300CAD6D9 /* MLCObject.h */,
+				D02A03F0145520A300CAD6D9 /* MLCObject.m */,
 				D02A03C414550CEA00CAD6D9 /* MLCState.h */,
 				D02A03C514550CEA00CAD6D9 /* MLCState.m */,
 			);
@@ -309,6 +317,7 @@
 				D02A03C614550CEA00CAD6D9 /* MLCState.h in Headers */,
 				D02A03E614551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
 				D02A03DF14551A5600CAD6D9 /* MLCValue.h in Headers */,
+				D02A03F1145520A300CAD6D9 /* MLCObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +330,7 @@
 				D02A03CA14550CEF00CAD6D9 /* MoonlitCocoa.h in Headers */,
 				D02A03E014551A5600CAD6D9 /* MLCValue.h in Headers */,
 				D02A03E714551CBD00CAD6D9 /* NSString+MLCExtensions.h in Headers */,
+				D02A03F3145520A800CAD6D9 /* MLCObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +501,7 @@
 			files = (
 				D02A03C814550CEA00CAD6D9 /* MLCState.m in Sources */,
 				D02A03E814551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */,
+				D02A03F2145520A300CAD6D9 /* MLCObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +518,7 @@
 			files = (
 				D02A03C914550CEA00CAD6D9 /* MLCState.m in Sources */,
 				D02A03E914551CBD00CAD6D9 /* NSString+MLCExtensions.m in Sources */,
+				D02A03F4145520AA00CAD6D9 /* MLCObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
