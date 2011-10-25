@@ -116,7 +116,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	// by 1
 	lua_replace(self.state, -2);
 
-	lua_pushstring(self.state, [source UTF8String]);
+	[self pushString:source];
 
 	// on the stack should be:
 	// { compiler.loadstring, source }
@@ -150,6 +150,11 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
   	if (!lua_checkstack(self.state, size)) {
 		[NSException raise:MLCLuaStackOverflowException format:@"Could not grow Lua stack by %i slots", size];
 	}
+}
+
+- (void)pushString:(NSString *)str; {
+  	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+	lua_pushlstring(self.state, [data bytes], [data length]);
 }
 
 @end

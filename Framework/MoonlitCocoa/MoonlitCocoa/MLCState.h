@@ -64,4 +64,11 @@ extern NSString * const MLCLuaStackOverflowException;
  * information about the error.
  */
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error;
+
+/**
+ * Pushes \a str on the Lua stack.
+ *
+ * @note \a str is encoded with UTF-8 before being passed into Lua.
+ */
+- (void)pushString:(NSString *)str;
 @end
