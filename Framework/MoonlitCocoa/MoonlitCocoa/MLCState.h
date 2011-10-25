@@ -16,6 +16,11 @@
 extern NSString * const MLCLuaErrorDomain;
 
 /**
+ * The name of an exception thrown if the Lua stack overflows.
+ */
+extern NSString * const MLCLuaStackOverflowException;
+
+/**
  * Represents a Lua state.
  */
 @interface MLCState : NSObject

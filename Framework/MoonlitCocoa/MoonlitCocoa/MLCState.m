@@ -11,9 +11,17 @@
 #import <lualib.h>
 
 NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
+NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 @interface MLCState ()
 @property (nonatomic, readwrite) lua_State *state;
+
+/**
+ * Attempts to ensure that \a size slots are free in the Lua stack. If not
+ * enough slots are free and the stack cannot be grown, an
+ * #MLCLuaStackOverflowException is thrown.
+ */
+- (void)growStackBySize:(int)size;
 @end
 
 @implementation MLCState
@@ -89,6 +97,12 @@ NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
 		return NO;
 	
 	return [self loadScript:source error:error];
+}
+
+- (void)growStackBySize:(int)size; {
+  	if (!lua_checkstack(self.state, size)) {
+		[NSException raise:MLCLuaStackOverflowException format:@"Could not grow Lua stack by %i slots", size];
+	}
 }
 
 @end
