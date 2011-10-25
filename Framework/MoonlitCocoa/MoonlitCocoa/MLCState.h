@@ -36,6 +36,15 @@ extern NSString * const MLCLuaErrorDomain;
 - (id)init;
 
 /**
+ * Pops \a argCount arguments from the top of the stack and calls the function
+ * that should then be at the top. The number of results is adjusted to \a
+ * resultCount upon return, unless \a resultCount is \c LUA_MULTRET. Upon
+ * a successful call, \c YES is returned. If an error occurs, \c NO is returned,
+ * and \a error (if provided) is filled in with information about the error.
+ */
+- (BOOL)callFunctionWithArgumentCount:(int)argCount resultCount:(int)resultCount error:(NSError **)error;
+
+/**
  * Loads the given Metalua script, pushing a function representing the script
  * onto the receiver's stack and returning \c YES upon success. If an error
  * occurs, \c NO is returned, and \a error (if provided) is filled in with

@@ -52,12 +52,8 @@ NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
 	}
 }
 
-- (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
-	lua_getglobal(self.state, "compiler");
-	lua_getfield(self.state, -1, "loadstring");
-	lua_pushstring(self.state, [source UTF8String]);
-
-	int ret = lua_pcall(self.state, 1, 1, 0);
+- (BOOL)callFunctionWithArgumentCount:(int)argCount resultCount:(int)resultCount error:(NSError **)error; {
+	int ret = lua_pcall(self.state, argCount, resultCount, 0);
 	if (ret == 0) {
 		return YES;
 	} else {
@@ -77,6 +73,14 @@ NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
 
 		return NO;
 	}
+}
+
+- (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
+	lua_getglobal(self.state, "compiler");
+	lua_getfield(self.state, -1, "loadstring");
+	lua_pushstring(self.state, [source UTF8String]);
+
+	return [self callFunctionWithArgumentCount:1 resultCount:1 error:error];
 }
 
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error; {

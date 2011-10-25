@@ -24,8 +24,12 @@
 	NSError *error = nil;
 	if (![state loadScriptAtURL:helloURL error:&error]) {
 		NSLog(@"Error loading hello.lua: %@", error);
-	} else {
-		lua_pcall(state.state, 0, 0, 0);
+		return;
+	}
+
+	if (![state callFunctionWithArgumentCount:0 resultCount:0 error:&error]) {
+		NSLog(@"Error running hello.lua: %@", error);
+		return;
 	}
 }
 
