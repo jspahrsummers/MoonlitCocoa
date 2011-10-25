@@ -70,9 +70,17 @@ extern NSString * const MLCLuaStackOverflowException;
  * encoded with UTF-8. Returns \c nil if the value at the top of the Lua stack
  * is not a string or number.
  *
- * @note The string on the stack may contain embedded zeroes.
+ * @note The string on the stack may contain embedded NULs.
  */
 - (NSString *)popString;
+
+/**
+ * For a table at the top of the stack, replaces it with the value of \a field
+ * obtained from that table.
+ *
+ * @note \a field may not contain embedded NULs.
+ */
+- (void)popTableAndPushField:(NSString *)field;
 
 /**
  * Pushes onto the stack a reference to the given global symbol.

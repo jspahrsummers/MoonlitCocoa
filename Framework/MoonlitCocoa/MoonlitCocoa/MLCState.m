@@ -111,11 +111,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
   	[self growStackBySize:2];
 
 	[self pushGlobal:@"compiler"];
-	lua_getfield(self.state, -1, "loadstring");
-
-	// replace 'compiler' table with the loadstring function to shrink the stack
-	// by 1
-	lua_replace(self.state, -2);
+	[self popTableAndPushField:@"loadstring"];
 
 	[self pushString:source];
 
@@ -162,6 +158,13 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	lua_pop(self.state, 1);
 	
 	return [[NSString alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
+}
+
+- (void)popTableAndPushField:(NSString *)field; {
+  	lua_getfield(self.state, -1, [field UTF8String]);
+
+	// replace the original table in the stack
+	lua_replace(self.state, -2);
 }
 
 - (void)pushGlobal:(NSString *)symbol; {
