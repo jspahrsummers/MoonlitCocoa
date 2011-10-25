@@ -22,6 +22,18 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
  * #MLCLuaStackOverflowException is thrown.
  */
 - (void)growStackBySize:(int)size;
+
+/**
+ * Reserves at least \a size slots in the stack and executes \a block. When
+ * \a block is done executing, pops stack values as necessary to restore it
+ * to the original size.
+ *
+ * Returns the value returned by \a block.
+ *
+ * @warning This method should not be used if a value is meant to be left on the
+ * stack, as it would be popped off.
+ */
+- (BOOL)growStackBySize:(int)size forBalancedBlock:(BOOL (^)(void))block;
 @end
 
 @implementation MLCState
@@ -102,6 +114,21 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 		return NO;
 	
 	return [self loadScript:source error:error];
+}
+
+- (BOOL)growStackBySize:(int)size forBalancedBlock:(BOOL (^)(void))block; {
+  	int top = lua_gettop(self.state);
+  	[self growStackBySize:size];
+
+	BOOL result = block();
+	int newTop = lua_gettop(self.state);
+
+	NSAssert(newTop >= top, @"Stack should not be smaller than its original size after executing some balanced operations");
+	if (newTop > top) {
+		lua_pop(self.state, newTop - top);
+	}
+
+	return result;
 }
 
 - (void)growStackBySize:(int)size; {
