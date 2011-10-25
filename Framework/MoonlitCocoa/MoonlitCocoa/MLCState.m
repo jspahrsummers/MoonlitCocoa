@@ -52,20 +52,28 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	luaL_openlibs(self.state);
 
 	// add additional package paths (including the path used by Homebrew)
-	[self growStackBySize:2];
-	lua_getglobal(self.state, "package");
-	lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
-	lua_setfield(self.state, -2, "path");
+	[self growStackBySize:2 forBalancedBlock:^{
+		lua_getglobal(self.state, "package");
+		lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
+		lua_setfield(self.state, -2, "path");
+		return YES;
+	}];
 
 	// initialize Metalua compiler
-	[self growStackBySize:1];
-	NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
-	if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
-		NSLog(@"Could not load Metalua compiler: %s", lua_tostring(self.state, -1));
-		return nil;
-	}
+	BOOL result = [self growStackBySize:1 forBalancedBlock:^{
+		NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
+		if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
+			NSLog(@"Could not load Metalua compiler: %s", lua_tostring(self.state, -1));
+			return NO;
+		}
 
-	return self;
+		return YES;
+	}];
+
+	if (!result)
+		return nil;
+	else
+		return self;
 }
 
 - (void)dealloc {
