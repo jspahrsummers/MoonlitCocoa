@@ -107,6 +107,8 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 }
 
 - (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
+	source = [@"require 'metalua.runtime'\n\n" stringByAppendingString:source];
+  
   	[self growStackBySize:2];
 
 	return [self enforceStackDelta:1 forBlock:^{

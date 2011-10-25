@@ -1,7 +1,5 @@
 -{ extension "match" }
 
-require 'metalua.runtime'
-
 function fib (n)
 	match n with
 	| 0 -> return 1
