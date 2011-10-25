@@ -107,12 +107,19 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 }
 
 - (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
-  	[self growStackBySize:3];
+  	[self growStackBySize:2];
 
 	lua_getglobal(self.state, "compiler");
 	lua_getfield(self.state, -1, "loadstring");
+
+	// replace 'compiler' table with the loadstring function to shrink the stack
+	// by 1
+	lua_replace(self.state, -2);
+
 	lua_pushstring(self.state, [source UTF8String]);
 
+	// on the stack should be:
+	// { compiler.loadstring, source }
 	return [self callFunctionWithArgumentCount:1 resultCount:1 error:error];
 }
 
