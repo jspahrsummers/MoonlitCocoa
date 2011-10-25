@@ -24,16 +24,13 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 - (void)growStackBySize:(int)size;
 
 /**
- * Reserves at least \a size slots in the stack and executes \a block. When
- * \a block is done executing, pops stack values as necessary to restore it
- * to the original size.
+ * Executes \a block, ensuring that the stack has expanded by \a delta slots
+ * - or, if \a delta is negative, shrunk by \a delta slots - after the block has
+ * completed.
  *
  * Returns the value returned by \a block.
- *
- * @warning This method should not be used if a value is meant to be left on the
- * stack, as it would be popped off.
  */
-- (BOOL)growStackBySize:(int)size forBalancedBlock:(BOOL (^)(void))block;
+- (BOOL)enforceStackDelta:(int)delta forBlock:(BOOL (^)(void))block;
 @end
 
 @implementation MLCState
@@ -52,7 +49,8 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	luaL_openlibs(self.state);
 
 	// add additional package paths (including the path used by Homebrew)
-	[self growStackBySize:2 forBalancedBlock:^{
+	[self growStackBySize:2];
+	[self enforceStackDelta:0 forBlock:^{
 		[self pushGlobal:@"package"];
 
 		lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
@@ -62,7 +60,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}];
 
 	// initialize Metalua compiler
-	BOOL result = [self growStackBySize:1 forBalancedBlock:^{
+	BOOL result = [self enforceStackDelta:0 forBlock:^{
 		NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
 		if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
 			NSLog(@"Could not load Metalua compiler: %@", [self popString]);
@@ -111,14 +109,16 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 - (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
   	[self growStackBySize:2];
 
-	[self pushGlobal:@"compiler"];
-	[self popTableAndPushField:@"loadstring"];
+	return [self enforceStackDelta:1 forBlock:^{
+		[self pushGlobal:@"compiler"];
+		[self popTableAndPushField:@"loadstring"];
 
-	[self pushString:source];
+		[self pushString:source];
 
-	// on the stack should be:
-	// { compiler.loadstring, source }
-	return [self callFunctionWithArgumentCount:1 resultCount:1 error:error];
+		// on the stack should be:
+		// { compiler.loadstring, source }
+		return [self callFunctionWithArgumentCount:1 resultCount:1 error:error];
+	}];
 }
 
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error; {
@@ -129,17 +129,12 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	return [self loadScript:source error:error];
 }
 
-- (BOOL)growStackBySize:(int)size forBalancedBlock:(BOOL (^)(void))block; {
+- (BOOL)enforceStackDelta:(int)delta forBlock:(BOOL (^)(void))block; {
   	int top = lua_gettop(self.state);
-  	[self growStackBySize:size];
-
 	BOOL result = block();
 	int newTop = lua_gettop(self.state);
 
-	NSAssert(newTop >= top, @"Stack should not be smaller than its original size after executing some balanced operations");
-	if (newTop > top) {
-		lua_pop(self.state, newTop - top);
-	}
+	NSAssert2(newTop == top + delta, @"Actual stack delta (%i) does not match expected delta (%i)", newTop - top, delta);
 
 	return result;
 }
