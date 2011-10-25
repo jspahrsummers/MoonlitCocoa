@@ -57,6 +57,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 		lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
 		lua_setfield(self.state, -2, "path");
+		lua_pop(self.state, 1);
 		return YES;
 	}];
 
