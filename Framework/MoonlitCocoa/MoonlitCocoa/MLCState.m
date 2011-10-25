@@ -63,7 +63,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	BOOL result = [self growStackBySize:1 forBalancedBlock:^{
 		NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
 		if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
-			NSLog(@"Could not load Metalua compiler: %s", lua_tostring(self.state, -1));
+			NSLog(@"Could not load Metalua compiler: %@", [self popString]);
 			return NO;
 		}
 
@@ -90,9 +90,9 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	} else {
 		if (error) {
 			NSDictionary *userInfo = nil;
-			const char *msg = lua_tostring(self.state, -1);
-			if (msg) {
-				userInfo = [NSDictionary dictionaryWithObject:[NSString stringWithUTF8String:msg] forKey:NSLocalizedDescriptionKey];
+			NSString *message = [self popString];
+			if (message) {
+				userInfo = [NSDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
 			}
 
 			*error = [NSError
@@ -150,6 +150,17 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
   	if (!lua_checkstack(self.state, size)) {
 		[NSException raise:MLCLuaStackOverflowException format:@"Could not grow Lua stack by %i slots", size];
 	}
+}
+
+- (NSString *)popString; {
+  	size_t len = 0;
+	const char *cStr = lua_tolstring(self.state, -1, &len);
+	if (!cStr)
+		return nil;
+	
+	lua_pop(self.state, 1);
+	
+	return [[NSString alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
 }
 
 - (void)pushString:(NSString *)str; {
