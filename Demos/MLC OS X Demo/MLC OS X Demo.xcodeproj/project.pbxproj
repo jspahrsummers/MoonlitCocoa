@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D0890FD1145777E300B77FB9 /* MLCShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */; };
 		D0890FDC1457781800B77FB9 /* MLCProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FDB1457781800B77FB9 /* MLCProduct.m */; };
+		D0890FE2145778F900B77FB9 /* MLCShoppingCartWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FE1145778F900B77FB9 /* MLCShoppingCartWindowController.m */; };
 		D0A6CD341455E10E00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD331455E10E00B99D78 /* Cocoa.framework */; };
 		D0A6CD3E1455E10E00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD3C1455E10E00B99D78 /* InfoPlist.strings */; };
 		D0A6CD401455E10E00B99D78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD3F1455E10E00B99D78 /* main.m */; };
@@ -38,6 +39,8 @@
 		D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCShoppingCart.m; sourceTree = "<group>"; };
 		D0890FDA1457781800B77FB9 /* MLCProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCProduct.h; sourceTree = "<group>"; };
 		D0890FDB1457781800B77FB9 /* MLCProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCProduct.m; sourceTree = "<group>"; };
+		D0890FE0145778F900B77FB9 /* MLCShoppingCartWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCShoppingCartWindowController.h; sourceTree = "<group>"; };
+		D0890FE1145778F900B77FB9 /* MLCShoppingCartWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCShoppingCartWindowController.m; sourceTree = "<group>"; };
 		D0A6CD2F1455E10E00B99D78 /* MLC OS X Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MLC OS X Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A6CD331455E10E00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D0A6CD361455E10E00B99D78 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -89,6 +92,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0890FDE145778B300B77FB9 /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0890FE0145778F900B77FB9 /* MLCShoppingCartWindowController.h */,
+				D0890FE1145778F900B77FB9 /* MLCShoppingCartWindowController.m */,
+			);
+			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		D0890FDF145778C000B77FB9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0890FDA1457781800B77FB9 /* MLCProduct.h */,
+				D0890FDB1457781800B77FB9 /* MLCProduct.m */,
+				D0890FCF145777E300B77FB9 /* MLCShoppingCart.h */,
+				D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D0A6CD241455E10E00B99D78 = {
 			isa = PBXGroup;
 			children = (
@@ -190,11 +213,9 @@
 			children = (
 				D0A6CD451455E10E00B99D78 /* MLCAppDelegate.h */,
 				D0A6CD461455E10E00B99D78 /* MLCAppDelegate.m */,
-				D0890FDA1457781800B77FB9 /* MLCProduct.h */,
-				D0890FDB1457781800B77FB9 /* MLCProduct.m */,
-				D0890FCF145777E300B77FB9 /* MLCShoppingCart.h */,
-				D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */,
 				D0A6CD481455E10E00B99D78 /* MainMenu.xib */,
+				D0890FDE145778B300B77FB9 /* Window Controllers */,
+				D0890FDF145778C000B77FB9 /* Model */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -317,6 +338,7 @@
 				D0A6CD471455E10E00B99D78 /* MLCAppDelegate.m in Sources */,
 				D0890FD1145777E300B77FB9 /* MLCShoppingCart.m in Sources */,
 				D0890FDC1457781800B77FB9 /* MLCProduct.m in Sources */,
+				D0890FE2145778F900B77FB9 /* MLCShoppingCartWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
