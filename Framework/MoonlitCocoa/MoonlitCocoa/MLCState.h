@@ -75,6 +75,11 @@ extern NSString * const MLCLuaStackOverflowException;
 - (NSString *)popString;
 
 /**
+ * Pushes onto the stack a reference to the given global symbol.
+ */
+- (void)pushGlobal:(NSString *)symbol;
+
+/**
  * Pushes \a str on the Lua stack.
  *
  * @note \a str is encoded with UTF-8 before being passed into Lua.

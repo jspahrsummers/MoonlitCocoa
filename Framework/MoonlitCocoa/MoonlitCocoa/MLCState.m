@@ -53,7 +53,8 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 	// add additional package paths (including the path used by Homebrew)
 	[self growStackBySize:2 forBalancedBlock:^{
-		lua_getglobal(self.state, "package");
+		[self pushGlobal:@"package"];
+
 		lua_pushliteral(self.state, ";;?;?.lua;?.luac;/usr/local/lib/?.luac;/usr/local/lib/?.lua");
 		lua_setfield(self.state, -2, "path");
 		return YES;
@@ -109,7 +110,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 - (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
   	[self growStackBySize:2];
 
-	lua_getglobal(self.state, "compiler");
+	[self pushGlobal:@"compiler"];
 	lua_getfield(self.state, -1, "loadstring");
 
 	// replace 'compiler' table with the loadstring function to shrink the stack
@@ -161,6 +162,10 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	lua_pop(self.state, 1);
 	
 	return [[NSString alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
+}
+
+- (void)pushGlobal:(NSString *)symbol; {
+	lua_getglobal(self.state, [symbol UTF8String]);
 }
 
 - (void)pushString:(NSString *)str; {
