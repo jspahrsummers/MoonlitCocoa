@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MoonlitCocoa/MoonlitCocoa.h>
 
 /**
  * An immutable product model object.
  */
-@interface MLCProduct : NSObject <NSCoding, NSCopying>
+@interface MLCProduct : MLCModel
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
-- (id)initWithDictionary:(NSDictionary *)dict;
-- (NSDictionary *)dictionaryValue;
 @end

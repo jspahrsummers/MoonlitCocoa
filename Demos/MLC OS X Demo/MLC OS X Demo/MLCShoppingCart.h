@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MoonlitCocoa/MoonlitCocoa.h>
 
 /**
  * An immutable shopping cart model object.
  */
-@interface MLCShoppingCart : NSObject <NSCoding, NSCopying>
+@interface MLCShoppingCart : MLCModel
 @property (nonatomic, copy, readonly) NSArray *products;
-
-- (id)initWithDictionary:(NSDictionary *)dict;
-- (NSDictionary *)dictionaryValue;
 @end

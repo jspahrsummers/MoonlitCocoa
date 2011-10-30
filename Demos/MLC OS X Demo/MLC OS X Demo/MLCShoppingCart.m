@@ -16,38 +16,14 @@
 @synthesize products = m_products;
 
 - (id)initWithDictionary:(NSDictionary *)dict; {
-  	self = [super init];
+  	self = [super initWithDictionary:dict];
 	if (!self)
 		return nil;
-	
-	[self setValuesForKeysWithDictionary:dict];
 
 	if (!self.products)
 		return nil;
 
 	return self;
-}
-
-- (NSDictionary *)dictionaryValue; {
-  	NSArray *keys = [NSArray arrayWithObject:@"products"];
-  	return [self dictionaryWithValuesForKeys:keys];
-}
-
-#pragma mark NSCopying
-
-- (id)copyWithZone:(NSZone *)zone {
-  	return self;
-}
-
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)coder {
-  	NSDictionary *dict = [coder decodeObjectForKey:@"dictionaryValue"];
-  	return [self initWithDictionary:dict];
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:[self dictionaryValue] forKey:@"dictionaryValue"];
 }
 
 #pragma mark NSObject
