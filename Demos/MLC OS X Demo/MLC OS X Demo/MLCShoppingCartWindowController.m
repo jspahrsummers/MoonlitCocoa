@@ -11,8 +11,8 @@
 @implementation MLCShoppingCartWindowController
 @synthesize shoppingCartView = m_shoppingCartView;
 
-- (id)initWithWindow:(NSWindow *)window {
-	return [super initWithWindowNibName:@"MLCShoppingCartWindow"];
+- (NSString *)windowNibName {
+  	return @"MLCShoppingCartWindow";
 }
 
 #pragma mark NSTableViewDataSource
