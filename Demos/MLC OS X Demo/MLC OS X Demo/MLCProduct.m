@@ -18,20 +18,38 @@
 @synthesize price = m_price;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price; {
+  	NSParameterAssert(name != nil);
+	NSParameterAssert(price != nil);
+
+  	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+		name, @"name",
+		price, @"price",
+		nil
+	];
+
+	return [self initWithDictionary:dict];
+}
+
+- (id)initWithDictionary:(NSDictionary *)dict; {
   	self = [super init];
 	if (!self)
 		return nil;
+
+	[self setValuesForKeysWithDictionary:dict];
 	
-	if (![name length])
+	if (![self.name length])
 		return nil;
 	
 	// if the price is less than zero
-	if ([price compare:[NSDecimalNumber zero]] == NSOrderedAscending)
+	if ([self.price compare:[NSDecimalNumber zero]] == NSOrderedAscending)
 		return nil;
 	
-	self.name = name;
-	self.price = price;
 	return self;
+}
+
+- (NSDictionary *)dictionaryValue; {
+  	NSArray *keys = [NSArray arrayWithObjects:@"name", @"price", nil];
+  	return [self dictionaryWithValuesForKeys:keys];
 }
 
 #pragma mark NSCopying
@@ -43,14 +61,12 @@
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
-  	NSString *name = [coder decodeObjectForKey:@"name"];
-	NSDecimalNumber *price = [coder decodeObjectForKey:@"price"];
-	return [self initWithName:name price:price];
+  	NSDictionary *dict = [coder decodeObjectForKey:@"dictionaryValue"];
+  	return [self initWithDictionary:dict];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-  	[coder encodeObject:self.name forKey:@"name"];
-	[coder encodeObject:self.price forKey:@"price"];
+	[coder encodeObject:[self dictionaryValue] forKey:@"dictionaryValue"];
 }
 
 #pragma mark NSObject

@@ -16,4 +16,6 @@
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
+- (id)initWithDictionary:(NSDictionary *)dict;
+- (NSDictionary *)dictionaryValue;
 @end
