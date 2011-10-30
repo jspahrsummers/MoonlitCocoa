@@ -11,6 +11,8 @@
 /**
  * An immutable shopping cart model object.
  */
-@interface MLCShoppingCart : NSObject
+@interface MLCShoppingCart : NSObject <NSCoding, NSCopying>
+@property (nonatomic, copy, readonly) NSArray *products;
 
+- (id)initWithProducts:(NSArray *)products;
 @end
