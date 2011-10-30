@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MLCShoppingCartWindowController : NSWindowController
+@interface MLCShoppingCartWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 @property (nonatomic, weak) IBOutlet NSTableView *shoppingCartView;
 @end

@@ -15,4 +15,16 @@
 	return [super initWithWindowNibName:@"MLCShoppingCartWindow"];
 }
 
+#pragma mark NSTableViewDataSource
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
+  	return 0;
+}
+
+#pragma mark NSTableViewDelegate
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+  	return nil;
+}
+
 @end
