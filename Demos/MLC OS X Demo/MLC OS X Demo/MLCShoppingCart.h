@@ -14,5 +14,6 @@
 @interface MLCShoppingCart : NSObject <NSCoding, NSCopying>
 @property (nonatomic, copy, readonly) NSArray *products;
 
-- (id)initWithProducts:(NSArray *)products;
+- (id)initWithDictionary:(NSDictionary *)dict;
+- (NSDictionary *)dictionaryValue;
 @end

@@ -26,7 +26,8 @@
 		nil
 	];
 
-	self.shoppingCart = [[MLCShoppingCart alloc] initWithProducts:products];
+	NSDictionary *cart = [NSDictionary dictionaryWithObject:products forKey:@"products"];
+	self.shoppingCart = [[MLCShoppingCart alloc] initWithDictionary:cart];
 	[self.shoppingCartView reloadData];
 }
 

@@ -15,16 +15,22 @@
 @implementation MLCShoppingCart
 @synthesize products = m_products;
 
-- (id)initWithProducts:(NSArray *)products; {
+- (id)initWithDictionary:(NSDictionary *)dict; {
   	self = [super init];
 	if (!self)
 		return nil;
 	
-	if (!products)
+	[self setValuesForKeysWithDictionary:dict];
+
+	if (!self.products)
 		return nil;
-	
-	self.products = products;
+
 	return self;
+}
+
+- (NSDictionary *)dictionaryValue; {
+  	NSArray *keys = [NSArray arrayWithObject:@"products"];
+  	return [self dictionaryWithValuesForKeys:keys];
 }
 
 #pragma mark NSCopying
@@ -36,12 +42,12 @@
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
-  	NSArray *products = [coder decodeObjectForKey:@"products"];
-  	return [self initWithProducts:products];
+  	NSDictionary *dict = [coder decodeObjectForKey:@"dictionaryValue"];
+  	return [self initWithDictionary:dict];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[coder encodeObject:self.products forKey:@"products"];
+	[coder encodeObject:[self dictionaryValue] forKey:@"dictionaryValue"];
 }
 
 #pragma mark NSObject
