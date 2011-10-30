@@ -27,17 +27,17 @@
 @implementation MLCModel
 
 - (id)initWithDictionary:(NSDictionary *)dict; {
-  	self = [super init];
+	self = [super init];
 	if (!self)
 		return nil;
 
 	[self setValuesForKeysWithDictionary:dict];
-  	return self;
+	return self;
 }
 
 - (NSDictionary *)dictionaryValue; {
-  	NSArray *keys = [[self class] modelPropertyNames];
-  	return [self dictionaryWithValuesForKeys:keys];
+	NSArray *keys = [[self class] modelPropertyNames];
+	return [self dictionaryWithValuesForKeys:keys];
 }
 
 + (void)enumeratePropertiesUsingBlock:(void (^)(objc_property_t property))block; {
@@ -72,12 +72,12 @@
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
-  	NSDictionary *dict = [coder decodeObjectForKey:@"dictionaryValue"];
+	NSDictionary *dict = [coder decodeObjectForKey:@"dictionaryValue"];
 	return [self initWithDictionary:dict];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-  	NSDictionary *dict = [self dictionaryValue];
+	NSDictionary *dict = [self dictionaryValue];
 	if (dict)
 		[coder encodeObject:dict forKey:@"dictionaryValue"];
 }
@@ -85,18 +85,18 @@
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-  	return self;
+	return self;
 }
 
 #pragma mark NSObject
 
 - (NSUInteger)hash {
-  	return [[self dictionaryValue] hash];
+	return [[self dictionaryValue] hash];
 }
 
 - (BOOL)isEqual:(MLCModel *)model {
-  	// TODO: verify descendant classes, checking for a common ancestor
-  	if (![model isKindOfClass:[MLCModel class]])
+	// TODO: verify descendant classes, checking for a common ancestor
+	if (![model isKindOfClass:[MLCModel class]])
 		return NO;
 	
 	return [[self dictionaryValue] isEqual:[model dictionaryValue]];
