@@ -11,6 +11,9 @@
 /**
  * An immutable product model object.
  */
-@interface MLCProduct : NSObject
+@interface MLCProduct : NSObject <NSCoding, NSCopying>
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSDecimalNumber *price;
 
+- (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
 @end
