@@ -6,4 +6,5 @@
 //  Released into the public domain.
 //
 
+#import <MoonlitCocoa/MLCModel.h>
 #import <MoonlitCocoa/MLCState.h>
