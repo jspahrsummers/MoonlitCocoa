@@ -10,6 +10,7 @@
 
 @implementation MLCShoppingCartWindowController
 @synthesize shoppingCartView = m_shoppingCartView;
+@synthesize shoppingCart = m_shoppingCart;
 
 - (NSString *)windowNibName {
   	return @"MLCShoppingCartWindow";
