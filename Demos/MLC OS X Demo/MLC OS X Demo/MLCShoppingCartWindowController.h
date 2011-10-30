@@ -9,5 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MLCShoppingCartWindowController : NSWindowController
-
+@property (nonatomic, weak) NSTableView *shoppingCartView;
 @end
