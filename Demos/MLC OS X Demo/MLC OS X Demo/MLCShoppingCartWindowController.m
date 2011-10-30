@@ -7,6 +7,8 @@
 //
 
 #import "MLCShoppingCartWindowController.h"
+#import "MLCShoppingCart.h"
+#import "MLCProduct.h"
 
 @implementation MLCShoppingCartWindowController
 @synthesize shoppingCartView = m_shoppingCartView;
@@ -16,16 +18,33 @@
   	return @"MLCShoppingCartWindow";
 }
 
+- (void)windowDidLoad {
+  	NSArray *products = [NSArray arrayWithObjects:
+		[[MLCProduct alloc] initWithName:@"Widget" price:[NSDecimalNumber decimalNumberWithString:@"2.50"]],
+		[[MLCProduct alloc] initWithName:@"Thing" price:[NSDecimalNumber decimalNumberWithString:@"20.99"]],
+		[[MLCProduct alloc] initWithName:@"Product" price:[NSDecimalNumber decimalNumberWithString:@"0.99"]],
+		nil
+	];
+
+	self.shoppingCart = [[MLCShoppingCart alloc] initWithProducts:products];
+	[self.shoppingCartView reloadData];
+}
+
 #pragma mark NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
-  	return 0;
+  	return (NSInteger)[self.shoppingCart.products count];
 }
 
 #pragma mark NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-  	return nil;
+	NSString *identifier = [tableColumn identifier];
+	MLCProduct *product = [self.shoppingCart.products objectAtIndex:(NSUInteger)row];
+
+	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
+	cellView.textField.stringValue = [product valueForKey:identifier];
+	return cellView;
 }
 
 @end
