@@ -7,8 +7,11 @@
 //
 
 #import "MLCModel.h"
+#import "MLCState.h"
 #import "EXTRuntimeExtensions.h"
 #import <objc/runtime.h>
+
+static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 
 @interface MLCModel ()
 /**
@@ -22,6 +25,13 @@
  * receiver and any superclasses, up until the MLCModel class.
  */
 + (NSArray *)modelPropertyNames;
+
+/**
+ * Returns the #MLCState object for this model class. If no Lua state has yet
+ * been set up, this will create one and attempt to load a Lua script with the
+ * name of the current class and a .mlua or .lua extension.
+ */
++ (MLCState *)state;
 @end
 
 @implementation MLCModel
@@ -67,6 +77,33 @@
 	}];
 
 	return names;
+}
+
++ (MLCState *)state; {
+	MLCState *state = objc_getAssociatedObject(self, MLCModelClassAssociatedStateKey);
+	if (!state) {
+		NSBundle *bundle = [NSBundle bundleForClass:self];
+		NSString *name = NSStringFromClass([self class]);
+
+		NSURL *scriptURL = [bundle URLForResource:name withExtension:@"mlua"];
+		if (!scriptURL) {
+			scriptURL = [bundle URLForResource:name withExtension:@"lua"];
+
+			if (!scriptURL) {
+				// could not find a script for this class
+				return nil;
+			}
+		}
+
+		state = [[MLCState alloc] init];
+		if (![state loadScriptAtURL:scriptURL error:NULL]) {
+			return nil;
+		}
+
+		objc_setAssociatedObject(self, MLCModelClassAssociatedStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	}
+
+	return state;
 }
 
 #pragma mark NSCoding
