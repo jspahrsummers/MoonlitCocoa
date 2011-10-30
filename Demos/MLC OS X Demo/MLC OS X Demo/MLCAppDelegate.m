@@ -7,13 +7,21 @@
 //
 
 #import "MLCAppDelegate.h"
+#import "MLCShoppingCartWindowController.h"
+
+@interface MLCAppDelegate ()
+@property (nonatomic, strong) NSMutableArray *windowControllers;
+@end
 
 @implementation MLCAppDelegate
+@synthesize windowControllers = m_windowControllers;
 
-@synthesize window = _window;
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+  	self.windowControllers = [[NSMutableArray alloc] init];
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+  	NSWindowController *shoppingCartController = [[MLCShoppingCartWindowController alloc] init];
+	[self.windowControllers addObject:shoppingCartController];
+	[shoppingCartController showWindow:self];
 }
 
 @end
