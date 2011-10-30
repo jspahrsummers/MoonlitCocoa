@@ -376,6 +376,10 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
 				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
+				OTHER_LDFLAGS = (
+					"-install_name",
+					"\"@executable_path/../Frameworks/MoonlitCocoa.framework/MoonlitCocoa\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -390,6 +394,10 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "MoonlitCocoa/MoonlitCocoa-Prefix.pch";
 				INFOPLIST_FILE = "MoonlitCocoa/MoonlitCocoa-Info.plist";
+				OTHER_LDFLAGS = (
+					"-install_name",
+					"\"@executable_path/../Frameworks/MoonlitCocoa.framework/MoonlitCocoa\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
