@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D03127A0145DDE9000D14642 /* MoonlitCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D031279F145DDE9000D14642 /* MoonlitCocoa.framework */; };
-		D03127AB145DDEC500D14642 /* MoonlitCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D031279F145DDE9000D14642 /* MoonlitCocoa.framework */; };
 		D031283E145E424D00D14642 /* MLCProduct.mlua in Resources */ = {isa = PBXBuildFile; fileRef = D031283D145E424D00D14642 /* MLCProduct.mlua */; };
 		D0890FD1145777E300B77FB9 /* MLCShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */; };
 		D0890FDC1457781800B77FB9 /* MLCProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FDB1457781800B77FB9 /* MLCProduct.m */; };
@@ -25,6 +23,8 @@
 		D0A6CD5B1455E10F00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD591455E10F00B99D78 /* InfoPlist.strings */; };
 		D0A6CD5E1455E10F00B99D78 /* MLC_OS_X_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6CD5D1455E10F00B99D78 /* MLC_OS_X_DemoTests.m */; };
 		D0A6CDA01455E90200B99D78 /* liblua.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */; };
+		D0CCA208145F5D18004B56A4 /* MoonlitCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CCA207145F5D18004B56A4 /* MoonlitCocoa.framework */; };
+		D0CCA209145F5D25004B56A4 /* MoonlitCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D0CCA207145F5D18004B56A4 /* MoonlitCocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D03127AB145DDEC500D14642 /* MoonlitCocoa.framework in Copy Frameworks */,
+				D0CCA209145F5D25004B56A4 /* MoonlitCocoa.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +52,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D031279F145DDE9000D14642 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MoonlitCocoa.framework; path = "/Users/justin/Library/Developer/Xcode/DerivedData/MoonlitCocoa-hctjgytkndblerbctpedbcnrlwba/Build/Products/Debug/MoonlitCocoa.framework"; sourceTree = "<absolute>"; };
 		D031283D145E424D00D14642 /* MLCProduct.mlua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MLCProduct.mlua; sourceTree = "<group>"; };
 		D0890FCF145777E300B77FB9 /* MLCShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCShoppingCart.h; sourceTree = "<group>"; };
 		D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCShoppingCart.m; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac OS X.xcconfig"; sourceTree = "<group>"; };
 		D0A6CD831455E2B400B99D78 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
+		D0CCA207145F5D18004B56A4 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MoonlitCocoa.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MoonlitCocoa-fhqekrmhzmqaccdhaxxzvgwpuwzn/Build/Products/Debug/MoonlitCocoa.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CCA208145F5D18004B56A4 /* MoonlitCocoa.framework in Frameworks */,
 				D0A6CDA01455E90200B99D78 /* liblua.5.1.dylib in Frameworks */,
 				D0A6CD341455E10E00B99D78 /* Cocoa.framework in Frameworks */,
-				D03127A0145DDE9000D14642 /* MoonlitCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */,
-				D031279F145DDE9000D14642 /* MoonlitCocoa.framework */,
+				D0CCA207145F5D18004B56A4 /* MoonlitCocoa.framework */,
 				D0A6CD331455E10E00B99D78 /* Cocoa.framework */,
 				D0A6CD511455E10F00B99D78 /* SenTestingKit.framework */,
 			);
@@ -448,6 +448,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MoonlitCocoa-fhqekrmhzmqaccdhaxxzvgwpuwzn/Build/Products/Debug\"",
+				);
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -459,6 +463,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MoonlitCocoa-fhqekrmhzmqaccdhaxxzvgwpuwzn/Build/Products/Debug\"",
+				);
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
