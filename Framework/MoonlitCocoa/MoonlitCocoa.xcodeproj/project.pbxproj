@@ -16,6 +16,8 @@
 		D03127FA145E224F00D14642 /* NSString+LuaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D03127F8145E224F00D14642 /* NSString+LuaAdditions.m */; };
 		D0312804145E24C800D14642 /* NSNumber+LuaAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D0312802145E24C800D14642 /* NSNumber+LuaAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0312805145E24C800D14642 /* NSNumber+LuaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0312803145E24C800D14642 /* NSNumber+LuaAdditions.m */; };
+		D0312809145E264300D14642 /* NSDictionary+LuaAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D0312807145E264300D14642 /* NSDictionary+LuaAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D031280A145E264300D14642 /* NSDictionary+LuaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0312808145E264300D14642 /* NSDictionary+LuaAdditions.m */; };
 		D0A6CCF81455E09D00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF71455E09D00B99D78 /* Cocoa.framework */; };
 		D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD001455E09D00B99D78 /* InfoPlist.strings */; };
 		D0A6CD0E1455E09D00B99D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */; };
@@ -50,6 +52,8 @@
 		D03127F8145E224F00D14642 /* NSString+LuaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LuaAdditions.m"; sourceTree = "<group>"; };
 		D0312802145E24C800D14642 /* NSNumber+LuaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+LuaAdditions.h"; sourceTree = "<group>"; };
 		D0312803145E24C800D14642 /* NSNumber+LuaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+LuaAdditions.m"; sourceTree = "<group>"; };
+		D0312807145E264300D14642 /* NSDictionary+LuaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LuaAdditions.h"; sourceTree = "<group>"; };
+		D0312808145E264300D14642 /* NSDictionary+LuaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LuaAdditions.m"; sourceTree = "<group>"; };
 		D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoonlitCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A6CCF71455E09D00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D0A6CCFF1455E09D00B99D78 /* MoonlitCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoa-Info.plist"; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		D03127F6145E222E00D14642 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D0312807145E264300D14642 /* NSDictionary+LuaAdditions.h */,
+				D0312808145E264300D14642 /* NSDictionary+LuaAdditions.m */,
 				D0312802145E24C800D14642 /* NSNumber+LuaAdditions.h */,
 				D0312803145E24C800D14642 /* NSNumber+LuaAdditions.m */,
 				D03127F7145E224F00D14642 /* NSString+LuaAdditions.h */,
@@ -243,6 +249,7 @@
 				D03127F5145E212F00D14642 /* MLCValue.h in Headers */,
 				D03127F9145E224F00D14642 /* NSString+LuaAdditions.h in Headers */,
 				D0312804145E24C800D14642 /* NSNumber+LuaAdditions.h in Headers */,
+				D0312809145E264300D14642 /* NSDictionary+LuaAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +365,7 @@
 				D03127CF145DEF7800D14642 /* MLCModel.m in Sources */,
 				D03127FA145E224F00D14642 /* NSString+LuaAdditions.m in Sources */,
 				D0312805145E24C800D14642 /* NSNumber+LuaAdditions.m in Sources */,
+				D031280A145E264300D14642 /* NSDictionary+LuaAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
