@@ -147,6 +147,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 }
 
 - (void)popTableAndPushField:(NSString *)field; {
+	[self growStackBySize:1];
   	lua_getfield(self.state, -1, [field UTF8String]);
 
 	// replace the original table in the stack
@@ -184,6 +185,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 }
 
 - (void)pushGlobal:(NSString *)symbol; {
+	[self growStackBySize:1];
 	lua_getglobal(self.state, [symbol UTF8String]);
 }
 
