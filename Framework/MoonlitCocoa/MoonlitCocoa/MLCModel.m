@@ -96,9 +96,27 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 		}
 
 		state = [[MLCState alloc] init];
-		if (![state loadScriptAtURL:scriptURL error:NULL]) {
+
+		BOOL success = [state enforceStackDelta:0 forBlock:^{
+			NSError *error = nil;
+
+			if (![state loadScriptAtURL:scriptURL error:&error]) {
+				NSLog(@"Could not initialize model Lua state: %@", error);
+				return NO;
+			}
+			
+			if (![state callFunctionWithArgumentCount:0 resultCount:1 error:&error]) {
+				NSLog(@"Could not initialize model Lua state: %@", error);
+				return NO;
+			}
+
+			// CLASSNAME = dofile('CLASSNAME.mlua')
+			lua_setglobal(state.state, [name UTF8String]);
+			return YES;
+		}];
+
+		if (!success)
 			return nil;
-		}
 
 		objc_setAssociatedObject(self, MLCModelClassAssociatedStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	}
