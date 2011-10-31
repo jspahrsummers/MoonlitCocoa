@@ -55,16 +55,8 @@
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
-  	// a new table, plus temporary space for key and value manipulation
-  	[state growStackBySize:3];
-
-	void (^pushObjectOntoStack)(id) = ^(id object){
-		if ([object respondsToSelector:@selector(pushOntoStack:)]) {
-			[object pushOntoStack:state];
-		} else {
-			lua_pushlightuserdata(state.state, (__bridge void *)object);
-		}
-	};
+	// reserve space for a new table
+	[state growStackBySize:1];
 
 	[state enforceStackDelta:1 forBlock:^{
 		NSUInteger count = [self count];
@@ -77,8 +69,9 @@
 		for (id key in self) {
 			id value = [self objectForKey:key];
 
-			pushObjectOntoStack(key);
-			pushObjectOntoStack(value);
+			[state pushObject:key];
+			[state pushObject:value];
+
 			lua_settable(state.state, -2);
 		}
 

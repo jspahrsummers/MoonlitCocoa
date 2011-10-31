@@ -110,4 +110,13 @@ extern NSString * const MLCLuaStackOverflowException;
  * Pushes onto the stack a reference to the given global symbol.
  */
 - (void)pushGlobal:(NSString *)symbol;
+
+/**
+ * If \a object conforms to the #MLCValue protocol, this invokes
+ * MLCValue#pushOntoStack:. Otherwise, the object is pushed as light userdata.
+ *
+ * @warning Light userdata is not retained by Lua. Retrieving it at a later time
+ * may result in a reference to a deallocated object.
+ */
+- (void)pushObject:(id)object;
 @end

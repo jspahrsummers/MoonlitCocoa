@@ -7,6 +7,7 @@
 //
 
 #import "MLCState.h"
+#import "MLCValue.h"
 #import "NSDictionary+LuaAdditions.h"
 #import "NSNull+LuaAdditions.h"
 #import "NSNumber+LuaAdditions.h"
@@ -184,6 +185,21 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 - (void)pushGlobal:(NSString *)symbol; {
 	lua_getglobal(self.state, [symbol UTF8String]);
+}
+
+- (void)pushObject:(id)object; {
+	if ([object respondsToSelector:@selector(pushOntoStack:)]) {
+		[object pushOntoStack:self];
+		return;
+	}
+
+	[self growStackBySize:1];
+
+  	if (!object) {
+		lua_pushnil(self.state);
+	} else {
+		lua_pushlightuserdata(self.state, (__bridge void *)object);
+	}
 }
 
 @end
