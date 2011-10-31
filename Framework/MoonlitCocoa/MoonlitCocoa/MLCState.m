@@ -8,6 +8,7 @@
 
 #import "MLCState.h"
 #import "NSDictionary+LuaAdditions.h"
+#import "NSNull+LuaAdditions.h"
 #import "NSNumber+LuaAdditions.h"
 #import "NSString+LuaAdditions.h"
 #import <lauxlib.h>
@@ -154,9 +155,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 - (id)popValueOnStack; {
 	switch (lua_type(self.state, -1)) {
 	case LUA_TNIL:
-		// TODO: not yet implemented
-		//return [NSNull class];
-		return nil;
+		return [NSNull popFromStack:self];
 
 	case LUA_TNUMBER:
 	case LUA_TBOOLEAN:
