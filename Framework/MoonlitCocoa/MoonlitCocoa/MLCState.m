@@ -7,6 +7,8 @@
 //
 
 #import "MLCState.h"
+#import "NSDictionary+LuaAdditions.h"
+#import "NSNumber+LuaAdditions.h"
 #import "NSString+LuaAdditions.h"
 #import <lauxlib.h>
 #import <lualib.h>
@@ -91,6 +93,16 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}
 }
 
+- (id)getValueOnStack; {
+  	[self growStackBySize:1];
+
+	// duplicate the value at the top of the stack, so that we can pop and then
+	// leave the stack in its previous state
+  	lua_pushvalue(self.state, -1);
+
+	return [self popValueOnStack];
+}
+
 - (BOOL)loadScript:(NSString *)source error:(NSError **)error; {
 	source = [@"require 'metalua.runtime'\n\n" stringByAppendingString:source];
   
@@ -137,6 +149,38 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 	// replace the original table in the stack
 	lua_replace(self.state, -2);
+}
+
+- (id)popValueOnStack; {
+	switch (lua_type(self.state, -1)) {
+	case LUA_TNIL:
+		// TODO: not yet implemented
+		//return [NSNull class];
+		return nil;
+
+	case LUA_TNUMBER:
+	case LUA_TBOOLEAN:
+		return [NSNumber popFromStack:self];
+
+	case LUA_TSTRING:
+		return [NSString popFromStack:self];
+
+	case LUA_TTABLE:
+		return [NSDictionary popFromStack:self];
+
+	case LUA_TLIGHTUSERDATA:
+		return (__bridge id)lua_touserdata(self.state, -1);
+
+	case LUA_TTHREAD:
+		// TODO: not yet implemented
+		//return [MLCState ...
+		return nil;
+	
+	case LUA_TFUNCTION:
+	case LUA_TUSERDATA:
+	default:
+		return nil;
+	}
 }
 
 - (void)pushGlobal:(NSString *)symbol; {

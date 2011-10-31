@@ -66,6 +66,16 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error;
 
 /**
+ * Gets the value on the top of the stack, attempting to create an Objective-C
+ * object from its type. If no known mapping to Objective-C is known, \c nil is
+ * returned.
+ *
+ * @note Strings are not converted in-place, making this safe for use with \c
+ * lua_next.
+ */
+- (id)getValueOnStack;
+
+/**
  * Attempts to ensure that \a size slots are free in the Lua stack. If not
  * enough slots are free and the stack cannot be grown, an
  * #MLCLuaStackOverflowException is thrown.
@@ -88,6 +98,13 @@ extern NSString * const MLCLuaStackOverflowException;
  * @note \a field may not contain embedded NULs.
  */
 - (void)popTableAndPushField:(NSString *)field;
+
+/**
+ * Pops the value on the top of the stack, attempting to create an Objective-C
+ * object from its type. If no known mapping to Objective-C is known, \c nil is
+ * returned.
+ */
+- (id)popValueOnStack;
 
 /**
  * Pushes onto the stack a reference to the given global symbol.
