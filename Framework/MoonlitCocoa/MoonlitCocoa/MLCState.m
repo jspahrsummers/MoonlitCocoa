@@ -7,6 +7,7 @@
 //
 
 #import "MLCState.h"
+#import "NSString+LuaAdditions.h"
 #import <lauxlib.h>
 #import <lualib.h>
 
@@ -47,7 +48,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	BOOL result = [self enforceStackDelta:0 forBlock:^{
 		NSString *compilerPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"compiler" ofType:@"lua"];
 		if (0 != luaL_dofile(self.state, [compilerPath UTF8String])) {
-			NSLog(@"Could not load Metalua compiler: %@", [self popString]);
+			NSLog(@"Could not load Metalua compiler: %@", [NSString popFromStack:self]);
 			return NO;
 		}
 
@@ -74,7 +75,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	} else {
 		if (error) {
 			NSDictionary *userInfo = nil;
-			NSString *message = [self popString];
+			NSString *message = [NSString popFromStack:self];
 			if (message) {
 				userInfo = [NSDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
 			}
@@ -99,7 +100,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 		[self pushGlobal:@"compiler"];
 		[self popTableAndPushField:@"loadstring"];
 
-		[self pushString:source];
+		[source pushOntoStack:self];
 
 		// on the stack should be:
 		// { compiler.loadstring, source }
@@ -131,17 +132,6 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}
 }
 
-- (NSString *)popString; {
-  	size_t len = 0;
-	const char *cStr = lua_tolstring(self.state, -1, &len);
-	if (!cStr)
-		return nil;
-	
-	lua_pop(self.state, 1);
-	
-	return [[NSString alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
-}
-
 - (void)popTableAndPushField:(NSString *)field; {
   	lua_getfield(self.state, -1, [field UTF8String]);
 
@@ -151,11 +141,6 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 - (void)pushGlobal:(NSString *)symbol; {
 	lua_getglobal(self.state, [symbol UTF8String]);
-}
-
-- (void)pushString:(NSString *)str; {
-  	NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-	lua_pushlstring(self.state, [data bytes], [data length]);
 }
 
 @end

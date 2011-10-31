@@ -66,15 +66,6 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error;
 
 /**
- * Pops a string off the top of the Lua stack. The string is assumed to be
- * encoded with UTF-8. Returns \c nil if the value at the top of the Lua stack
- * is not a string or number.
- *
- * @note The string on the stack may contain embedded NULs.
- */
-- (NSString *)popString;
-
-/**
  * Attempts to ensure that \a size slots are free in the Lua stack. If not
  * enough slots are free and the stack cannot be grown, an
  * #MLCLuaStackOverflowException is thrown.
@@ -102,11 +93,4 @@ extern NSString * const MLCLuaStackOverflowException;
  * Pushes onto the stack a reference to the given global symbol.
  */
 - (void)pushGlobal:(NSString *)symbol;
-
-/**
- * Pushes \a str on the Lua stack.
- *
- * @note \a str is encoded with UTF-8 before being passed into Lua.
- */
-- (void)pushString:(NSString *)str;
 @end
