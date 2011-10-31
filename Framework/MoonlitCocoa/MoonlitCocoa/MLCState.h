@@ -75,6 +75,22 @@ extern NSString * const MLCLuaStackOverflowException;
 - (NSString *)popString;
 
 /**
+ * Attempts to ensure that \a size slots are free in the Lua stack. If not
+ * enough slots are free and the stack cannot be grown, an
+ * #MLCLuaStackOverflowException is thrown.
+ */
+- (void)growStackBySize:(int)size;
+
+/**
+ * Executes \a block, ensuring that the stack has expanded by \a delta slots
+ * - or, if \a delta is negative, shrunk by \a delta slots - after the block has
+ * completed.
+ *
+ * Returns the value returned by \a block.
+ */
+- (BOOL)enforceStackDelta:(int)delta forBlock:(BOOL (^)(void))block;
+
+/**
  * For a table at the top of the stack, replaces it with the value of \a field
  * obtained from that table.
  *
