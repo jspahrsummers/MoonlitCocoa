@@ -66,13 +66,37 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error;
 
 /**
- * Pops a string off the top of the Lua stack. The string is assumed to be
- * encoded with UTF-8. Returns \c nil if the value at the top of the Lua stack
- * is not a string or number.
+ * Gets the value on the top of the stack, attempting to create an Objective-C
+ * object from its type. If no known mapping to Objective-C is known, \c nil is
+ * returned.
  *
- * @note The string on the stack may contain embedded NULs.
+ * @note Strings are not converted in-place, making this safe for use with \c
+ * lua_next.
  */
-- (NSString *)popString;
+- (id)getValueOnStack;
+
+/**
+ * Attempts to ensure that \a size slots are free in the Lua stack. If not
+ * enough slots are free and the stack cannot be grown, an
+ * #MLCLuaStackOverflowException is thrown.
+ */
+- (void)growStackBySize:(int)size;
+
+/**
+ * Executes \a block, ensuring that the stack has expanded by \a delta slots
+ * - or, if \a delta is negative, shrunk by \a delta slots - after the block has
+ * completed.
+ *
+ * Returns the value returned by \a block.
+ */
+- (BOOL)enforceStackDelta:(int)delta forBlock:(BOOL (^)(void))block;
+
+/**
+ * Pops the value on the top of the stack, attempting to coerce it into a type
+ * suitable for the return value of \a invocation. If any error occurs, the bits
+ * of the return value are zeroed out and \c NO is returned.
+ */
+- (BOOL)popReturnValueForInvocation:(NSInvocation *)invocation;
 
 /**
  * For a table at the top of the stack, replaces it with the value of \a field
@@ -83,14 +107,30 @@ extern NSString * const MLCLuaStackOverflowException;
 - (void)popTableAndPushField:(NSString *)field;
 
 /**
+ * Pops the value on the top of the stack, attempting to create an Objective-C
+ * object from its type. If no known mapping to Objective-C is known, \c nil is
+ * returned.
+ */
+- (id)popValueOnStack;
+
+/**
  * Pushes onto the stack a reference to the given global symbol.
  */
 - (void)pushGlobal:(NSString *)symbol;
 
 /**
- * Pushes \a str on the Lua stack.
+ * If \a object conforms to the #MLCValue protocol, this invokes
+ * MLCValue#pushOntoStack:. Otherwise, the object is pushed as light userdata.
  *
- * @note \a str is encoded with UTF-8 before being passed into Lua.
+ * @warning Light userdata is not retained by Lua. Retrieving it at a later time
+ * may result in a reference to a deallocated object.
  */
-- (void)pushString:(NSString *)str;
+- (void)pushObject:(id)object;
+
+/**
+ * Pushes onto the stack the arguments stored in \a invocation, converting to
+ * Lua types as appropriate. The target and the selector are not included in the
+ * arguments pushed.
+ */
+- (void)pushArgumentsOfInvocation:(NSInvocation *)invocation;
 @end
