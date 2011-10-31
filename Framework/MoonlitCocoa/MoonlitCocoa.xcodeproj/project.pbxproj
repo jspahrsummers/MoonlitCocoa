@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		D03127D5145DF55E00D14642 /* EXTRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = D03127D3145DF55E00D14642 /* EXTRuntimeExtensions.h */; };
 		D03127D6145DF55E00D14642 /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D03127D4145DF55E00D14642 /* EXTRuntimeExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -Wno-conversion -Wno-sign-conversion"; }; };
-		D03127CE145DEF7800D14642 /* MLCModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D03127CC145DEF7800D14642 /* MLCModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D03127CF145DEF7800D14642 /* MLCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03127CD145DEF7800D14642 /* MLCModel.m */; };
+		D03127F5145E212F00D14642 /* MLCValue.h in Headers */ = {isa = PBXBuildFile; fileRef = D03127F4145E212F00D14642 /* MLCValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0A6CCF81455E09D00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF71455E09D00B99D78 /* Cocoa.framework */; };
 		D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD001455E09D00B99D78 /* InfoPlist.strings */; };
 		D0A6CD0E1455E09D00B99D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */; };
@@ -38,8 +37,7 @@
 /* Begin PBXFileReference section */
 		D03127D3145DF55E00D14642 /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXTRuntimeExtensions.h; path = ../libextobjc/extobjc/Modules/EXTRuntimeExtensions.h; sourceTree = "<group>"; };
 		D03127D4145DF55E00D14642 /* EXTRuntimeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXTRuntimeExtensions.m; path = ../libextobjc/extobjc/Modules/EXTRuntimeExtensions.m; sourceTree = "<group>"; };
-		D03127CC145DEF7800D14642 /* MLCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCModel.h; sourceTree = "<group>"; };
-		D03127CD145DEF7800D14642 /* MLCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCModel.m; sourceTree = "<group>"; };
+		D03127F4145E212F00D14642 /* MLCValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCValue.h; sourceTree = "<group>"; };
 		D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoonlitCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A6CCF71455E09D00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D0A6CCFF1455E09D00B99D78 /* MoonlitCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoa-Info.plist"; sourceTree = "<group>"; };
@@ -95,6 +93,14 @@
 			name = libextobjc;
 			sourceTree = "<group>";
 		};
+		D03127F3145E210300D14642 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D03127F4145E212F00D14642 /* MLCValue.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		D0A6CCE81455E09D00B99D78 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +137,7 @@
 			children = (
 				D0A6CD041455E09D00B99D78 /* MoonlitCocoa.h */,
 				D0A6CDB71456050C00B99D78 /* Classes */,
+				D03127F3145E210300D14642 /* Protocols */,
 				D0A6CDC91456317400B99D78 /* Scripts */,
 				D0A6CCFE1455E09D00B99D78 /* Supporting Files */,
 			);
@@ -209,6 +216,7 @@
 				D0A6CDBA1456052F00B99D78 /* MLCState.h in Headers */,
 				D03127D5145DF55E00D14642 /* EXTRuntimeExtensions.h in Headers */,
 				D03127CE145DEF7800D14642 /* MLCModel.h in Headers */,
+				D03127F5145E212F00D14642 /* MLCValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
