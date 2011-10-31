@@ -326,6 +326,142 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}];
 }
 
+- (BOOL)popReturnValueForInvocation:(NSInvocation *)invocation; {
+	NSMethodSignature *signature = [invocation methodSignature];
+
+	NSUInteger returnLength = [signature methodReturnLength];
+	if (!returnLength)
+		return YES;
+
+	const char *type = [signature methodReturnType];
+	
+	// skip attributes in the provided type encoding
+	while (
+		*type == 'r' ||
+		*type == 'n' ||
+		*type == 'N' ||
+		*type == 'o' ||
+		*type == 'O' ||
+		*type == 'R' ||
+		*type == 'V'
+	) {
+		++type;
+	}
+
+	#define popNSNumberValue(TYPE, NAME) \
+		do { \
+			NSNumber *numObj = [NSNumber popFromStack:self]; \
+			TYPE num = [numObj NAME ## Value]; \
+			[invocation setReturnValue:&num]; \
+		} while (0)
+
+	switch (*type) {
+	case 'c':
+		popNSNumberValue(char, char);
+		break;
+
+	case 'C':
+		popNSNumberValue(unsigned char, unsignedChar);
+		break;
+
+	case 'i':
+		popNSNumberValue(int, int);
+		break;
+
+	case 'I':
+		popNSNumberValue(unsigned int, unsignedInt);
+		break;
+
+	case 's':
+		popNSNumberValue(short, short);
+		break;
+
+	case 'S':
+		popNSNumberValue(unsigned short, unsignedShort);
+		break;
+
+	case 'l':
+		popNSNumberValue(long, long);
+		break;
+
+	case 'L':
+		popNSNumberValue(unsigned long, unsignedLong);
+		break;
+
+	case 'q':
+		popNSNumberValue(long long, longLong);
+		break;
+
+	case 'Q':
+		popNSNumberValue(unsigned long long, unsignedLongLong);
+		break;
+	
+	case 'f':
+		popNSNumberValue(float, float);
+		break;
+	
+	case 'd':
+		popNSNumberValue(double, double);
+		break;
+	
+	case 'B':
+		popNSNumberValue(_Bool, bool);
+		break;
+	
+	case 'v':
+		// no return value, nothing to do
+		break;
+	
+	case '*':
+		{
+			const char *str = lua_tostring(self.state, -1);
+			lua_pop(self.state, 1);
+			[invocation setReturnValue:&str];
+		}
+
+		break;
+	
+	case '@':
+	case '#':
+		{
+			id obj = [self popValueOnStack];
+			[invocation setReturnValue:&obj];
+		}
+
+		break;
+	
+	case ':':
+		{
+			const char *str = lua_tostring(self.state, -1);
+			lua_pop(self.state, 1);
+
+			SEL selector = sel_registerName(str);
+			[invocation setReturnValue:&selector];
+		}
+		
+		break;
+	
+	case '^':
+		{
+			void *ptr = (void *)lua_topointer(self.state, -1);
+			[invocation setReturnValue:&ptr];
+		}
+
+		break;
+
+	default:
+		NSLog(@"Unsupported return type \"%s\", returning zero", type);
+
+		unsigned char buffer[returnLength];
+		memset(buffer, 0, returnLength);
+		[invocation setReturnValue:buffer];
+
+		return NO;
+	}
+
+	return YES;
+}
+
 - (void)pushGlobal:(NSString *)symbol; {
 	[self growStackBySize:1];
 	lua_getglobal(self.state, [symbol UTF8String]);

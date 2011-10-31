@@ -92,6 +92,13 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)enforceStackDelta:(int)delta forBlock:(BOOL (^)(void))block;
 
 /**
+ * Pops the value on the top of the stack, attempting to coerce it into a type
+ * suitable for the return value of \a invocation. If any error occurs, the bits
+ * of the return value are zeroed out and \c NO is returned.
+ */
+- (BOOL)popReturnValueForInvocation:(NSInvocation *)invocation;
+
+/**
  * For a table at the top of the stack, replaces it with the value of \a field
  * obtained from that table.
  *
