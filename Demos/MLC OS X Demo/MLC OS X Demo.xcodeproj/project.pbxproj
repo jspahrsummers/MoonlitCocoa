@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D03127A0145DDE9000D14642 /* MoonlitCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D031279F145DDE9000D14642 /* MoonlitCocoa.framework */; };
 		D03127AB145DDEC500D14642 /* MoonlitCocoa.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D031279F145DDE9000D14642 /* MoonlitCocoa.framework */; };
+		D031283E145E424D00D14642 /* MLCProduct.mlua in Resources */ = {isa = PBXBuildFile; fileRef = D031283D145E424D00D14642 /* MLCProduct.mlua */; };
 		D0890FD1145777E300B77FB9 /* MLCShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */; };
 		D0890FDC1457781800B77FB9 /* MLCProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FDB1457781800B77FB9 /* MLCProduct.m */; };
 		D0890FE2145778F900B77FB9 /* MLCShoppingCartWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0890FE1145778F900B77FB9 /* MLCShoppingCartWindowController.m */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		D031279F145DDE9000D14642 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MoonlitCocoa.framework; path = "/Users/justin/Library/Developer/Xcode/DerivedData/MoonlitCocoa-hctjgytkndblerbctpedbcnrlwba/Build/Products/Debug/MoonlitCocoa.framework"; sourceTree = "<absolute>"; };
+		D031283D145E424D00D14642 /* MLCProduct.mlua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MLCProduct.mlua; sourceTree = "<group>"; };
 		D0890FCF145777E300B77FB9 /* MLCShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCShoppingCart.h; sourceTree = "<group>"; };
 		D0890FD0145777E300B77FB9 /* MLCShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCShoppingCart.m; sourceTree = "<group>"; };
 		D0890FDA1457781800B77FB9 /* MLCProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCProduct.h; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		D0A6CD9A1455E7A900B99D78 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				D031283D145E424D00D14642 /* MLCProduct.mlua */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				D0A6CD441455E10E00B99D78 /* Credits.rtf in Resources */,
 				D0A6CD4A1455E10E00B99D78 /* MainMenu.xib in Resources */,
 				D0890FE51457795500B77FB9 /* MLCShoppingCartWindow.xib in Resources */,
+				D031283E145E424D00D14642 /* MLCProduct.mlua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

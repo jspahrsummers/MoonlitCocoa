@@ -1,0 +1,5 @@
+local M = {
+	formattedPrice = || "$x.xx"
+}
+
+return M

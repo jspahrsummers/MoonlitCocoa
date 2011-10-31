@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <MoonlitCocoa/MoonlitCocoa.h>
 
+@lua_interface(MLCProduct)
+- (NSString *)formattedPrice;
+@end
+
 /**
  * An immutable product model object.
  */
