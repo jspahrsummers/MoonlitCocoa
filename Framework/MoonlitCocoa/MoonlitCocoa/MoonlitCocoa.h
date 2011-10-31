@@ -9,4 +9,5 @@
 #import <MoonlitCocoa/MLCModel.h>
 #import <MoonlitCocoa/MLCState.h>
 #import <MoonlitCocoa/MLCValue.h>
+#import <MoonlitCocoa/NSNumber+LuaAdditions.h>
 #import <MoonlitCocoa/NSString+LuaAdditions.h>
