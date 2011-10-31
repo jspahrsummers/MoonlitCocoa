@@ -119,4 +119,11 @@ extern NSString * const MLCLuaStackOverflowException;
  * may result in a reference to a deallocated object.
  */
 - (void)pushObject:(id)object;
+
+/**
+ * Pushes onto the stack the arguments stored in \a invocation, converting to
+ * Lua types as appropriate. The target and the selector are not included in the
+ * arguments pushed.
+ */
+- (void)pushArgumentsOfInvocation:(NSInvocation *)invocation;
 @end

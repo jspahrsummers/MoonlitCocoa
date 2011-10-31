@@ -184,6 +184,148 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}
 }
 
+- (void)pushArgumentsOfInvocation:(NSInvocation *)invocation; {
+	NSMethodSignature *signature = [invocation methodSignature];
+	int count = (int)[signature numberOfArguments];
+
+	if (count <= 2)
+		return;
+	
+	[self growStackBySize:count - 2];
+
+	[self enforceStackDelta:count forBlock:^{
+		for (int i = 2;i < count;++i) {
+			const char *type = [signature getArgumentTypeAtIndex:(NSUInteger)i];
+			
+			// skip attributes in the provided type encoding
+			while (
+				*type == 'r' ||
+				*type == 'n' ||
+				*type == 'N' ||
+				*type == 'o' ||
+				*type == 'O' ||
+				*type == 'R' ||
+				*type == 'V'
+			) {
+				++type;
+			}
+
+			#define pushNumberOfType(TYPE) \
+				do { \
+					TYPE num; \
+					[invocation getArgument:&num atIndex:i]; \
+					lua_pushnumber(self.state, (lua_Number)num); \
+				} while (0)
+
+			switch (*type) {
+			case 'c':
+				// single characters are pushed as numbers because BOOL is
+				// typedef'd to 'char'
+				pushNumberOfType(signed char);
+				break;
+
+			case 'C':
+				pushNumberOfType(unsigned char);
+				break;
+
+			case 'i':
+				pushNumberOfType(int);
+				break;
+
+			case 'I':
+				pushNumberOfType(unsigned int);
+				break;
+
+			case 's':
+				pushNumberOfType(short);
+				break;
+
+			case 'S':
+				pushNumberOfType(unsigned short);
+				break;
+
+			case 'l':
+				pushNumberOfType(long);
+				break;
+
+			case 'L':
+				pushNumberOfType(unsigned long);
+				break;
+
+			case 'q':
+				pushNumberOfType(long long);
+				break;
+
+			case 'Q':
+				pushNumberOfType(unsigned long long);
+				break;
+
+			case 'f':
+				pushNumberOfType(float);
+				break;
+
+			case 'd':
+				pushNumberOfType(double);
+				break;
+
+			case 'B':
+				{
+					_Bool b;
+					[invocation getArgument:&b atIndex:i];
+					lua_pushboolean(self.state, b);
+				}
+
+				break;
+
+			case '*':
+				{
+					const char *str;
+					[invocation getArgument:&str atIndex:i];
+					lua_pushstring(self.state, str);
+				}
+
+				break;
+
+			case ':':
+				{
+					SEL selector;
+					[invocation getArgument:&selector atIndex:i];
+
+					const char *name = sel_getName(selector);
+					lua_pushstring(self.state, name);
+				}
+
+				break;
+
+			case '@':
+			case '#':
+				{
+					id obj;
+					[invocation getArgument:&obj atIndex:i];
+					[self pushObject:obj];
+				}
+
+				break;
+
+			case '^':
+				{
+					void *ptr;
+					[invocation getArgument:&ptr atIndex:i];
+					lua_pushlightuserdata(self.state, ptr);
+				}
+
+				break;
+
+			default:
+				NSLog(@"Unsupported argument type \"%s\", pushing nil", type);
+				lua_pushnil(self.state);
+			}
+		}
+
+		return YES;
+	}];
+}
+
 - (void)pushGlobal:(NSString *)symbol; {
 	[self growStackBySize:1];
 	lua_getglobal(self.state, [symbol UTF8String]);
