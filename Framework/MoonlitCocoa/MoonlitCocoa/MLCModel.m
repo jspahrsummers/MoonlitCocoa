@@ -124,6 +124,40 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 	return state;
 }
 
+- (void)forwardInvocation:(NSInvocation *)invocation {
+  	NSMethodSignature *signature = [invocation methodSignature];
+
+	NSString *selectorName = NSStringFromSelector([invocation selector]);
+	int argumentCount = (int)[signature numberOfArguments];
+
+	int resultCount;
+	if ([signature methodReturnLength])
+		resultCount = 1;
+	else
+		resultCount = 0;
+
+	MLCState *state = [[self class] state];
+
+	[state enforceStackDelta:0 forBlock:^{
+		NSString *table = NSStringFromClass([self class]);
+		[state pushGlobal:table];
+		[state popTableAndPushField:selectorName];
+
+		[state pushArgumentsOfInvocation:invocation];
+
+		NSError *error = nil;
+		if (![state callFunctionWithArgumentCount:argumentCount - 2 resultCount:resultCount error:&error]) {
+			NSLog(@"Exception occurred when invoking %@ in Lua: %@", selectorName, error);
+			return NO;
+		}
+
+		if (resultCount)
+			[state popReturnValueForInvocation:invocation];
+
+		return YES;
+	}];
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
