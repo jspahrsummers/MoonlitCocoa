@@ -158,6 +158,30 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 	}];
 }
 
+- (id)valueForUndefinedKey:(NSString *)key {
+	// try invoking Lua
+	MLCState *state = [[self class] state];
+
+	__block id result = nil;
+
+	[state enforceStackDelta:0 forBlock:^{
+		NSString *table = NSStringFromClass([self class]);
+		[state pushGlobal:table];
+		[state popTableAndPushField:key];
+
+		NSError *error = nil;
+		if (![state callFunctionWithArgumentCount:0 resultCount:1 error:&error]) {
+			NSLog(@"Exception occurred when getting key %@ from Lua: %@", key, error);
+			return NO;
+		}
+
+		result = [state popValueOnStack];
+		return YES;
+	}];
+
+	return result;
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
