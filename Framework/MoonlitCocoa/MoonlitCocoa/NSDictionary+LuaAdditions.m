@@ -16,7 +16,42 @@
 }
 
 + (id)popFromStack:(MLCState *)state; {
-	return nil;
+	if (![self isOnStack:state]) {
+		return nil;
+	}
+
+	size_t length = lua_objlen(state.state, -1);
+
+	// space for the key used during iteration, plus a slot for string
+	// conversions
+	[state growStackBySize:2];
+
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:length];
+
+	[state enforceStackDelta:-1 forBlock:^{
+		lua_pushnil(state.state);
+
+		while (lua_next(state.state, -2) != 0) {
+			// key is now at -2
+			// value is now at -1
+			id value = [state popValueOnStack];
+			if (!value)
+				continue;
+
+			id key = [state getValueOnStack];
+			if (!key)
+				continue;
+
+			[dict setObject:value forKey:key];
+		}
+
+		// pop the key and the table
+		lua_pop(state.state, 2);
+
+		return YES;
+	}];
+
+	return [[self alloc] initWithDictionary:dict];
 }
 
 - (void)pushOntoStack:(MLCState *)state; {

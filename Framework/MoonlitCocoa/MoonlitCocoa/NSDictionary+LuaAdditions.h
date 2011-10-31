@@ -20,7 +20,13 @@
  * Pops a table off the top of the Lua stack of \a state. Returns \c nil if the
  * value at the top of the Lua stack is not a table.
  *
- * @note Any numeric indices in the table are converted to \c NSNumber keys.
+ * Any numeric indices in the table are converted to \c NSNumber keys. Any light
+ * userdata objects in the table are interpreted as pointers to objects. Any
+ * keys or values whose types are not understood are silently omitted from the
+ * result.
+ *
+ * @warning Light userdata is not retained by Lua. Retrieving it at a later time
+ * may result in a reference to a deallocated object.
  */
 + (id)popFromStack:(MLCState *)state;
 
@@ -29,6 +35,9 @@
  *
  * Any keys or values that do not conform to the #MLCValue protocol are pushed
  * as light userdata.
+ *
+ * @warning Light userdata is not retained by Lua. Retrieving it at a later time
+ * may result in a reference to a deallocated object.
  */
 - (void)pushOntoStack:(MLCState *)state;
 @end
