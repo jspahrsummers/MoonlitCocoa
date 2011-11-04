@@ -107,6 +107,11 @@ extern NSString * const MLCLuaStackOverflowException;
 - (void)popTableAndPushField:(NSString *)field;
 
 /**
+ * For a table at the top of the stack, replaces it with its metatable.
+ */
+- (void)popTableAndPushMetatable;
+
+/**
  * Pops the value on the top of the stack, attempting to create an Objective-C
  * object from its type. If no known mapping to Objective-C is known, \c nil is
  * returned.

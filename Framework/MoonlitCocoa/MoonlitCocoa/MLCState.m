@@ -154,6 +154,14 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	lua_replace(self.state, -2);
 }
 
+- (void)popTableAndPushMetatable; {
+  	[self growStackBySize:1];
+	lua_getmetatable(self.state, -1);
+
+	// replace the original table in the stack
+	lua_replace(self.state, -2);
+}
+
 - (id)popValueOnStack; {
 	switch (lua_type(self.state, -1)) {
 	case LUA_TNIL:
