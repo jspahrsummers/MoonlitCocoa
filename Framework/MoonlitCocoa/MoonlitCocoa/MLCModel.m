@@ -100,6 +100,12 @@ static int userdataEquals (lua_State *state) {
  * name of the current class and a .mlua or .lua extension.
  */
 + (MLCState *)state;
+
+/**
+ * Pushes onto the #state the metatable object meant for the receiver's
+ * userdata.
+ */
++ (void)pushUserdataMetatable;
 @end
 
 @implementation MLCModel
@@ -269,10 +275,7 @@ static int userdataEquals (lua_State *state) {
 	MLCState *state = [[self class] state];
 
 	[state enforceStackDelta:0 forBlock:^{
-		NSString *name = NSStringFromClass([self class]);
-		const char *cName = [name UTF8String];
-		luaL_getmetatable(state.state, cName);
-
+		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:selectorName];
 		[state pushArgumentsOfInvocation:invocation];
 
@@ -296,10 +299,7 @@ static int userdataEquals (lua_State *state) {
 	__block id result = nil;
 
 	[state enforceStackDelta:0 forBlock:^{
-		NSString *name = NSStringFromClass([self class]);
-		const char *cName = [name UTF8String];
-		luaL_getmetatable(state.state, cName);
-
+		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:key];
 
 		NSError *error = nil;
@@ -313,6 +313,14 @@ static int userdataEquals (lua_State *state) {
 	}];
 
 	return result;
+}
+
++ (void)pushUserdataMetatable; {
+	MLCState *state = [self state];
+
+	NSString *name = NSStringFromClass(self);
+	const char *cName = [name UTF8String];
+	luaL_getmetatable(state.state, cName);
 }
 
 #pragma mark NSCoding
@@ -346,6 +354,60 @@ static int userdataEquals (lua_State *state) {
 		return NO;
 	
 	return [[self dictionaryValue] isEqual:[model dictionaryValue]];
+}
+
+#pragma mark MLCValue
+
++ (BOOL)isOnStack:(MLCState *)state; {
+  	NSAssert1(state == [self state], @"%@ does not support using an MLCState that is not its own", self);
+
+	if (!lua_isuserdata(state.state, -1))
+		return NO;
+
+	return [state enforceStackDelta:0 forBlock:^{
+		lua_getmetatable(state.state, -1);
+		[[self class] pushUserdataMetatable];
+
+		BOOL equal = (BOOL)lua_equal(state.state, -2, -1);
+		lua_pop(state.state, 2);
+
+		return equal;
+	}];
+}
+
++ (id)popFromStack:(MLCState *)state; {
+  	NSAssert1(state == [self state], @"%@ does not support using an MLCState that is not its own", self);
+
+	if (![self isOnStack:state])
+		return nil;
+	
+	void *userdata = lua_touserdata(state.state, -1);
+
+	void *objPtr = NULL;
+	memcpy(&objPtr, userdata, sizeof(void *));
+
+	id obj = (__bridge id)objPtr;
+	return [obj copy];
+}
+
+- (void)pushOntoStack:(MLCState *)state; {
+  	NSAssert1(state == [[self class] state], @"%@ does not support using an MLCState that is not its own", self);
+
+	// userdata + metatable
+	[state growStackBySize:2];
+
+	[state enforceStackDelta:1 forBlock:^{
+		// create a userdata object containing a pointer to 'self'
+		void *ptr = lua_newuserdata(state.state, sizeof(void *));
+		void *selfPtr = (__bridge_retained void *)self;
+		memcpy(ptr, &selfPtr, sizeof(void *));
+
+		// set up a standard metatable on the object
+		[[self class] pushUserdataMetatable];
+		lua_setmetatable(state.state, -2);
+
+		return YES;
+	}];
 }
 
 @end

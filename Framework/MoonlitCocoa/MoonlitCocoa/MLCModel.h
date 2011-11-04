@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MoonlitCocoa/MLCValue.h>
 
 /**
  * Declares, in a protocol \a NAME, methods that will be implemented in Lua. An
@@ -22,7 +23,7 @@
  * This class can be subclassed to get standard model object behaviors and Lua
  * bridging with minimal boilerplate.
  */
-@interface MLCModel : NSObject <NSCoding, NSCopying>
+@interface MLCModel : NSObject <MLCValue, NSCoding, NSCopying>
 /**
  * Initializes the properties of the receiver using the keys and values in \a
  * dict.
