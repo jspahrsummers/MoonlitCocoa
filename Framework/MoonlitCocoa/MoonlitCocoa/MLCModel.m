@@ -14,6 +14,40 @@
 
 static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 
+@interface MLCModel ()
+/**
+ * Enumerates all the properties of the receiver and any superclasses, up until
+ * the MLCModel class.
+ */
++ (void)enumeratePropertiesUsingBlock:(void (^)(objc_property_t property))block;
+
+/**
+ * Returns an array containing the names of all the model properties of the
+ * receiver and any superclasses, up until the MLCModel class.
+ */
++ (NSArray *)modelPropertyNames;
+
+/**
+ * Returns the model object corresponding to \a userdata. If \a transfer is \c
+ * YES, ownership is transferred to ARC (effectively decrementing the object's
+ * retain count).
+ */
++ (id)objectFromUserdata:(void *)userdata transferOwnership:(BOOL)transfer;
+
+/**
+ * Returns the #MLCState object for this model class. If no Lua state has yet
+ * been set up, this will create one and attempt to load a Lua script with the
+ * name of the current class and a .mlua or .lua extension.
+ */
++ (MLCState *)state;
+
+/**
+ * Pushes onto the #state the metatable object meant for the receiver's
+ * userdata.
+ */
++ (void)pushUserdataMetatable;
+@end
+
 /**
  * Invoked as the __gc metamethod on a userdata object. We take this opportunity
  * to balance the model object's retain count.
@@ -31,11 +65,8 @@ static int userdataGC (lua_State *state) {
 		lua_error(state);
 	}
 
-	void *objPtr = NULL;
-	memcpy(&objPtr, userdata, sizeof(void *));
-
-	// balance our retain count on the pointer stored in 'objPtr'
-	(void)(__bridge_transfer id)userdata;
+	// transfer ownership to ARC and discard
+	[MLCModel objectFromUserdata:userdata transferOwnership:YES];
 
 	// pop all arguments
 	lua_pop(state, args);
@@ -66,47 +97,15 @@ static int userdataEquals (lua_State *state) {
 		lua_error(state);
 	}
 
-	void *(^ptrFromUserdata)(void *) = ^(void *userdata){
-		void *objPtr = NULL;
-		memcpy(&objPtr, userdata, sizeof(void *));
-		return objPtr;
-	};
-
-	BOOL equal = (ptrFromUserdata(userdataA) == ptrFromUserdata(userdataB));
+	id objA = [MLCModel objectFromUserdata:userdataA transferOwnership:NO];
+	id objB = [MLCModel objectFromUserdata:userdataB transferOwnership:NO];
 
 	// pop all arguments
 	lua_pop(state, args);
 
-	lua_pushboolean(state, equal);
+	lua_pushboolean(state, (objA == objB));
 	return 1;
 }
-
-@interface MLCModel ()
-/**
- * Enumerates all the properties of the receiver and any superclasses, up until
- * the MLCModel class.
- */
-+ (void)enumeratePropertiesUsingBlock:(void (^)(objc_property_t property))block;
-
-/**
- * Returns an array containing the names of all the model properties of the
- * receiver and any superclasses, up until the MLCModel class.
- */
-+ (NSArray *)modelPropertyNames;
-
-/**
- * Returns the #MLCState object for this model class. If no Lua state has yet
- * been set up, this will create one and attempt to load a Lua script with the
- * name of the current class and a .mlua or .lua extension.
- */
-+ (MLCState *)state;
-
-/**
- * Pushes onto the #state the metatable object meant for the receiver's
- * userdata.
- */
-+ (void)pushUserdataMetatable;
-@end
 
 @implementation MLCModel
 
@@ -260,6 +259,24 @@ static int userdataEquals (lua_State *state) {
 	return state;
 }
 
++ (id)objectFromUserdata:(void *)userdata transferOwnership:(BOOL)transfer; {
+	void *objPtr = NULL;
+	memcpy(&objPtr, userdata, sizeof(void *));
+
+	id obj = nil;
+	
+	if (transfer) {
+		obj = (__bridge_transfer id)objPtr;
+	} else {
+		obj = (__bridge id)objPtr;
+	}
+
+	// this will essentially be a no-op because of how we implement <NSCopying>,
+	// but it ensures that ARC manages the memory correctly, and shuts the
+	// analyzer up
+	return [obj copy];
+}
+
 - (void)forwardInvocation:(NSInvocation *)invocation {
   	NSMethodSignature *signature = [invocation methodSignature];
 
@@ -388,12 +405,7 @@ static int userdataEquals (lua_State *state) {
 		return nil;
 	
 	void *userdata = lua_touserdata(state.state, -1);
-
-	void *objPtr = NULL;
-	memcpy(&objPtr, userdata, sizeof(void *));
-
-	id obj = (__bridge id)objPtr;
-	return [obj copy];
+	return [self objectFromUserdata:userdata transferOwnership:NO];
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
