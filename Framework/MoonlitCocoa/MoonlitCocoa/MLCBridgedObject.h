@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <lua.h>
 
 /**
  * Declares, in a protocol \a NAME, methods that will be implemented in Lua. An
@@ -22,6 +23,23 @@
  * full userdata into Lua.
  */
 @interface MLCBridgedObject : NSObject
+/**
+ * The \c __gc metamethod for instances of the receiver.
+ *
+ * The default implementation of this function gets the object associated with
+ * one userdata argument, then transfers ownership of that object to ARC,
+ * effectively decrementing its retain count.
+ */
++ (lua_CFunction)gcMetamethod;
+
+/**
+ * The \c __eq metamethod for instances of the receiver.
+ *
+ * The default implementation of this function gets the objects associated with
+ * two userdata arguments, then compares them for identity.
+ */
++ (lua_CFunction)eqMetamethod;
+
 /**
  * Returns the instance of the receiver corresponding to \a userdata, or \c nil
  * if \a userdata is invalid or does not contain an instance of the receiver.
