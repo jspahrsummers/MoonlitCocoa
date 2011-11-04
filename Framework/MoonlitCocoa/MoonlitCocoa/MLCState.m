@@ -15,9 +15,89 @@
 #import "NSString+LuaAdditions.h"
 #import <lauxlib.h>
 #import <lualib.h>
+#import <objc/runtime.h>
 
 NSString * const MLCLuaErrorDomain = @"MLCLuaErrorDomain";
 NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
+
+/**
+ * Trampolines a Lua function call into an Objective-C invocation.
+ */
+static int trampolineToObjectiveC (lua_State *L) {
+	int args = lua_gettop(L);
+	if (args < 1) {
+		lua_pushliteral(L, "No object included in Lua to Objective-C function call");
+		lua_error(L);
+	}
+
+	if (args < 2) {
+		lua_pushliteral(L, "No selector included in Lua to Objective-C function call");
+		lua_error(L);
+	}
+
+	int stateIndex = lua_upvalueindex(1);
+
+	// get the MLCState object associated with this Lua state
+	MLCState *state = (__bridge id)lua_touserdata(L, stateIndex);
+	if (!state) {
+		lua_pushliteral(L, "Could not get MLCState associated with Lua state");
+		lua_error(L);
+	}
+
+	if (L != state.state) {
+		lua_pushliteral(L, "Given MLCState upvalue is not associated with the current Lua state");
+		lua_error(L);
+	}
+
+	// get the object upon which to invoke this method
+	id target = [state getValueAtStackIndex:1];
+
+	// get the selector that this function is trying to call
+	const char *selectorString = lua_tostring(L, 2);
+	SEL selector = sel_registerName(selectorString);
+
+	lua_pop(L, args);
+
+	NSMethodSignature *signature = [target methodSignatureForSelector:selector];
+	if (!signature) {
+		NSString *errorMessage = [NSString stringWithFormat:@"%@ does not recognize selector %s", target, selector];
+		[state pushObject:errorMessage];
+
+		lua_error(L);
+	}
+
+	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+	NSInteger methodArgumentCount = (NSInteger)[signature numberOfArguments];
+
+	@autoreleasepool {
+		[invocation setTarget:target];
+		[invocation setSelector:selector];
+
+		for (NSInteger i = methodArgumentCount - 1;i > 2;--i) {
+			// any arguments required by the method but not passed from the Lua
+			// script get filled with nil, matching Lua semantics
+			__autoreleasing id obj = nil;
+
+			if (i < args) {
+				obj = [state popValueOnStack];
+			}
+
+			[invocation setArgument:&obj atIndex:i];
+		}
+
+		[invocation invoke];
+
+		NSUInteger returnLength = [signature methodReturnLength];
+		if (!returnLength)
+			return 0;
+
+		unsigned char buffer[returnLength];
+
+		[invocation getReturnValue:buffer];
+		[state pushValue:buffer objCType:[signature methodReturnType]];
+		return 1;
+	}
+}
 
 @interface MLCState ()
 @property (nonatomic, readwrite) lua_State *state;
@@ -25,6 +105,10 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 
 @implementation MLCState
 @synthesize state = m_state;
+
++ (lua_CFunction)trampolineFunction; {
+	return &trampolineToObjectiveC;
+}
 
 + (id)state; {
 	return [[self alloc] init];

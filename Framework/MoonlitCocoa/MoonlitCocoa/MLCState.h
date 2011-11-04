@@ -30,6 +30,17 @@ extern NSString * const MLCLuaStackOverflowException;
 @property (nonatomic, readonly) lua_State *state;
 
 /**
+ * A Lua closure that can bridge to an Objective-C object. The function always
+ * takes at least two arguments (\c self and \c _cmd), plus whatever arguments
+ * the called method accepts. The closure takes one upvalue -- a light userdata
+ * representing the #MLCState to use.
+ *
+ * @note Just as in Lua, the number of arguments passed are adjusted to the
+ * number of parameters required by the method.
+ */
++ (lua_CFunction)trampolineFunction;
+
+/**
  * Returns an autoreleased Lua state initialized with #init.
  */
 + (id)state;
