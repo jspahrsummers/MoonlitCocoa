@@ -9,9 +9,77 @@
 #import "MLCModel.h"
 #import "MLCState.h"
 #import "EXTRuntimeExtensions.h"
+#import <lauxlib.h>
 #import <objc/runtime.h>
 
 static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
+
+/**
+ * Invoked as the __gc metamethod on a userdata object. We take this opportunity
+ * to balance the model object's retain count.
+ */
+static int userdataGC (lua_State *state) {
+	int args = lua_gettop(state);
+	if (args < 1) {
+		lua_pushstring(state, "Not enough arguments to __gc metamethod");
+		lua_error(state);
+	}
+
+	void *userdata = lua_touserdata(state, 1);
+	if (!userdata) {
+		lua_pushstring(state, "No userdata object for argument 1");
+		lua_error(state);
+	}
+
+	void *objPtr = NULL;
+	memcpy(&objPtr, userdata, sizeof(void *));
+
+	// balance our retain count on the pointer stored in 'objPtr'
+	(void)(__bridge_transfer id)userdata;
+
+	// pop all arguments
+	lua_pop(state, args);
+
+	return 0;
+}
+
+/**
+ * Used to compare two userdata objects. This compares the object pointers for
+ * identity by default.
+ */
+static int userdataEquals (lua_State *state) {
+	int args = lua_gettop(state);
+	if (args < 2) {
+		lua_pushstring(state, "Not enough arguments to __eq metamethod");
+		lua_error(state);
+	}
+
+	void *userdataA = lua_touserdata(state, 1);
+	if (!userdataA) {
+		lua_pushstring(state, "No userdata object for argument 1");
+		lua_error(state);
+	}
+
+	void *userdataB = lua_touserdata(state, 2);
+	if (!userdataB) {
+		lua_pushstring(state, "No userdata object for argument 2");
+		lua_error(state);
+	}
+
+	void *(^ptrFromUserdata)(void *) = ^(void *userdata){
+		void *objPtr = NULL;
+		memcpy(&objPtr, userdata, sizeof(void *));
+		return objPtr;
+	};
+
+	BOOL equal = (ptrFromUserdata(userdataA) == ptrFromUserdata(userdataB));
+
+	// pop all arguments
+	lua_pop(state, args);
+
+	lua_pushboolean(state, equal);
+	return 1;
+}
 
 @interface MLCModel ()
 /**
@@ -96,6 +164,7 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 		}
 
 		state = [[MLCState alloc] init];
+		const char *cName = [name UTF8String];
 
 		BOOL success = [state enforceStackDelta:0 forBlock:^{
 			NSError *error = nil;
@@ -105,13 +174,74 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 				return NO;
 			}
 			
+			// dofile('CLASSNAME.mlua')
 			if (![state callFunctionWithArgumentCount:0 resultCount:1 error:&error]) {
 				NSLog(@"Could not initialize model Lua state: %@", error);
 				return NO;
 			}
 
-			// CLASSNAME = dofile('CLASSNAME.mlua')
-			lua_setglobal(state.state, [name UTF8String]);
+			[state growStackBySize:2];
+
+			// stack[LUA_REGISTRYINDEX]["CLASSNAME"] = {}
+			if (luaL_newmetatable(state.state, cName)) {
+				// __gc
+				lua_pushcfunction(state.state, &userdataGC);
+				lua_setfield(state.state, -2, "__gc");
+
+				// __eq
+				lua_pushcfunction(state.state, &userdataEquals);
+				lua_setfield(state.state, -2, "__eq");
+			}
+
+			// space for two key/value pairs
+			[state growStackBySize:4];
+
+			// first key for next()
+			lua_pushnil(state.state);
+
+			// script table is now at index -3
+			// empty metatable is now at index -2
+			// key is at index -1
+			
+			// we want to copy all the keys and values from the table at -3 to -2
+			while (lua_next(state.state, -3) != 0) {
+				// script table is now at index -4
+				// empty metatable is now at index -3
+				// key is at index -2
+				// value is at index -1
+					
+				[state enforceStackDelta:0 forBlock:^{
+					// duplicate key to the top of the stack (because we can't pop
+					// the one lua_next is using)
+					lua_pushvalue(state.state, -2);
+
+					// duplicate value to the top of the stack (because it has to
+					// follow the key)
+					lua_pushvalue(state.state, -2);
+					
+					// script table is now at index -6
+					// empty metatable is now at index -5
+					// key is at index -2
+					// value is at index -1
+
+					// copy the key and value into our metatable
+					lua_settable(state.state, -5);
+
+					return YES;
+				}];
+				
+				// script table is now at index -4
+				// empty metatable is now at index -3
+				// original key is at index -2
+				// original value is at index -1
+
+				// pop original value in the stack
+				lua_pop(state.state, 1);
+			}
+
+			// pop the script table and the metatable
+			lua_pop(state.state, 2);
+
 			return YES;
 		}];
 
@@ -139,10 +269,11 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 	MLCState *state = [[self class] state];
 
 	[state enforceStackDelta:0 forBlock:^{
-		NSString *table = NSStringFromClass([self class]);
-		[state pushGlobal:table];
-		[state popTableAndPushField:selectorName];
+		NSString *name = NSStringFromClass([self class]);
+		const char *cName = [name UTF8String];
+		luaL_getmetatable(state.state, cName);
 
+		[state popTableAndPushField:selectorName];
 		[state pushArgumentsOfInvocation:invocation];
 
 		NSError *error = nil;
@@ -165,8 +296,10 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 	__block id result = nil;
 
 	[state enforceStackDelta:0 forBlock:^{
-		NSString *table = NSStringFromClass([self class]);
-		[state pushGlobal:table];
+		NSString *name = NSStringFromClass([self class]);
+		const char *cName = [name UTF8String];
+		luaL_getmetatable(state.state, cName);
+
 		[state popTableAndPushField:key];
 
 		NSError *error = nil;
