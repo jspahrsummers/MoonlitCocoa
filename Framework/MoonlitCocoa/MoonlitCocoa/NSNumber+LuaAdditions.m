@@ -15,16 +15,18 @@
 }
 
 + (id)popFromStack:(MLCState *)state; {
-	if (lua_isboolean(state.state, -1))
-		return [NSNumber numberWithBool:(BOOL)lua_toboolean(state.state, -1)];
+	NSNumber *obj = nil;
+	if (lua_isboolean(state.state, -1)) {
+		obj = [NSNumber numberWithBool:(BOOL)lua_toboolean(state.state, -1)];
+	} else if (!lua_isnumber(state.state, -1)) {
+		double num = lua_tonumber(state.state, -1);
+		obj = [NSNumber numberWithDouble:num];
+	}
 
-	if (!lua_isnumber(state.state, -1))
-		return nil;
-
-	double num = lua_tonumber(state.state, -1);
-	lua_pop(state.state, 1);
-
-	return [[self alloc] initWithDouble:num];
+	if (obj)
+		lua_pop(state.state, 1);
+	
+	return obj;
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
