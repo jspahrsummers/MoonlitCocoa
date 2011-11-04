@@ -55,13 +55,13 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 static int userdataGC (lua_State *state) {
 	int args = lua_gettop(state);
 	if (args < 1) {
-		lua_pushstring(state, "Not enough arguments to __gc metamethod");
+		lua_pushliteral(state, "Not enough arguments to __gc metamethod");
 		lua_error(state);
 	}
 
 	void *userdata = lua_touserdata(state, 1);
 	if (!userdata) {
-		lua_pushstring(state, "No userdata object for argument 1");
+		lua_pushliteral(state, "No userdata object for argument 1");
 		lua_error(state);
 	}
 
@@ -81,19 +81,19 @@ static int userdataGC (lua_State *state) {
 static int userdataEquals (lua_State *state) {
 	int args = lua_gettop(state);
 	if (args < 2) {
-		lua_pushstring(state, "Not enough arguments to __eq metamethod");
+		lua_pushliteral(state, "Not enough arguments to __eq metamethod");
 		lua_error(state);
 	}
 
 	void *userdataA = lua_touserdata(state, 1);
 	if (!userdataA) {
-		lua_pushstring(state, "No userdata object for argument 1");
+		lua_pushliteral(state, "No userdata object for argument 1");
 		lua_error(state);
 	}
 
 	void *userdataB = lua_touserdata(state, 2);
 	if (!userdataB) {
-		lua_pushstring(state, "No userdata object for argument 2");
+		lua_pushliteral(state, "No userdata object for argument 2");
 		lua_error(state);
 	}
 
