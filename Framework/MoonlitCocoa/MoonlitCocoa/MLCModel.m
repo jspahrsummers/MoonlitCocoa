@@ -28,13 +28,6 @@ static char * const MLCModelClassAssociatedStateKey = "AssociatedMLCState";
 + (NSArray *)modelPropertyNames;
 
 /**
- * Returns the model object corresponding to \a userdata. If \a transfer is \c
- * YES, ownership is transferred to ARC (effectively decrementing the object's
- * retain count).
- */
-+ (id)objectFromUserdata:(void *)userdata transferOwnership:(BOOL)transfer;
-
-/**
  * Returns the #MLCState object for this model class. If no Lua state has yet
  * been set up, this will create one and attempt to load a Lua script with the
  * name of the current class and a .mlua or .lua extension.
@@ -66,7 +59,7 @@ static int userdataGC (lua_State *state) {
 	}
 
 	// transfer ownership to ARC and discard
-	[MLCModel objectFromUserdata:userdata transferOwnership:YES];
+	[MLCModel objectFromUserdata:userdata transferringOwnership:YES];
 
 	// pop all arguments
 	lua_pop(state, args);
@@ -97,8 +90,8 @@ static int userdataEquals (lua_State *state) {
 		lua_error(state);
 	}
 
-	id objA = [MLCModel objectFromUserdata:userdataA transferOwnership:NO];
-	id objB = [MLCModel objectFromUserdata:userdataB transferOwnership:NO];
+	id objA = [MLCModel objectFromUserdata:userdataA transferringOwnership:NO];
+	id objB = [MLCModel objectFromUserdata:userdataB transferringOwnership:NO];
 
 	// pop all arguments
 	lua_pop(state, args);
@@ -259,24 +252,6 @@ static int userdataEquals (lua_State *state) {
 	return state;
 }
 
-+ (id)objectFromUserdata:(void *)userdata transferOwnership:(BOOL)transfer; {
-	void *objPtr = NULL;
-	memcpy(&objPtr, userdata, sizeof(void *));
-
-	id obj = nil;
-	
-	if (transfer) {
-		obj = (__bridge_transfer id)objPtr;
-	} else {
-		obj = (__bridge id)objPtr;
-	}
-
-	// this will essentially be a no-op because of how we implement <NSCopying>,
-	// but it ensures that ARC manages the memory correctly, and shuts the
-	// analyzer up
-	return [obj copy];
-}
-
 - (void)forwardInvocation:(NSInvocation *)invocation {
   	NSMethodSignature *signature = [invocation methodSignature];
 
@@ -405,7 +380,7 @@ static int userdataEquals (lua_State *state) {
 		return nil;
 	
 	void *userdata = lua_touserdata(state.state, -1);
-	return [self objectFromUserdata:userdata transferOwnership:NO];
+	return [self objectFromUserdata:userdata transferringOwnership:NO];
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
