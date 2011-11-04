@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MoonlitCocoa/MLCValue.h>
 #import <lua.h>
+
+@class MLCState;
 
 /**
  * Declares, in a protocol \a NAME, methods that will be implemented in Lua. An
@@ -20,9 +23,18 @@
 
 /**
  * An abstract class representing an Objective-C object that can be bridged as
- * full userdata into Lua.
+ * full userdata into Lua. Any messages sent to an instance of this class that
+ * it does not understand will be automatically forwarded to its Lua
+ * implementation.
  */
-@interface MLCBridgedObject : NSObject
+@interface MLCBridgedObject : NSObject <MLCValue>
+/**
+ * Returns the #MLCState object for this class. If no Lua state has yet been set
+ * up, this will create one and attempt to load a Lua script with the name of
+ * the current class and a .mlua or .lua extension.
+ */
++ (MLCState *)state;
+
 /**
  * The \c __gc metamethod for instances of the receiver.
  *
@@ -52,4 +64,10 @@
  * transferred to ARC, and \c nil is returned.
  */
 + (id)objectFromUserdata:(void *)userdata transferringOwnership:(BOOL)transfer;
+
+/**
+ * Pushes onto the #state the metatable object meant for the receiver's
+ * userdata.
+ */
++ (void)pushUserdataMetatable;
 @end

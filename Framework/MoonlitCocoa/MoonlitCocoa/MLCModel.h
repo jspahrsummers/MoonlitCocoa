@@ -15,7 +15,7 @@
  * This class can be subclassed to get standard model object behaviors and Lua
  * bridging with minimal boilerplate.
  */
-@interface MLCModel : MLCBridgedObject <MLCValue, NSCoding, NSCopying>
+@interface MLCModel : MLCBridgedObject <NSCoding, NSCopying>
 /**
  * Initializes the properties of the receiver using the keys and values in \a
  * dict.
