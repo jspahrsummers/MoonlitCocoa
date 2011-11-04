@@ -1,5 +1,5 @@
 local M = {
-	formattedPrice = || "$x.xx"
+	formattedPrice = |prod| "$" .. tostring(prod)
 }
 
 return M
