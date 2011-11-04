@@ -59,7 +59,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSScrollView" id="930842399">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">274</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSClipView" id="35975428">
@@ -70,7 +70,7 @@
 										<object class="NSTableView" id="484847875">
 											<reference key="NSNextResponder" ref="35975428"/>
 											<int key="NSvFlags">256</int>
-											<string key="NSFrameSize">{441, 266}</string>
+											<string key="NSFrameSize">{441, 342}</string>
 											<reference key="NSSuperview" ref="35975428"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="286129024"/>
@@ -240,7 +240,7 @@
 											<int key="NSTableViewGroupRowStyle">1</int>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 17}, {441, 266}}</string>
+									<string key="NSFrame">{{1, 17}, {441, 342}}</string>
 									<reference key="NSSuperview" ref="930842399"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="484847875"/>
@@ -292,7 +292,7 @@
 									<int key="NScvFlags">4</int>
 								</object>
 							</object>
-							<string key="NSFrame">{{20, 102}, {443, 284}}</string>
+							<string key="NSFrame">{{20, 26}, {443, 360}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="856337313"/>
