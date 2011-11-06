@@ -493,6 +493,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD801455E2B400B99D78 /* Debug.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)/MoonlitCocoa.framework/**";
 			};
 			name = Debug;
 		};
@@ -500,6 +502,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD831455E2B400B99D78 /* Release.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)";
+				HEADER_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)/MoonlitCocoa.framework/**";
 			};
 			name = Release;
 		};
@@ -507,10 +511,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MoonlitCocoa-fhqekrmhzmqaccdhaxxzvgwpuwzn/Build/Products/Debug\"",
-				);
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -522,10 +522,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MoonlitCocoa-fhqekrmhzmqaccdhaxxzvgwpuwzn/Build/Products/Debug\"",
-				);
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
