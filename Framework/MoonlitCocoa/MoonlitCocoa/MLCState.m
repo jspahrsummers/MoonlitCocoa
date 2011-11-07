@@ -56,8 +56,6 @@ static int trampolineToObjectiveC (lua_State *L) {
 	const char *selectorString = lua_tostring(L, 2);
 	SEL selector = sel_registerName(selectorString);
 
-	lua_pop(L, args);
-
 	NSMethodSignature *signature = [target methodSignatureForSelector:selector];
 	if (!signature) {
 		NSString *errorMessage = [NSString stringWithFormat:@"%@ does not recognize selector %s", target, selector];
