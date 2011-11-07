@@ -140,6 +140,14 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)pushValue:(void *)buffer objCType:(const char *)type;
 
 /**
+ * Pops a value from the top of the stack, attempting to coerce it into a value
+ * matching the given Objective-C type encoding. If the type coercion succeeds,
+ * \a buffer is filled in with the value and \c YES is returned. Returns \c NO
+ * and zeroes out \a buffer if an error occurs.
+ */
+- (BOOL)popValue:(void *)buffer objCType:(const char *)type;
+
+/**
  * Pushes onto the stack the arguments stored in \a invocation, converting to
  * Lua types as appropriate. The target and the selector are not included in the
  * arguments pushed.

@@ -355,7 +355,15 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 		return YES;
 
 	const char *type = [signature methodReturnType];
-	
+	unsigned char buffer[returnLength];
+
+	BOOL success = [self popValue:buffer objCType:type];
+	[invocation setReturnValue:buffer];
+
+	return success;
+}
+
+- (BOOL)popValue:(void *)buffer objCType:(const char *)type; {
 	// skip attributes in the provided type encoding
 	while (
 		*type == 'r' ||
@@ -373,7 +381,7 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 		do { \
 			NSNumber *numObj = [NSNumber popFromStack:self]; \
 			TYPE num = [numObj NAME ## Value]; \
-			[invocation setReturnValue:&num]; \
+			memcpy(buffer, &num, sizeof(num)); \
 		} while (0)
 
 	switch (*type) {
@@ -435,9 +443,18 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	
 	case '*':
 		{
-			const char *str = lua_tostring(self.state, -1);
+			size_t length = 0;
+			const char *str = lua_tolstring(self.state, -1, &length);
+
+			// create a junk NSData, added to the autorelease pool, to hold this
+			// string data and automatically release it
+			__autoreleasing NSData *data = [NSData dataWithBytes:str length:length];
+
+			// pop the string, potentially garbage collecting it
 			lua_pop(self.state, 1);
-			[invocation setReturnValue:&str];
+
+			str = [data bytes];
+			memcpy(buffer, &str, sizeof(str));
 		}
 
 		break;
@@ -445,8 +462,10 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	case '@':
 	case '#':
 		{
-			id obj = [self popValueOnStack];
-			[invocation setReturnValue:&obj];
+			__autoreleasing id obj = [self popValueOnStack];
+
+			__unsafe_unretained id unsafeObj = obj;
+			memcpy(buffer, &unsafeObj, sizeof(unsafeObj));
 		}
 
 		break;
@@ -454,10 +473,12 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	case ':':
 		{
 			const char *str = lua_tostring(self.state, -1);
+			SEL selector = sel_registerName(str);
+
+			// pop the string, potentially garbage collecting it
 			lua_pop(self.state, 1);
 
-			SEL selector = sel_registerName(str);
-			[invocation setReturnValue:&selector];
+			memcpy(buffer, &selector, sizeof(selector));
 		}
 		
 		break;
@@ -465,17 +486,18 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	case '^':
 		{
 			void *ptr = (void *)lua_topointer(self.state, -1);
-			[invocation setReturnValue:&ptr];
+			memcpy(buffer, &ptr, sizeof(ptr));
 		}
 
 		break;
 
 	default:
-		NSLog(@"Unsupported return type \"%s\", returning zero", type);
+		{
+			NSUInteger size = 0;
+			NSGetSizeAndAlignment(buffer, &size, NULL);
 
-		unsigned char buffer[returnLength];
-		memset(buffer, 0, returnLength);
-		[invocation setReturnValue:buffer];
+			memset(buffer, 0, size);
+		}
 
 		return NO;
 	}
