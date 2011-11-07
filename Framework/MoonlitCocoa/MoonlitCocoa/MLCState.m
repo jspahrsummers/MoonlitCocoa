@@ -7,6 +7,7 @@
 //
 
 #import "MLCState.h"
+#import "MLCBridgedObject.h"
 #import "MLCValue.h"
 #import "NSDictionary+LuaAdditions.h"
 #import "NSNull+LuaAdditions.h"
@@ -184,9 +185,11 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 		// TODO: not yet implemented
 		//return [MLCState ...
 		return nil;
+
+	case LUA_TUSERDATA:
+		return [MLCBridgedObject popFromStack:self];
 	
 	case LUA_TFUNCTION:
-	case LUA_TUSERDATA:
 	default:
 		return nil;
 	}
