@@ -22,9 +22,8 @@
 
 	size_t length = lua_objlen(state.state, -1);
 
-	// space for the key used during iteration, plus a slot for string
-	// conversions
-	[state growStackBySize:2];
+	// space for the key used during iteration
+	[state growStackBySize:1];
 
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:length];
 
