@@ -66,14 +66,14 @@ extern NSString * const MLCLuaStackOverflowException;
 - (BOOL)loadScriptAtURL:(NSURL *)URL error:(NSError **)error;
 
 /**
- * Gets the value on the top of the stack, attempting to create an Objective-C
+ * Gets the value at \a index in the stack, attempting to create an Objective-C
  * object from its type. If no known mapping to Objective-C is known, \c nil is
  * returned.
  *
  * @note Strings are not converted in-place, making this safe for use with \c
  * lua_next.
  */
-- (id)getValueOnStack;
+- (id)getValueAtStackIndex:(int)index;
 
 /**
  * Attempts to ensure that \a size slots are free in the Lua stack. If not

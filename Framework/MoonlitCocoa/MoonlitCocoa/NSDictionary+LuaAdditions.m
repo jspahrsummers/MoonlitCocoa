@@ -37,7 +37,7 @@
 			if (!value)
 				continue;
 
-			id key = [state getValueOnStack];
+			id key = [state getValueAtStackIndex:-1];
 			if (!key)
 				continue;
 

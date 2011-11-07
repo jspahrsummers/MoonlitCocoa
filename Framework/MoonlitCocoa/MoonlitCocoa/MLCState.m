@@ -96,12 +96,12 @@ NSString * const MLCLuaStackOverflowException = @"MLCLuaStackOverflowException";
 	}
 }
 
-- (id)getValueOnStack; {
+- (id)getValueAtStackIndex:(int)index; {
   	[self growStackBySize:1];
 
-	// duplicate the value at the top of the stack, so that we can pop and then
-	// leave the stack in its previous state
-  	lua_pushvalue(self.state, -1);
+	// duplicate the value in the stack, so that we can pop and then leave the
+	// stack in its previous state
+  	lua_pushvalue(self.state, index);
 
 	return [self popValueOnStack];
 }
