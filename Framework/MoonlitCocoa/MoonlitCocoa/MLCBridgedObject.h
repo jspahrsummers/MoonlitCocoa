@@ -71,6 +71,15 @@
 - (void)forwardInvocation:(NSInvocation *)invocation;
 
 /**
+ * Uses \a key into the Lua table backing the receiver. If \a key is associated
+ * with a non-nil value compatible with Objective-C, that value is returned. If
+ * \a key is associated with a function, the function is invoked with \c self
+ * and \c _cmd arguments, and the return value from that function is returned.
+ * For any other cases, an \c NSUndefinedKeyException is raised.
+ */
+- (id)valueForUndefinedKey:(NSString *)key;
+
+/**
  * Returns the instance of the receiver corresponding to \a userdata, or \c nil
  * if \a userdata is invalid or does not contain an instance of the receiver.
  *

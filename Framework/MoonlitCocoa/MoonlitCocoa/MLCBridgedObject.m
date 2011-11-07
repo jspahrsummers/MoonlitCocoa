@@ -345,6 +345,10 @@ static int userdataEquals (lua_State *state) {
 		[state popTableAndPushField:key];
 
 		result = [state popValueOnStack];
+		if ([result isEqual:[NSNull null]]) {
+			[NSException raise:NSUndefinedKeyException format:@"Key \"%@\" not found on object %@ (in Objective-C or Lua)", key, self];
+		}
+
 		if (!result) {
 			// push self as only argument
 			[self pushOntoStack:state];
