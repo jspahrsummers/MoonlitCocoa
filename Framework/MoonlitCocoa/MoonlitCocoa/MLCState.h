@@ -133,6 +133,13 @@ extern NSString * const MLCLuaStackOverflowException;
 - (void)pushObject:(id)object;
 
 /**
+ * Pushes the value in \a buffer. \a buffer must contain data of the given
+ * Objective-C type encoding. Returns \c NO if an error occurs trying to bridge
+ * the given value into Lua.
+ */
+- (BOOL)pushValue:(void *)buffer objCType:(const char *)type;
+
+/**
  * Pushes onto the stack the arguments stored in \a invocation, converting to
  * Lua types as appropriate. The target and the selector are not included in the
  * arguments pushed.
