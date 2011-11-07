@@ -1,9 +1,9 @@
 //
-//  MLCBridgedObject.m
-//  MoonlitCocoa
+//	MLCBridgedObject.m
+//	MoonlitCocoa
 //
-//  Created by Justin Spahr-Summers on 04.11.11.
-//  Released into the public domain.
+//	Created by Justin Spahr-Summers on 04.11.11.
+//	Released into the public domain.
 //
 
 #import "MLCBridgedObject.h"
@@ -173,7 +173,7 @@ static int userdataEquals (lua_State *state) {
 				NSLog(@"Could not initialize Lua state for %@: %@", self, error);
 				return NO;
 			}
-			
+
 			// dofile('CLASSNAME.mlua')
 			if (![state callFunctionWithArgumentCount:0 resultCount:1 error:&error]) {
 				NSLog(@"Could not initialize Lua state for %@: %@", self, error);
@@ -206,14 +206,14 @@ static int userdataEquals (lua_State *state) {
 			// script table is now at index -3
 			// empty metatable is now at index -2
 			// key is at index -1
-			
+
 			// we want to copy all the keys and values from the table at -3 to -2
 			while (lua_next(state.state, -3) != 0) {
 				// script table is now at index -4
 				// empty metatable is now at index -3
 				// key is at index -2
 				// value is at index -1
-					
+
 				[state enforceStackDelta:0 forBlock:^{
 					// duplicate key to the top of the stack (because we can't pop
 					// the one lua_next is using)
@@ -222,7 +222,7 @@ static int userdataEquals (lua_State *state) {
 					// duplicate value to the top of the stack (because it has to
 					// follow the key)
 					lua_pushvalue(state.state, -2);
-					
+
 					// script table is now at index -6
 					// empty metatable is now at index -5
 					// key is at index -2
@@ -233,7 +233,7 @@ static int userdataEquals (lua_State *state) {
 
 					return YES;
 				}];
-				
+
 				// script table is now at index -4
 				// empty metatable is now at index -3
 				// original key is at index -2
@@ -282,7 +282,7 @@ static int userdataEquals (lua_State *state) {
 	void **userdataContainingPtr = userdata;
 
 	id obj = nil;
-	
+
 	if (transfer) {
 		obj = (__bridge_transfer id)*userdataContainingPtr;
 	} else {
@@ -298,7 +298,7 @@ static int userdataEquals (lua_State *state) {
 #pragma mark Forwarding
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
-  	NSMethodSignature *signature = [invocation methodSignature];
+	NSMethodSignature *signature = [invocation methodSignature];
 
 	NSString *selectorName = NSStringFromSelector([invocation selector]);
 	int argumentCount = (int)[signature numberOfArguments];
@@ -315,18 +315,20 @@ static int userdataEquals (lua_State *state) {
 		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:selectorName];
 
-		// push self as first argument
-		[self pushOntoStack:state];
-		[state pushArgumentsOfInvocation:invocation];
+		if (![state popReturnValueForInvocation:invocation]) {
+			// push self as first argument
+			[self pushOntoStack:state];
+			[state pushArgumentsOfInvocation:invocation];
 
-		NSError *error = nil;
-		if (![state callFunctionWithArgumentCount:argumentCount - 1 resultCount:resultCount error:&error]) {
-			NSLog(@"Exception occurred when invoking %@ in Lua: %@", selectorName, error);
-			return NO;
+			NSError *error = nil;
+			if (![state callFunctionWithArgumentCount:argumentCount - 1 resultCount:resultCount error:&error]) {
+				NSLog(@"Exception occurred when invoking %@ in Lua: %@", selectorName, error);
+				return NO;
+			}
+
+			if (resultCount)
+				[state popReturnValueForInvocation:invocation];
 		}
-
-		if (resultCount)
-			[state popReturnValueForInvocation:invocation];
 
 		return YES;
 	}];
@@ -342,16 +344,20 @@ static int userdataEquals (lua_State *state) {
 		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:key];
 
-		// push self as only argument
-		[self pushOntoStack:state];
+		result = [state popValueOnStack];
+		if (!result) {
+			// push self as only argument
+			[self pushOntoStack:state];
 
-		NSError *error = nil;
-		if (![state callFunctionWithArgumentCount:1 resultCount:1 error:&error]) {
-			NSLog(@"Exception occurred when getting key %@ from Lua: %@", key, error);
-			return NO;
+			NSError *error = nil;
+			if (![state callFunctionWithArgumentCount:1 resultCount:1 error:&error]) {
+				NSLog(@"Exception occurred when getting key %@ from Lua: %@", key, error);
+				return NO;
+			}
+
+			result = [state popValueOnStack];
 		}
 
-		result = [state popValueOnStack];
 		return YES;
 	}];
 
@@ -385,16 +391,16 @@ static int userdataEquals (lua_State *state) {
 + (id)popFromStack:(MLCState *)state; {
 	if (![self isOnStack:state])
 		return nil;
-	
+
 	void *userdata = lua_touserdata(state.state, -1);
 	id obj = [self objectFromUserdata:userdata transferringOwnership:NO];
 
-  	NSAssert1(state == [[obj class] state], @"%@ does not support using an MLCState that is not its own", obj);
+	NSAssert1(state == [[obj class] state], @"%@ does not support using an MLCState that is not its own", obj);
 	return obj;
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
-  	NSAssert1(state == [[self class] state], @"%@ does not support using an MLCState that is not its own", self);
+	NSAssert1(state == [[self class] state], @"%@ does not support using an MLCState that is not its own", self);
 
 	// userdata + metatable
 	[state growStackBySize:2];
