@@ -147,6 +147,10 @@ static int userdataEquals (lua_State *state) {
 }
 
 @implementation MLCBridgedObject
++ (BOOL)accessInstanceVariablesDirectly {
+	return NO;
+}
+
 + (MLCState *)state; {
 	MLCState *state = objc_getAssociatedObject(self, MLCBridgedClassAssociatedStateKey);
 	if (!state) {
