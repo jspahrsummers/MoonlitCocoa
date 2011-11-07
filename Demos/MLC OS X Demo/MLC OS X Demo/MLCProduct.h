@@ -11,12 +11,13 @@
 
 @lua_interface(MLCProduct)
 - (NSString *)formattedPrice;
+- (void)printFormattedPrice;
 @end
 
 /**
  * An immutable product model object.
  */
-@interface MLCProduct : MLCModel
+@interface MLCProduct : MLCModel <MLCProduct>
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
 

@@ -43,6 +43,8 @@
 	NSString *identifier = [tableColumn identifier];
 	MLCProduct *product = [self.shoppingCart.products objectAtIndex:(NSUInteger)row];
 
+	[product printFormattedPrice];
+
 	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
 	cellView.textField.stringValue = [product valueForKey:identifier];
 	return cellView;

@@ -1,5 +1,8 @@
 local M = {
-	formattedPrice = |prod| "$" .. tostring(prod.price())
+	formattedPrice = |prod| "$" .. tostring(prod.price()),
+	printFormattedPrice = function (prod)
+		print(prod.formattedPrice())
+	end
 }
 
 return M
