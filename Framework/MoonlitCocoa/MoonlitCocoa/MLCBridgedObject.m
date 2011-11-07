@@ -279,30 +279,36 @@ static int userdataEquals (lua_State *state) {
 #pragma mark MLCValue
 
 + (BOOL)isOnStack:(MLCState *)state; {
-  	NSAssert1(state == [self state], @"%@ does not support using an MLCState that is not its own", self);
-
 	if (!lua_isuserdata(state.state, -1))
 		return NO;
 
-	return [state enforceStackDelta:0 forBlock:^{
-		lua_getmetatable(state.state, -1);
-		[[self class] pushUserdataMetatable];
+	// compare metatables only for specific subclasses
+	if (self != [MLCBridgedObject class]) {
+		NSAssert1(state == [self state], @"%@ does not support using an MLCState that is not its own", self);
 
-		BOOL equal = (BOOL)lua_equal(state.state, -2, -1);
-		lua_pop(state.state, 2);
+		return [state enforceStackDelta:0 forBlock:^{
+			lua_getmetatable(state.state, -1);
+			[[self class] pushUserdataMetatable];
 
-		return equal;
-	}];
+			BOOL equal = (BOOL)lua_equal(state.state, -2, -1);
+			lua_pop(state.state, 2);
+
+			return equal;
+		}];
+	} else {
+		return YES;
+	}
 }
 
 + (id)popFromStack:(MLCState *)state; {
-  	NSAssert1(state == [self state], @"%@ does not support using an MLCState that is not its own", self);
-
 	if (![self isOnStack:state])
 		return nil;
 	
 	void *userdata = lua_touserdata(state.state, -1);
-	return [self objectFromUserdata:userdata transferringOwnership:NO];
+	id obj = [self objectFromUserdata:userdata transferringOwnership:NO];
+
+  	NSAssert1(state == [[obj class] state], @"%@ does not support using an MLCState that is not its own", obj);
+	return obj;
 }
 
 - (void)pushOntoStack:(MLCState *)state; {
