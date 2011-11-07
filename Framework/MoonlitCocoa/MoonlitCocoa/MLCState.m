@@ -199,9 +199,20 @@ static int trampolineToObjectiveC (lua_State *L) {
 
 		[source pushOntoStack:self];
 
+		NSError *localError = nil;
+
 		// on the stack should be:
 		// { compiler.loadstring, source }
-		return [self callFunctionWithArgumentCount:1 resultCount:1 error:error];
+		if (![self callFunctionWithArgumentCount:1 resultCount:1 error:&localError]) {
+			NSLog(@"Could not load script: %@", localError);
+
+			if (error)
+				*error = localError;
+
+			return NO;
+		} else {
+			return YES;
+		}
 	}];
 }
 

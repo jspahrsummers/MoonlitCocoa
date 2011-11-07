@@ -326,7 +326,6 @@ static int userdataEquals (lua_State *state) {
 		}
 
 		[state popReturnValueForInvocation:invocation];
-
 		return YES;
 	}];
 }
