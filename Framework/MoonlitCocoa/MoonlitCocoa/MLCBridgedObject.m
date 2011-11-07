@@ -40,6 +40,80 @@ static int userdataGC (lua_State *state) {
 }
 
 /**
+ * A closure which takes two upvalues (\c self and \c _cmd), passing them and
+ * all of its arguments to the MLCState#trampolineFunction. The #MLCState object
+ * for the \c self upvalue is passed as the only upvalue to the trampoline
+ * function.
+ */
+static int trampolineTrampoline (lua_State *state) {
+	int args = lua_gettop(state);
+
+	int selfIndex = lua_upvalueindex(1);
+	int cmdIndex = lua_upvalueindex(2);
+
+	void *userdata = lua_touserdata(state, selfIndex);
+	if (!userdata) {
+		lua_pushliteral(state, "No 'self' object captured in closure");
+		lua_error(state);
+	}
+
+	const char *selectorName = lua_tostring(state, cmdIndex);
+	if (!selectorName) {
+		lua_pushliteral(state, "No '_cmd' value captured in closure");
+		lua_error(state);
+	}
+
+	MLCBridgedObject *obj = [MLCBridgedObject objectFromUserdata:userdata transferringOwnership:NO];
+
+	// push the MLCState for the bridged object
+	MLCState *stateObj = [[obj class] state];
+	lua_pushlightuserdata(state, (__bridge void *)stateObj);
+
+	// push MLCState's trampoline function, capturing the MLCState as an upvalue
+	lua_pushcclosure(state, [[stateObj class] trampolineFunction], 1);
+
+	// move the trampoline below all of the arguments to this function, per
+	// function calling conventions
+	lua_insert(state, 1);
+
+	// copy the userdata argument to the top of the stack, then move it down to
+	// the first argument position
+	lua_pushvalue(state, selfIndex);
+	lua_insert(state, 2);
+
+	// same with _cmd, for the second argument
+	lua_pushvalue(state, cmdIndex);
+	lua_insert(state, 3);
+
+	lua_call(state, args + 2, LUA_MULTRET);
+
+	// at this point, the stack should contain only return values (now that
+	// the function and all arguments have been popped), so the number of
+	// results is the size of the stack
+	return lua_gettop(state);
+}
+
+/**
+ * Invoked as the __index metamethod on a userdata object. Returns a trampoline
+ * invoking a method named after the key on the bridged userdata object.
+ */
+static int userdataIndex (lua_State *state) {
+	int args = lua_gettop(state);
+	if (args < 2) {
+		lua_pushliteral(state, "Not enough arguments to __index metamethod");
+		lua_error(state);
+	}
+
+	// pop all arguments not 'self' or '_cmd'
+	lua_pop(state, args - 2);
+
+	// push the closure onto the stack, using the existing arguments as upvalues
+	lua_pushcclosure(state, &trampolineTrampoline, 2);
+
+	return 1;
+}
+
+/**
  * Used to compare two userdata objects. This implementation compares the object
  * pointers for identity.
  */
@@ -113,6 +187,10 @@ static int userdataEquals (lua_State *state) {
 				// __gc
 				lua_pushcfunction(state.state, [self gcMetamethod]);
 				lua_setfield(state.state, -2, "__gc");
+
+				// __index
+				lua_pushcfunction(state.state, [self indexMetamethod]);
+				lua_setfield(state.state, -2, "__index");
 
 				// __eq
 				lua_pushcfunction(state.state, [self eqMetamethod]);
@@ -190,6 +268,10 @@ static int userdataEquals (lua_State *state) {
 
 + (lua_CFunction)gcMetamethod; {
 	return &userdataGC;
+}
+
++ (lua_CFunction)indexMetamethod; {
+	return &userdataIndex;
 }
 
 + (lua_CFunction)eqMetamethod; {

@@ -45,6 +45,14 @@
 + (lua_CFunction)gcMetamethod;
 
 /**
+ * The \c __index metamethod for instances of the receiver.
+ *
+ * The default implementation of this function returns a trampoline to invoke
+ * a method by the specified name on the specific instance of the receiver.
+ */
++ (lua_CFunction)indexMetamethod;
+
+/**
  * The \c __eq metamethod for instances of the receiver.
  *
  * The default implementation of this function gets the objects associated with
