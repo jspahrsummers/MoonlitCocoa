@@ -61,6 +61,16 @@
 + (lua_CFunction)eqMetamethod;
 
 /**
+ * Uses the selector of \a invocation as a key into the Lua table backing the
+ * receiver, invoking the function associated with that key using the arguments
+ * from \a invocation (after converting to the appropriate Lua types). If the
+ * invocation's method signature dictates a return value, the first return value
+ * from the function is used; zero is returned if the function has no return
+ * values.
+ */
+- (void)forwardInvocation:(NSInvocation *)invocation;
+
+/**
  * Returns the instance of the receiver corresponding to \a userdata, or \c nil
  * if \a userdata is invalid or does not contain an instance of the receiver.
  *

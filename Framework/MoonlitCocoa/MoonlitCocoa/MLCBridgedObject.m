@@ -315,20 +315,17 @@ static int userdataEquals (lua_State *state) {
 		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:selectorName];
 
-		if (![state popReturnValueForInvocation:invocation]) {
-			// push self as first argument
-			[self pushOntoStack:state];
-			[state pushArgumentsOfInvocation:invocation];
+		// push self as first argument
+		[self pushOntoStack:state];
+		[state pushArgumentsOfInvocation:invocation];
 
-			NSError *error = nil;
-			if (![state callFunctionWithArgumentCount:argumentCount - 1 resultCount:resultCount error:&error]) {
-				NSLog(@"Exception occurred when invoking %@ in Lua: %@", selectorName, error);
-				return NO;
-			}
-
-			if (resultCount)
-				[state popReturnValueForInvocation:invocation];
+		NSError *error = nil;
+		if (![state callFunctionWithArgumentCount:argumentCount - 1 resultCount:resultCount error:&error]) {
+			NSLog(@"Exception occurred when invoking %@ in Lua: %@", selectorName, error);
+			return NO;
 		}
+
+		[state popReturnValueForInvocation:invocation];
 
 		return YES;
 	}];
