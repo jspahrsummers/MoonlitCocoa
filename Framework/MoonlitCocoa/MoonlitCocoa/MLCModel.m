@@ -93,15 +93,46 @@
 #pragma mark NSObject
 
 - (NSUInteger)hash {
-	return [[self dictionaryValue] hash];
+	NSNumber *num = nil;
+
+	@try {
+		id obj = [self valueForUndefinedKey:@"hash"];
+
+		if ([obj isKindOfClass:[NSNumber class]]) {
+			num = obj;
+		} else if ([obj isKindOfClass:[NSString class]]) {
+			num = [NSNumber numberWithDouble:[obj doubleValue]];
+		}
+	} @catch (NSException *ex) {
+	}
+
+	if (!num) {
+		return [[self dictionaryValue] hash];
+	} else {
+		return [num unsignedIntegerValue];
+	}
 }
 
 - (BOOL)isEqual:(MLCModel *)model {
-	// TODO: verify descendant classes, checking for a common ancestor
-	if (![model isKindOfClass:[MLCModel class]])
+	if (![model isKindOfClass:[self class]])
 		return NO;
 	
-	return [[self dictionaryValue] isEqual:[model dictionaryValue]];
+	NSMethodSignature *signature = [self methodSignatureForSelector:_cmd];
+	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+
+	[invocation setTarget:self];
+	[invocation setSelector:_cmd];
+
+	[invocation setArgument:&model atIndex:2];
+
+	// TODO: what if the object doesn't implement -isEqual:? we shouldn't use
+	// the dictionaryValue for a hash then
+	[self forwardInvocation:invocation];
+
+	BOOL result = NO;
+	[invocation getReturnValue:&result];
+
+	return result;
 }
 
 @end

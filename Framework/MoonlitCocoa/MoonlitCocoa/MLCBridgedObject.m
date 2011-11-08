@@ -114,8 +114,8 @@ static int userdataIndex (lua_State *state) {
 }
 
 /**
- * Used to compare two userdata objects. This implementation compares the object
- * pointers for identity.
+ * Used to compare two userdata objects. This implementation compares the
+ * objects for equality using -isEqual:.
  */
 static int userdataEquals (lua_State *state) {
 	int args = lua_gettop(state);
@@ -142,7 +142,7 @@ static int userdataEquals (lua_State *state) {
 	// pop all arguments
 	lua_pop(state, args);
 
-	lua_pushboolean(state, (objA == objB));
+	lua_pushboolean(state, [objA isEqual:objB]);
 	return 1;
 }
 

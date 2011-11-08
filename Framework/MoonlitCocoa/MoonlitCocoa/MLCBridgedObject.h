@@ -56,7 +56,7 @@
  * The \c __eq metamethod for instances of the receiver.
  *
  * The default implementation of this function gets the objects associated with
- * two userdata arguments, then compares them for identity.
+ * two userdata arguments, then compares them with \c -isEqual:.
  */
 + (lua_CFunction)eqMetamethod;
 

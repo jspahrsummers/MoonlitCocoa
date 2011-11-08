@@ -26,6 +26,19 @@
 		nil
 	];
 
+	MLCProduct *comparisonProduct = [[MLCProduct alloc] initWithName:@"Thing" price:[NSDecimalNumber decimalNumberWithString:@"20.99"]];
+
+	for (MLCProduct *product in products) {
+		[product printFormattedPrice];
+
+		BOOL equal = ([product isEqual:comparisonProduct]);
+		NSLog(@"%@ == %@? %i", product, comparisonProduct, (int)equal);
+
+		if (equal) {
+			NSAssert([product hash] == [comparisonProduct hash], @"product hashes should be equal if the products compare as equal");
+		}
+	}
+
 	NSDictionary *cart = [NSDictionary dictionaryWithObject:products forKey:@"products"];
 	self.shoppingCart = [[MLCShoppingCart alloc] initWithDictionary:cart];
 	[self.shoppingCartView reloadData];
@@ -42,8 +55,6 @@
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	NSString *identifier = [tableColumn identifier];
 	MLCProduct *product = [self.shoppingCart.products objectAtIndex:(NSUInteger)row];
-
-	[product printFormattedPrice];
 
 	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
 	cellView.textField.stringValue = [product valueForKey:identifier];

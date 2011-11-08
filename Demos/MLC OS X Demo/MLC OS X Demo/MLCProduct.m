@@ -45,17 +45,4 @@
 	return self;
 }
 
-#pragma mark NSObject
-
-- (NSUInteger)hash {
-  	return [self.name hash];
-}
-
-- (BOOL)isEqual:(MLCProduct *)obj {
-  	if (![obj isKindOfClass:[MLCProduct class]])
-		return NO;
-
-	return [self.name isEqualToString:obj.name] && [self.price isEqual:obj.price];
-}
-
 @end

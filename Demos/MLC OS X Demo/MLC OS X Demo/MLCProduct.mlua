@@ -2,6 +2,10 @@ local M = {
 	formattedPrice = |prod| "$" .. tostring(prod.price()),
 	printFormattedPrice = function (prod)
 		print(prod.formattedPrice())
+	end,
+
+	["isEqual:"] = function (prodA, prodB)
+		return prodA.name() == prodB.name()
 	end
 }
 
