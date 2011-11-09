@@ -95,7 +95,7 @@
 - (NSUInteger)hash {
 	NSNumber *num = nil;
 
-	@try {
+	if ([[self class] metatableHasValueForKey:@"hash"]) {
 		id obj = [self valueForUndefinedKey:@"hash"];
 
 		if ([obj isKindOfClass:[NSNumber class]]) {
@@ -103,9 +103,9 @@
 		} else if ([obj isKindOfClass:[NSString class]]) {
 			num = [NSNumber numberWithDouble:[obj doubleValue]];
 		}
-	} @catch (NSException *ex) {
 	}
 
+	// if Lua doesn't implement -hash, we hash our dictionary
 	if (!num) {
 		return [[self dictionaryValue] hash];
 	} else {
@@ -117,6 +117,11 @@
 	if (![model isKindOfClass:[self class]])
 		return NO;
 	
+	// if Lua doesn't implement -isEqual:, we compare dictionary values
+	if (![[self class] metatableHasValueForKey:@"isEqual:"]) {
+		return [[self dictionaryValue] isEqual:[model dictionaryValue]];
+	}
+	
 	NSMethodSignature *signature = [self methodSignatureForSelector:_cmd];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
 
@@ -124,9 +129,6 @@
 	[invocation setSelector:_cmd];
 
 	[invocation setArgument:&model atIndex:2];
-
-	// TODO: what if the object doesn't implement -isEqual:? we shouldn't use
-	// the dictionaryValue for a hash then
 	[self forwardInvocation:invocation];
 
 	BOOL result = NO;
