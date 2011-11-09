@@ -307,7 +307,7 @@ static int userdataEquals (lua_State *state) {
 	return [state enforceStackDelta:0 forBlock:^ BOOL {
 		[self pushUserdataMetatable];
 		[state popTableAndPushField:key];
-		
+
 		id obj = [state popValueOnStack];
 
 		// if the value on the stack is 'nil' (and not anything else), we can
@@ -428,9 +428,11 @@ static int userdataEquals (lua_State *state) {
 	}
 
 	void *userdata = lua_touserdata(state.state, -1);
-	lua_pop(state.state, 1);
-
 	id obj = [self objectFromUserdata:userdata transferringOwnership:NO];
+
+	// Lua can garbage collect an object being popped off the stack, so we wait
+	// to pop until we've created the Cocoa object
+	lua_pop(state.state, 1);
 
 	NSAssert1(state == [[obj class] state], @"%@ does not support using an MLCState that is not its own", obj);
 	return obj;
