@@ -423,8 +423,8 @@ static int userdataEquals (lua_State *state) {
 
 + (id)popFromStack:(MLCState *)state; {
 	if (![self isOnStack:state]) {
-		return nil;
 		lua_pop(state.state, 1);
+		return nil;
 	}
 
 	void *userdata = lua_touserdata(state.state, -1);
