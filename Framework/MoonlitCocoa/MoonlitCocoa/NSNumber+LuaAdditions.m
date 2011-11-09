@@ -23,9 +23,7 @@
 		obj = [NSNumber numberWithDouble:num];
 	}
 
-	if (obj)
-		lua_pop(state.state, 1);
-
+	lua_pop(state.state, 1);
 	return obj;
 }
 

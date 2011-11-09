@@ -257,35 +257,49 @@ static int trampolineToObjectiveC (lua_State *L) {
 }
 
 - (id)popValueOnStack; {
-	switch (lua_type(self.state, -1)) {
-	case LUA_TNIL:
-		return [NSNull popFromStack:self];
+	__block id result = nil;
 
-	case LUA_TNUMBER:
-	case LUA_TBOOLEAN:
-		return [NSNumber popFromStack:self];
+	[self enforceStackDelta:-1 forBlock:^{
+		switch (lua_type(self.state, -1)) {
+		case LUA_TNIL:
+			result = [NSNull popFromStack:self];
+			break;
 
-	case LUA_TSTRING:
-		return [NSString popFromStack:self];
+		case LUA_TNUMBER:
+		case LUA_TBOOLEAN:
+			result = [NSNumber popFromStack:self];
+			break;
 
-	case LUA_TTABLE:
-		return [NSDictionary popFromStack:self];
+		case LUA_TSTRING:
+			result = [NSString popFromStack:self];
+			break;
 
-	case LUA_TLIGHTUSERDATA:
-		return (__bridge id)lua_touserdata(self.state, -1);
+		case LUA_TTABLE:
+			result = [NSDictionary popFromStack:self];
+			break;
 
-	case LUA_TTHREAD:
-		// TODO: not yet implemented
-		//return [MLCState ...
-		return nil;
+		case LUA_TUSERDATA:
+			result = [MLCBridgedObject popFromStack:self];
+			break;
 
-	case LUA_TUSERDATA:
-		return [MLCBridgedObject popFromStack:self];
-	
-	case LUA_TFUNCTION:
-	default:
-		return nil;
-	}
+		case LUA_TLIGHTUSERDATA:
+			result = (__bridge id)lua_touserdata(self.state, -1);
+			lua_pop(self.state, 1);
+			break;
+		
+		case LUA_TTHREAD:
+		case LUA_TFUNCTION:
+			// TODO: not yet implemented
+		
+		default:
+			lua_pop(self.state, 1);
+			return NO;
+		}
+
+		return YES;
+	}];
+
+	return result;
 }
 
 - (void)pushArgumentsOfInvocation:(NSInvocation *)invocation; {

@@ -25,7 +25,8 @@
 /**
  * Attempts to create a value of this type from the top of the stack in the
  * given Lua state. Returns \c nil if an object of this type cannot be created
- * from the data at the top of the stack.
+ * from the data at the top of the stack. Regardless of success or failure, the
+ * topmost item on the stack of \a state is popped.
  */
 + (id)popFromStack:(MLCState *)state;
 

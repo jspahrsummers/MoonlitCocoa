@@ -16,11 +16,13 @@
 }
 
 + (id)popFromStack:(MLCState *)state; {
-	if (![self isOnStack:state])
-		return nil;
+	BOOL isOnStack = [self isOnStack:state];
 
 	lua_pop(state.state, 1);
-	return [self null];
+	if (isOnStack)
+		return [self null];
+	else
+		return nil;
 }
 
 - (void)pushOntoStack:(MLCState *)state; {

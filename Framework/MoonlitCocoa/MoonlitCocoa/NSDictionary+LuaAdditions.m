@@ -17,6 +17,7 @@
 
 + (id)popFromStack:(MLCState *)state; {
 	if (![self isOnStack:state]) {
+		lua_pop(state.state, 1);
 		return nil;
 	}
 

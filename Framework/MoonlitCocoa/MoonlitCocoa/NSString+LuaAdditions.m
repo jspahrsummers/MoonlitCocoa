@@ -18,12 +18,17 @@
 + (id)popFromStack:(MLCState *)state; {
   	size_t len = 0;
 	const char *cStr = lua_tolstring(state.state, -1, &len);
-	if (!cStr)
+	if (!cStr) {
+		lua_pop(state.state, 1);
 		return nil;
+	}
 	
+	NSString *str = [[self alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
+
+	// Lua can garbage collect a string being popped off the stack, so we wait
+	// to pop until we've created the NSString
 	lua_pop(state.state, 1);
-	
-	return [[self alloc] initWithBytes:cStr length:len encoding:NSUTF8StringEncoding];
+	return str;
 }
 
 - (void)pushOntoStack:(MLCState *)state; {

@@ -126,6 +126,8 @@ extern NSString * const MLCLuaStackOverflowException;
  * Pops the value on the top of the stack, attempting to create an Objective-C
  * object from its type. If no known mapping to Objective-C is known, \c nil is
  * returned.
+ *
+ * @note This will always remove the topmost item from the stack.
  */
 - (id)popValueOnStack;
 

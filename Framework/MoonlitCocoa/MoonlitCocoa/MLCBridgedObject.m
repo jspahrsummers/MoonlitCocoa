@@ -367,12 +367,14 @@ static int userdataEquals (lua_State *state) {
 		[[self class] pushUserdataMetatable];
 		[state popTableAndPushField:key];
 
-		result = [state popValueOnStack];
+		result = [state getValueAtStackIndex:-1];
 		if ([result isEqual:[NSNull null]]) {
 			[NSException raise:NSUndefinedKeyException format:@"Key \"%@\" not found on object %@ (in Objective-C or Lua)", key, self];
 		}
 
-		if (!result) {
+		if (result) {
+			lua_pop(state.state, 1);
+		} else {
 			// push self as only argument
 			[self pushOntoStack:state];
 
@@ -416,10 +418,14 @@ static int userdataEquals (lua_State *state) {
 }
 
 + (id)popFromStack:(MLCState *)state; {
-	if (![self isOnStack:state])
+	if (![self isOnStack:state]) {
 		return nil;
+		lua_pop(state.state, 1);
+	}
 
 	void *userdata = lua_touserdata(state.state, -1);
+	lua_pop(state.state, 1);
+
 	id obj = [self objectFromUserdata:userdata transferringOwnership:NO];
 
 	NSAssert1(state == [[obj class] state], @"%@ does not support using an MLCState that is not its own", obj);
