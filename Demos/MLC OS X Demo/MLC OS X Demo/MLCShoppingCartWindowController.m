@@ -29,6 +29,7 @@
 	MLCProduct *comparisonProduct = [[MLCProduct alloc] initWithName:@"Thing" price:[NSDecimalNumber decimalNumberWithString:@"20.99"]];
 
 	for (MLCProduct *product in products) {
+		NSAssert([product respondsToSelector:@selector(printFormattedPrice)], @"MLCProduct should respond to -printFormattedPrice");
 		[product printFormattedPrice];
 
 		BOOL equal = ([product isEqual:comparisonProduct]);

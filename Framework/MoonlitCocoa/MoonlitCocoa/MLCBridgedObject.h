@@ -61,6 +61,16 @@
 + (lua_CFunction)eqMetamethod;
 
 /**
+ * Returns \c YES if \a aSelector is implemented by instances of the receiver,
+ * either in Cocoa or in Lua.
+ *
+ * @note This may return \c YES for a key which is associated with a primitive
+ * value in Lua, where using key-value coding to obtain that key would succeed,
+ * but attempting to invoke that key as a method would fail.
+ */
++ (BOOL)instancesRespondToSelector:(SEL)aSelector;
+
+/**
  * Uses the selector of \a invocation as a key into the Lua table backing the
  * receiver, invoking the function associated with that key using the arguments
  * from \a invocation (after converting to the appropriate Lua types). If the

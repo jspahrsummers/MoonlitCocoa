@@ -301,6 +301,25 @@ static int userdataEquals (lua_State *state) {
 
 #pragma mark Forwarding
 
++ (BOOL)instancesRespondToSelector:(SEL)aSelector; {
+	if ([super instancesRespondToSelector:aSelector])
+		return YES;
+
+	MLCState *state = [self state];
+	NSString *selectorName = NSStringFromSelector(aSelector);
+
+	return [state enforceStackDelta:0 forBlock:^ BOOL {
+		[self pushUserdataMetatable];
+		[state popTableAndPushField:selectorName];
+		
+		id obj = [state popValueOnStack];
+
+		// if the value on the stack is 'nil' (and not anything else), we can
+		// assume that this key does not exist
+		return ![obj isEqual:[NSNull null]];
+	}];
+}
+
 - (void)forwardInvocation:(NSInvocation *)invocation {
 	NSMethodSignature *signature = [invocation methodSignature];
 
@@ -332,6 +351,10 @@ static int userdataEquals (lua_State *state) {
 		[state popReturnValueForInvocation:invocation];
 		return YES;
 	}];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+	return [[self class] instancesRespondToSelector:aSelector];
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
