@@ -301,16 +301,12 @@ static int userdataEquals (lua_State *state) {
 
 #pragma mark Forwarding
 
-+ (BOOL)instancesRespondToSelector:(SEL)aSelector; {
-	if ([super instancesRespondToSelector:aSelector])
-		return YES;
-
++ (BOOL)metatableHasValueForKey:(NSString *)key; {
 	MLCState *state = [self state];
-	NSString *selectorName = NSStringFromSelector(aSelector);
 
 	return [state enforceStackDelta:0 forBlock:^ BOOL {
 		[self pushUserdataMetatable];
-		[state popTableAndPushField:selectorName];
+		[state popTableAndPushField:key];
 		
 		id obj = [state popValueOnStack];
 
@@ -318,6 +314,14 @@ static int userdataEquals (lua_State *state) {
 		// assume that this key does not exist
 		return ![obj isEqual:[NSNull null]];
 	}];
+}
+
++ (BOOL)instancesRespondToSelector:(SEL)aSelector; {
+	if ([super instancesRespondToSelector:aSelector])
+		return YES;
+
+	NSString *selectorName = NSStringFromSelector(aSelector);
+	return [self metatableHasValueForKey:selectorName];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {

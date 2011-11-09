@@ -81,6 +81,12 @@
 - (void)forwardInvocation:(NSInvocation *)invocation;
 
 /**
+ * Returns \c YES if the metatable of the receiver has a value associated with
+ * \a key.
+ */
++ (BOOL)metatableHasValueForKey:(NSString *)key;
+
+/**
  * Uses \a key into the Lua table backing the receiver. If \a key is associated
  * with a non-nil value compatible with Objective-C, that value is returned. If
  * \a key is associated with a function, the function is invoked with \c self
