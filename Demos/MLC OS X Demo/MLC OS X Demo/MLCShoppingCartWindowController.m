@@ -30,6 +30,8 @@
 
 	for (MLCProduct *product in products) {
 		NSAssert([product respondsToSelector:@selector(printFormattedPrice)], @"MLCProduct should respond to -printFormattedPrice");
+		NSAssert(![product respondsToSelector:@selector(foobar)], @"MLCProduct should not respond to -foobar");
+
 		[product printFormattedPrice];
 
 		BOOL equal = ([product isEqual:comparisonProduct]);
