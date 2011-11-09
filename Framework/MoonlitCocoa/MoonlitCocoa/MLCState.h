@@ -95,7 +95,7 @@ extern NSString * const MLCLuaStackOverflowException;
 
 /**
  * Executes \a block, ensuring that the stack has expanded by \a delta slots
- * - or, if \a delta is negative, shrunk by \a delta slots - after the block has
+ * - or, if \a delta is negative, shrunk by \a -delta slots - after the block has
  * completed.
  *
  * Returns the value returned by \a block.
