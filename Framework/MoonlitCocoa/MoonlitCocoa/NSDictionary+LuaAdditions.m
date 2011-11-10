@@ -21,12 +21,10 @@
 		return nil;
 	}
 
-	size_t length = lua_objlen(state.state, -1);
-
 	// space for the key used during iteration
 	[state growStackBySize:1];
 
-	NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:length];
+	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
 	[state enforceStackDelta:-1 forBlock:^{
 		lua_pushnil(state.state);
