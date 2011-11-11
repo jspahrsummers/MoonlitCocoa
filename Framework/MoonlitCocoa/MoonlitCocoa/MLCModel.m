@@ -33,6 +33,10 @@
 
 @implementation MLCModel
 
+- (id)init {
+	return [self initWithDictionary:[NSDictionary dictionary]];
+}
+
 - (id)initWithDictionary:(NSDictionary *)dict; {
 	self = [super init];
 	if (!self)
