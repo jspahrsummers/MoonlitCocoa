@@ -23,7 +23,7 @@
  * Returns an array containing the names of all the model properties of the
  * receiver and any superclasses, up until the MLCModel class.
  */
-+ (NSArray *)modelPropertyNames;
++ (NSSet *)modelPropertyNames;
 @end
 
 @implementation MLCModel
@@ -38,8 +38,8 @@
 }
 
 - (NSDictionary *)dictionaryValue; {
-	NSArray *keys = [[self class] modelPropertyNames];
-	return [self dictionaryWithValuesForKeys:keys];
+	NSSet *keys = [[self class] modelPropertyNames];
+	return [self dictionaryWithValuesForKeys:[keys allObjects]];
 }
 
 + (void)enumeratePropertiesUsingBlock:(void (^)(objc_property_t property))block; {
@@ -58,8 +58,8 @@
 	}
 }
 
-+ (NSArray *)modelPropertyNames; {
-	NSMutableArray *names = [[NSMutableArray alloc] init];
++ (NSSet *)modelPropertyNames; {
+	NSMutableSet *names = [[NSMutableSet alloc] init];
 
 	[self enumeratePropertiesUsingBlock:^(objc_property_t property){
 		const char *cName = property_getName(property);
