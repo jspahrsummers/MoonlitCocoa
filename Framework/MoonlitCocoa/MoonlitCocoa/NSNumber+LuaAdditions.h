@@ -12,14 +12,14 @@
 @interface NSNumber (LuaAdditions) <MLCValue>
 /**
  * Returns \c YES if the value at the top of the Lua stack of \a state is
- * a number or a string convertible to a number.
+ * a boolean, a number, or a string convertible to a number.
  */
 + (BOOL)isOnStack:(MLCState *)state;
 
 /**
- * Pops a number off the top of the Lua stack of \a state. Returns \c nil if the
- * value at the top of the Lua stack is not a number or a string convertible to
- * a number.
+ * Pops a number or boolean off the top of the Lua stack of \a state. Returns \c
+ * nil if the value at the top of the Lua stack is not a boolean, a number, or
+ * a string convertible to a number.
  */
 + (id)popFromStack:(MLCState *)state;
 
