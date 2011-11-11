@@ -50,7 +50,16 @@
 			value = nil;
 
 		NSError *error = nil;
-		if (![self validateValue:&value forKey:key error:&error]) {
+		BOOL success = NO;
+
+		@try {
+			success = [self validateValue:&value forKey:key error:&error];
+		} @catch (NSException *ex) {
+			NSLog(@"Exception thrown during validation for key \"%@\" when initializing instance of %@: %@", key, [self class], ex);
+			return nil;
+		}
+
+		if (!success) {
 			NSLog(@"Validation failed for key \"%@\" when initializing instance of %@: %@", key, [self class], error);
 			return nil;
 		}
