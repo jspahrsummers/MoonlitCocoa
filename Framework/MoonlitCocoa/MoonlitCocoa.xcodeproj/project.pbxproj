@@ -22,6 +22,8 @@
 		D031281C145E318400D14642 /* NSNull+LuaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D031281A145E318400D14642 /* NSNull+LuaAdditions.m */; };
 		D042CCB6146498D200758B2B /* MLCBridgedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D042CCB4146498D200758B2B /* MLCBridgedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D042CCB7146498D200758B2B /* MLCBridgedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D042CCB5146498D200758B2B /* MLCBridgedObject.m */; };
+		D0523638146C9988009C498B /* NSArray+LuaAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D0523636146C9988009C498B /* NSArray+LuaAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0523639146C9988009C498B /* NSArray+LuaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0523637146C9988009C498B /* NSArray+LuaAdditions.m */; };
 		D0A6CCF81455E09D00B99D78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CCF71455E09D00B99D78 /* Cocoa.framework */; };
 		D0A6CD021455E09D00B99D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A6CD001455E09D00B99D78 /* InfoPlist.strings */; };
 		D0A6CD0E1455E09D00B99D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A6CD0D1455E09D00B99D78 /* SenTestingKit.framework */; };
@@ -62,6 +64,8 @@
 		D031281A145E318400D14642 /* NSNull+LuaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+LuaAdditions.m"; sourceTree = "<group>"; };
 		D042CCB4146498D200758B2B /* MLCBridgedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCBridgedObject.h; sourceTree = "<group>"; };
 		D042CCB5146498D200758B2B /* MLCBridgedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLCBridgedObject.m; sourceTree = "<group>"; };
+		D0523636146C9988009C498B /* NSArray+LuaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LuaAdditions.h"; sourceTree = "<group>"; };
+		D0523637146C9988009C498B /* NSArray+LuaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LuaAdditions.m"; sourceTree = "<group>"; };
 		D0A6CCF41455E09D00B99D78 /* MoonlitCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoonlitCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A6CCF71455E09D00B99D78 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D0A6CCFF1455E09D00B99D78 /* MoonlitCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoonlitCocoa-Info.plist"; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 		D03127F6145E222E00D14642 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D0523636146C9988009C498B /* NSArray+LuaAdditions.h */,
+				D0523637146C9988009C498B /* NSArray+LuaAdditions.m */,
 				D0312807145E264300D14642 /* NSDictionary+LuaAdditions.h */,
 				D0312808145E264300D14642 /* NSDictionary+LuaAdditions.m */,
 				D0312819145E318400D14642 /* NSNull+LuaAdditions.h */,
@@ -264,6 +270,7 @@
 				D0312809145E264300D14642 /* NSDictionary+LuaAdditions.h in Headers */,
 				D031281B145E318400D14642 /* NSNull+LuaAdditions.h in Headers */,
 				D042CCB6146498D200758B2B /* MLCBridgedObject.h in Headers */,
+				D0523638146C9988009C498B /* NSArray+LuaAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +389,7 @@
 				D031280A145E264300D14642 /* NSDictionary+LuaAdditions.m in Sources */,
 				D031281C145E318400D14642 /* NSNull+LuaAdditions.m in Sources */,
 				D042CCB7146498D200758B2B /* MLCBridgedObject.m in Sources */,
+				D0523639146C9988009C498B /* NSArray+LuaAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
