@@ -16,10 +16,10 @@
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
 @property (nonatomic, copy, readonly) NSString *optionalString;
-
-- (NSString *)formattedPrice;
-- (void)printFormattedPrice;
+@property (nonatomic, copy, readonly) NSString *formattedPrice;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price optionalString:(NSString *)optionalString;
+
+- (void)printFormattedPrice;
 @end
