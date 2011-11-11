@@ -4,9 +4,7 @@ local M = {
 		print(prod.formattedPrice())
 	end,
 
-	["isEqual:"] = function (prodA, prodB)
-		return prodA.name() == prodB.name()
-	end
+	keysForValuesAffectingEquality = { "name", "price" }
 }
 
 return M

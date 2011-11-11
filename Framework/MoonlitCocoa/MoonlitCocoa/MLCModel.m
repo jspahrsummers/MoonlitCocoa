@@ -24,6 +24,12 @@
  * receiver and any superclasses, up until the MLCModel class.
  */
 + (NSSet *)modelPropertyNames;
+
+/**
+ * Returns a dictionary containing the values on the receiver that are
+ * associated with each of the #keysForValuesAffectingEquality.
+ */
+- (NSDictionary *)dictionaryWithValuesAffectingEquality;
 @end
 
 @implementation MLCModel
@@ -71,6 +77,32 @@
 	return names;
 }
 
+- (NSSet *)keysForValuesAffectingEquality; {
+	NSString *key = NSStringFromSelector(_cmd);
+
+	NSSet *keyPaths = nil;
+	if ([[self class] metatableHasValueForKey:key]) {
+		id value = [self valueForUndefinedKey:key];
+
+		// only accept dictionaries, since any other type is not a Lua table
+		if ([value isKindOfClass:[NSDictionary class]]) {
+			keyPaths = value;
+		}
+	}
+
+	if (!keyPaths) {
+		// fall back to all properties if nothing else is available
+		keyPaths = [[self class] modelPropertyNames];
+	}
+	
+	return keyPaths;
+}
+
+- (NSDictionary *)dictionaryWithValuesAffectingEquality; {
+	NSSet *equalityKeyPaths = [self keysForValuesAffectingEquality];
+	return [self dictionaryWithValuesForKeys:[equalityKeyPaths allObjects]];
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -105,9 +137,9 @@
 		}
 	}
 
-	// if Lua doesn't implement -hash, we hash our dictionary
+	// if Lua doesn't implement -hash, we hash our equality key paths
 	if (!num) {
-		return [[self dictionaryValue] hash];
+		return [[self dictionaryWithValuesAffectingEquality] hash];
 	} else {
 		return [num unsignedIntegerValue];
 	}
@@ -117,9 +149,11 @@
 	if (![model isKindOfClass:[self class]])
 		return NO;
 	
-	// if Lua doesn't implement -isEqual:, we compare dictionary values
+	// if Lua doesn't implement -isEqual:, we compare our equality key paths
 	if (![[self class] metatableHasValueForKey:@"isEqual:"]) {
-		return [[self dictionaryValue] isEqual:[model dictionaryValue]];
+		NSDictionary *selfEqualityValues = [self dictionaryWithValuesAffectingEquality];
+		NSDictionary *otherEqualityValues = [model dictionaryWithValuesAffectingEquality];
+		return [selfEqualityValues isEqualToDictionary:otherEqualityValues];
 	}
 	
 	NSMethodSignature *signature = [self methodSignatureForSelector:_cmd];

@@ -20,6 +20,8 @@
 @interface MLCProduct : MLCModel <MLCProduct>
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
+@property (nonatomic, copy, readonly) NSString *optionalString;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
+- (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price optionalString:(NSString *)optionalString;
 @end

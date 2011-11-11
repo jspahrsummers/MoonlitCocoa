@@ -11,21 +11,30 @@
 @interface MLCProduct ()
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) NSDecimalNumber *price;
+@property (nonatomic, copy, readwrite) NSString *optionalString;
 @end
 
 @implementation MLCProduct
 @synthesize name = m_name;
 @synthesize price = m_price;
+@synthesize optionalString = m_optionalString;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price; {
+	return [self initWithName:name price:price optionalString:nil];
+}
+
+- (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price optionalString:(NSString *)optionalString; {
   	NSParameterAssert(name != nil);
 	NSParameterAssert(price != nil);
 
-  	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+  	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 		name, @"name",
 		price, @"price",
 		nil
 	];
+
+	if (optionalString)
+		[dict setObject:optionalString forKey:@"optionalString"];
 
 	return [self initWithDictionary:dict];
 }
