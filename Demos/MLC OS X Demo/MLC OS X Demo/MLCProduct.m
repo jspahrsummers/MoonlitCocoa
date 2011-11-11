@@ -19,26 +19,6 @@
 @synthesize price = m_price;
 @synthesize optionalString = m_optionalString;
 
-- (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price; {
-	return [self initWithName:name price:price optionalString:nil];
-}
-
-- (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price optionalString:(NSString *)optionalString; {
-  	NSParameterAssert(name != nil);
-	NSParameterAssert(price != nil);
-
-  	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-		name, @"name",
-		price, @"price",
-		nil
-	];
-
-	if (optionalString)
-		[dict setObject:optionalString forKey:@"optionalString"];
-
-	return [self initWithDictionary:dict];
-}
-
 - (BOOL)validateName:(NSString **)name error:(NSError **)error {
 	return [*name length] > 0;
 }

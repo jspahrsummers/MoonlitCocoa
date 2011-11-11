@@ -123,6 +123,164 @@
 	return names;
 }
 
++ (BOOL)resolveInstanceMethod:(SEL)aSelector {
+	@autoreleasepool {
+		NSString *name = NSStringFromSelector(aSelector);
+		NSRange range = [name rangeOfString:@":" options:NSLiteralSearch];
+
+		// if the name doesn't match a standard init method, or there's no colon
+		// (meaning no argument), or the colon immediately follows "initWith",
+		// we can't build this
+		if (![name hasPrefix:@"initWith"] || range.location == NSNotFound || range.location == 8)
+			return NO;
+
+		NSMutableString *firstPropertyName = [[NSMutableString alloc] init];
+		
+		// grab the letter after 'initWith' and lowercase it
+		[firstPropertyName appendString:[[name substringWithRange:NSMakeRange(8, 1)] lowercaseString]];
+		
+		// append the rest, up to the first colon
+		[firstPropertyName appendString:[name substringWithRange:NSMakeRange(9, range.location - 9)]];
+
+		NSAssert([firstPropertyName length] > 0, @"name of first initializer argument should have a non-zero length");
+		
+		NSMutableArray *initializerPropertyNames = [[NSMutableArray alloc] init];
+		[initializerPropertyNames addObject:firstPropertyName];
+
+		// if the colon wasn't the last character in the initializer name, there
+		// are must be properties named
+		if (range.location < [name length] - 1) {
+			NSArray *otherPropertyNames = [[name substringFromIndex:range.location + 1] componentsSeparatedByString:@":"];
+			NSAssert([otherPropertyNames count] > 0, @"should be at least one other initializer argument if the first colon wasn't the last character in the method name");
+
+			[initializerPropertyNames addObjectsFromArray:otherPropertyNames];
+
+			NSAssert([[initializerPropertyNames lastObject] isEqualToString:@""], @"last colon-separated component of a method name with arguments should be an empty string");
+			[initializerPropertyNames removeLastObject];
+		}
+
+		id (^finalInitializerBlock)(id, NSArray *) = ^(id self, NSArray *arguments){
+			NSUInteger argumentCount = [arguments count];
+			NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:argumentCount];
+
+			for (NSUInteger i = 0;i < argumentCount;++i) {
+				id argument = [arguments objectAtIndex:i];
+				NSString *key = [initializerPropertyNames objectAtIndex:i];
+
+				[dict setObject:argument forKey:key];
+			}
+
+			return [self initWithDictionary:dict];
+		};
+
+		id initializerBlock = nil;
+		NSUInteger numberOfArguments = [initializerPropertyNames count];
+
+		// UGH!
+		switch (numberOfArguments) {
+		case 1:
+			{
+				initializerBlock = [^(id self, id arg1){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, nil]);
+				} copy];
+
+				break;
+			}
+
+		case 2:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, nil]);
+				} copy];
+
+				break;
+			}
+
+		case 3:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, nil]);
+				} copy];
+
+				break;
+			}
+		
+		case 4:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, nil]);
+				} copy];
+
+				break;
+			}
+		
+		case 5:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4, id arg5){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, arg5, nil]);
+				} copy];
+
+				break;
+			}
+		
+		case 6:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4, id arg5, id arg6){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, arg5, arg6, nil]);
+				} copy];
+
+				break;
+			}
+			
+		case 7:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4, id arg5, id arg6, id arg7){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, arg5, arg6, arg7, nil]);
+				} copy];
+
+				break;
+			}
+		
+		case 8:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4, id arg5, id arg6, id arg7, id arg8){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, nil]);
+				} copy];
+
+				break;
+			}
+		
+		case 9:
+			{
+				initializerBlock = [^(id self, id arg1, id arg2, id arg3, id arg4, id arg5, id arg6, id arg7, id arg8, id arg9){
+					return finalInitializerBlock(self, [NSArray arrayWithObjects:arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, nil]);
+				} copy];
+
+				break;
+			}
+
+		default:
+			return NO;
+		}
+
+		NSMutableString *typeEncoding = [[NSMutableString alloc] init];
+
+		// id impl (id self, SEL _cmd, ...)
+		[typeEncoding appendFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)];
+
+		// add each 'id' argument to the type encoding
+		for (NSUInteger i = 0;i < numberOfArguments;++i) {
+			[typeEncoding appendFormat:@"%s", @encode(id)];
+		}
+
+		if (class_addMethod(self, aSelector, imp_implementationWithBlock((__bridge void *)initializerBlock), [typeEncoding UTF8String])) {
+			objc_setAssociatedObject(self, aSelector, initializerBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+		}
+
+		return YES;
+	}
+}
+
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder {
