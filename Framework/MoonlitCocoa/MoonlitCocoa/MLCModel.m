@@ -8,7 +8,6 @@
 
 #import "MLCModel.h"
 #import "MLCState.h"
-#import "EXTRuntimeExtensions.h"
 #import <lauxlib.h>
 #import <objc/runtime.h>
 
@@ -63,6 +62,34 @@
 	return [self dictionaryWithValuesForKeys:[keys allObjects]];
 }
 
+- (NSSet *)keysForValuesAffectingEquality; {
+	NSString *key = NSStringFromSelector(_cmd);
+
+	NSSet *keyPaths = nil;
+	if ([[self class] metatableHasValueForKey:key]) {
+		id value = [self valueForUndefinedKey:key];
+
+		// only accept dictionaries, since any other type is not a Lua table
+		if ([value isKindOfClass:[NSDictionary class]]) {
+			keyPaths = value;
+		}
+	}
+
+	if (!keyPaths) {
+		// fall back to all properties if nothing else is available
+		keyPaths = [[self class] modelPropertyNames];
+	}
+	
+	return keyPaths;
+}
+
+- (NSDictionary *)dictionaryWithValuesAffectingEquality; {
+	NSSet *equalityKeyPaths = [self keysForValuesAffectingEquality];
+	return [self dictionaryWithValuesForKeys:[equalityKeyPaths allObjects]];
+}
+
+#pragma mark Magic
+
 + (void)enumeratePropertiesUsingBlock:(void (^)(objc_property_t property))block; {
 	for (Class cls = self;cls != [MLCModel class];cls = [cls superclass]) {
 		unsigned count = 0;
@@ -90,32 +117,6 @@
 	}];
 
 	return names;
-}
-
-- (NSSet *)keysForValuesAffectingEquality; {
-	NSString *key = NSStringFromSelector(_cmd);
-
-	NSSet *keyPaths = nil;
-	if ([[self class] metatableHasValueForKey:key]) {
-		id value = [self valueForUndefinedKey:key];
-
-		// only accept dictionaries, since any other type is not a Lua table
-		if ([value isKindOfClass:[NSDictionary class]]) {
-			keyPaths = value;
-		}
-	}
-
-	if (!keyPaths) {
-		// fall back to all properties if nothing else is available
-		keyPaths = [[self class] modelPropertyNames];
-	}
-	
-	return keyPaths;
-}
-
-- (NSDictionary *)dictionaryWithValuesAffectingEquality; {
-	NSSet *equalityKeyPaths = [self keysForValuesAffectingEquality];
-	return [self dictionaryWithValuesForKeys:[equalityKeyPaths allObjects]];
 }
 
 #pragma mark NSCoding
