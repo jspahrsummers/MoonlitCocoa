@@ -43,8 +43,8 @@
 			[dict setObject:value forKey:key];
 		}
 
-		// pop the key and the table
-		lua_pop(state.state, 2);
+		// pop the table
+		lua_pop(state.state, 1);
 
 		return YES;
 	}];
