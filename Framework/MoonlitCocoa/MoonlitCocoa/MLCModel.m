@@ -38,8 +38,23 @@
 	self = [super init];
 	if (!self)
 		return nil;
+	
+	for (NSString *key in dict) {
+		id value = [dict objectForKey:key];
 
-	[self setValuesForKeysWithDictionary:dict];
+		// match the convention used by -setValuesForKeysWithDictionary:
+		if ([value isEqual:[NSNull null]])
+			value = nil;
+
+		NSError *error = nil;
+		if (![self validateValue:&value forKey:key error:&error]) {
+			NSLog(@"Validation failed for key \"%@\" when initializing instance of %@: %@", key, [self class], error);
+			return nil;
+		}
+
+		[self setValue:value forKey:key];
+	}
+
 	return self;
 }
 

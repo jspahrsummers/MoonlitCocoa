@@ -31,7 +31,9 @@
 @interface MLCModel : MLCBridgedObject <MLCModel, NSCoding, NSCopying>
 /**
  * Initializes the properties of the receiver using the keys and values in \a
- * dict.
+ * dict. \c <NSKeyValueCoding> validation methods, if implemented on the
+ * receiver, are automatically invoked for each key in \a dict. If any value
+ * fails validation, \c nil is returned.
  *
  * This is the designated initializer for this class. This method can be
  * overridden by subclasses to perform additional validation on the object after

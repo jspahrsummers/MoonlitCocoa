@@ -39,19 +39,13 @@
 	return [self initWithDictionary:dict];
 }
 
-- (id)initWithDictionary:(NSDictionary *)dict; {
-  	self = [super initWithDictionary:dict];
-	if (!self)
-		return nil;
-	
-	if (![self.name length])
-		return nil;
-	
-	// if the price is less than zero
-	if ([self.price compare:[NSDecimalNumber zero]] == NSOrderedAscending)
-		return nil;
-	
-	return self;
+- (BOOL)validateName:(NSString **)name error:(NSError **)error {
+	return [*name length] > 0;
+}
+
+- (BOOL)validatePrice:(NSDecimalNumber **)price error:(NSError **)error {
+  	// pass validation if the price is greater than or equal to zero
+	return [*price compare:[NSDecimalNumber zero]] != NSOrderedAscending;
 }
 
 @end
