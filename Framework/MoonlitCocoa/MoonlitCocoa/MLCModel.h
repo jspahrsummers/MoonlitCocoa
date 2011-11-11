@@ -10,25 +10,12 @@
 #import <MoonlitCocoa/MLCValue.h>
 #import <MoonlitCocoa/MLCBridgedObject.h>
 
-@lua_interface(MLCModel)
-/**
- * The value associated with this key in Lua should be or return an array of the
- * key paths to be considered in an equality check, as performed by \c
- * -isEqual:.
- *
- * @note Because the implementation of \c -hash depends on the algorithm for
- * determining equality, the object's hash is also determined using the
- * specified key paths.
- */
-- (NSSet *)keysForValuesAffectingEquality;
-@end
-
 /**
  * An abstract class representing an immutable model object bridged into Lua.
  * This class can be subclassed to get standard model object behaviors and Lua
  * bridging with minimal boilerplate.
  */
-@interface MLCModel : MLCBridgedObject <MLCModel, NSCoding, NSCopying>
+@lua_bridged(MLCModel, MLCBridgedObject, NSCoding, NSCopying)
 /**
  * Initializes the properties of the receiver using the keys and values in \a
  * dict. \c <NSKeyValueCoding> validation methods, if implemented on the
@@ -63,12 +50,16 @@
 - (BOOL)isEqual:(id)obj;
 
 /**
- * Retrieves the Lua key by the same name, collecting the values of the table
- * into a set, for the purposes described in the Lua interface declaration of
- * this method.
+ * The value associated with this key in Lua should be or return an array of the
+ * key paths to be considered in an equality check, as performed by \c
+ * -isEqual:.
  *
- * The default implementation of this method returns every property on the
- * receiver's class.
+ * If this key is not found on the receiver's metatable, every property name is
+ * returned in the set.
+ *
+ * @note Because the implementation of \c -hash depends on the algorithm for
+ * determining equality, the object's hash is also determined using the
+ * specified key paths.
  */
 - (NSSet *)keysForValuesAffectingEquality;
 @end

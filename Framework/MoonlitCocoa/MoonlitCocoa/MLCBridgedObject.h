@@ -13,13 +13,14 @@
 @class MLCState;
 
 /**
- * Declares, in a protocol \a NAME, methods that will be implemented in Lua. An
- * object bridged into Lua can then conform to protocol \a NAME to indicate its
- * ability to invoke those Lua methods.
+ * Declares the interface for a class bridged into Lua, inheriting from the
+ * class provided as the second argument. This should be used instead of \c
+ * @interface when implementing bridged objects.
+ *
+ * Any protocols conformed to can be passed after the name of the superclass.
  */
-#define lua_interface(NAME) \
-	protocol NAME <NSObject> \
-	@optional
+#define lua_bridged(CLASS, ...) \
+	lua_bridged_(CLASS, __VA_ARGS__, NSObject)
 
 /**
  * An abstract class representing an Objective-C object that can be bridged as
@@ -114,3 +115,17 @@
  */
 + (void)pushUserdataMetatable;
 @end
+
+// pay no attention to the man behind the curtain
+#define lua_bridged_(CLASS, SUPERCLASS, ...) \
+	/* a class can't conform to a forward protocol, but a protocol can */ \
+	protocol CLASS ## _real; \
+	\
+	@protocol CLASS ## _fake < CLASS ## _real > \
+	@end \
+	\
+	@interface CLASS : SUPERCLASS < CLASS ## _fake > \
+	@end \
+	\
+	@protocol CLASS ## _real < __VA_ARGS__ > \
+	@optional

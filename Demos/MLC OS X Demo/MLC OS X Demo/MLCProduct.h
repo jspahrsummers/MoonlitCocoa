@@ -9,18 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <MoonlitCocoa/MoonlitCocoa.h>
 
-@lua_interface(MLCProduct)
-- (NSString *)formattedPrice;
-- (void)printFormattedPrice;
-@end
-
 /**
  * An immutable product model object.
  */
-@interface MLCProduct : MLCModel <MLCProduct>
+@lua_bridged(MLCProduct, MLCModel)
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSDecimalNumber *price;
 @property (nonatomic, copy, readonly) NSString *optionalString;
+
+- (NSString *)formattedPrice;
+- (void)printFormattedPrice;
 
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price;
 - (id)initWithName:(NSString *)name price:(NSDecimalNumber *)price optionalString:(NSString *)optionalString;
