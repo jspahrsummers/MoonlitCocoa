@@ -11,6 +11,7 @@
 #import <MoonlitCocoa/MLCState.h>
 #import <MoonlitCocoa/MLCValue.h>
 #import <MoonlitCocoa/NSArray+LuaAdditions.h>
+#import <MoonlitCocoa/NSDecimalNumber+LuaAdditions.h>
 #import <MoonlitCocoa/NSDictionary+LuaAdditions.h>
 #import <MoonlitCocoa/NSNull+LuaAdditions.h>
 #import <MoonlitCocoa/NSNumber+LuaAdditions.h>

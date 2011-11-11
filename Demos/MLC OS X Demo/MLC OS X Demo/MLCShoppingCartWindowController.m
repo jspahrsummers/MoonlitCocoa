@@ -22,7 +22,7 @@
   	NSArray *products = [NSArray arrayWithObjects:
 		[[MLCProduct alloc] initWithName:@"Widget" price:[NSDecimalNumber decimalNumberWithString:@"2.50"]],
 		[[MLCProduct alloc] initWithName:@"Thing" price:[NSDecimalNumber decimalNumberWithString:@"20.99"]],
-		[[MLCProduct alloc] initWithName:@"Product" price:[NSDecimalNumber decimalNumberWithString:@"0.99"]],
+		[[MLCProduct alloc] initWithName:@"Product" price:[NSDecimalNumber decimalNumberWithString:@"0.123456789012345678901234567890"]],
 		nil
 	];
 
