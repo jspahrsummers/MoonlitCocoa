@@ -11,6 +11,23 @@
 #import <lua.h>
 
 @implementation NSArray (LuaAdditions)
++ (id)arrayWithLuaDictionary:(NSDictionary *)dict; {
+	NSMutableArray *array = [[NSMutableArray alloc] init];
+
+	// keep looping until we can't find a matching key
+	for (NSUInteger index = 1;;++index) {
+		NSNumber *num = [[NSNumber alloc] initWithUnsignedInteger:index];
+		id value = [dict objectForKey:num];
+
+		if (!value)
+			break;
+
+		[array addObject:value];
+	}
+
+	return [[self alloc] initWithArray:array];
+}
+
 + (BOOL)isOnStack:(MLCState *)state; {
 	return (BOOL)lua_istable(state.state, -1);
 }

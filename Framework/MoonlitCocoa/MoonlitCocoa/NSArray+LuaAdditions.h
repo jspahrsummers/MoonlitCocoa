@@ -11,6 +11,18 @@
 
 @interface NSArray (LuaAdditions)
 /**
+ * Returns the array part of \a dict, which must represent a Lua table. The
+ * returned array is composed of the values for every consecutive \c NSNumber
+ * key in \a dict, starting at one. If there is no \c NSNumber key in \a dict
+ * equal to one, an empty array is returned.
+ *
+ * @note In Lua, numeric indices are expected to start at one. This method will
+ * subtract one from every index in the dictionary, resulting in an array that
+ * begins at zero.
+ */
++ (id)arrayWithLuaDictionary:(NSDictionary *)dict;
+
+/**
  * Returns \c YES if the value at the top of the Lua stack of \a state is
  * a table.
  *

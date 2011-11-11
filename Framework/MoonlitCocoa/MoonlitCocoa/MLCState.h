@@ -129,7 +129,7 @@ extern NSString * const MLCLuaStackOverflowException;
  * @li If the value is \c nil, an \c NSNull is returned.
  * @li If the value is a number or boolean, an \c NSNumber is returned.
  * @li If the value is a string, an \c NSString is returned.
- * @li If the value is a table, an \c NSDictionary is returned. This method will never convert a table into an \c NSArray.
+ * @li If the value is a table, an \c NSDictionary is returned. This method will never convert a table into an \c NSArray (use the NSArray#arrayWithLuaDictionary: extension instead).
  * @li If the value is a full userdata, the corresponding instance of #MLCBridgedObject is returned.
  * @li If the value is a light userdata, it is interpreted as a pointer to an object, and the object is returned.
  *
