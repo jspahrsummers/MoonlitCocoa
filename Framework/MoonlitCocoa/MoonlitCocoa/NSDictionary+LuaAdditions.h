@@ -25,6 +25,10 @@
  * keys or values whose types are not understood are silently omitted from the
  * result.
  *
+ * @note In Lua, numeric indices are expected to start at one. The indices in
+ * the table being popped off the stack are not adjusted in any way, so they may
+ * begin at one instead of zero.
+ *
  * @warning Light userdata is not retained by Lua. Retrieving it at a later time
  * may result in a reference to a deallocated object.
  */
