@@ -73,6 +73,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D02E9F3C146F91760099E4D1 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		D02E9F3E146F91760099E4D1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		D02E9F3F146F91760099E4D1 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
+		D02E9F40146F91760099E4D1 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D02E9F42146F91760099E4D1 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
+		D02E9F43146F91760099E4D1 /* StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticLibrary.xcconfig; sourceTree = "<group>"; };
+		D02E9F45146F91760099E4D1 /* iOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-Application.xcconfig"; sourceTree = "<group>"; };
+		D02E9F46146F91760099E4D1 /* iOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-Base.xcconfig"; sourceTree = "<group>"; };
+		D02E9F47146F91760099E4D1 /* iOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Application.xcconfig"; sourceTree = "<group>"; };
+		D02E9F4A146F91760099E4D1 /* Mac-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Base.xcconfig"; sourceTree = "<group>"; };
+		D02E9F4B146F91760099E4D1 /* Mac-DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-DynamicLibrary.xcconfig"; sourceTree = "<group>"; };
+		D02E9F4C146F91760099E4D1 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
+		D02E9F4D146F91760099E4D1 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		D02E9F4E146F91760099E4D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D031283D145E424D00D14642 /* MLCProduct.mlua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MLCProduct.mlua; sourceTree = "<group>"; };
 		D084108F14649EE1002C4AED /* MoonlitCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MoonlitCocoa.xcodeproj; path = ../../Framework/MoonlitCocoa/MoonlitCocoa.xcodeproj; sourceTree = "<group>"; };
 		D0890FCF145777E300B77FB9 /* MLCShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLCShoppingCart.h; sourceTree = "<group>"; };
@@ -98,11 +113,6 @@
 		D0A6CD5A1455E10F00B99D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0A6CD5C1455E10F00B99D78 /* MLC_OS_X_DemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLC_OS_X_DemoTests.h; sourceTree = "<group>"; };
 		D0A6CD5D1455E10F00B99D78 /* MLC_OS_X_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLC_OS_X_DemoTests.m; sourceTree = "<group>"; };
-		D0A6CD7F1455E2B400B99D78 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
-		D0A6CD801455E2B400B99D78 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		D0A6CD811455E2B400B99D78 /* iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iOS.xcconfig; sourceTree = "<group>"; };
-		D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac OS X.xcconfig"; sourceTree = "<group>"; };
-		D0A6CD831455E2B400B99D78 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		D0A6CD9F1455E90200B99D78 /* liblua.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.5.1.dylib; path = SDKs/MacOSX10.7.sdk/usr/local/lib/liblua.5.1.dylib; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +139,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D02E9F3A146F91760099E4D1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F3B146F91760099E4D1 /* Base */,
+				D02E9F44146F91760099E4D1 /* iOS */,
+				D02E9F48146F91760099E4D1 /* Mac OS X */,
+				D02E9F4E146F91760099E4D1 /* README.md */,
+			);
+			name = Configuration;
+			path = ../../Configuration;
+			sourceTree = "<group>";
+		};
+		D02E9F3B146F91760099E4D1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F3C146F91760099E4D1 /* Common.xcconfig */,
+				D02E9F3D146F91760099E4D1 /* Configurations */,
+				D02E9F41146F91760099E4D1 /* Targets */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D02E9F3D146F91760099E4D1 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F3E146F91760099E4D1 /* Debug.xcconfig */,
+				D02E9F3F146F91760099E4D1 /* Profile.xcconfig */,
+				D02E9F40146F91760099E4D1 /* Release.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		D02E9F41146F91760099E4D1 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F42146F91760099E4D1 /* Application.xcconfig */,
+				D02E9F43146F91760099E4D1 /* StaticLibrary.xcconfig */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		D02E9F44146F91760099E4D1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F45146F91760099E4D1 /* iOS-Application.xcconfig */,
+				D02E9F46146F91760099E4D1 /* iOS-Base.xcconfig */,
+				D02E9F47146F91760099E4D1 /* iOS-StaticLibrary.xcconfig */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		D02E9F48146F91760099E4D1 /* Mac OS X */ = {
+			isa = PBXGroup;
+			children = (
+				D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */,
+				D02E9F4A146F91760099E4D1 /* Mac-Base.xcconfig */,
+				D02E9F4B146F91760099E4D1 /* Mac-DynamicLibrary.xcconfig */,
+				D02E9F4C146F91760099E4D1 /* Mac-Framework.xcconfig */,
+				D02E9F4D146F91760099E4D1 /* Mac-StaticLibrary.xcconfig */,
+			);
+			path = "Mac OS X";
+			sourceTree = "<group>";
+		};
 		D084109014649EE1002C4AED /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +252,7 @@
 			children = (
 				D0A6CD391455E10E00B99D78 /* MLC OS X Demo */,
 				D0A6CD561455E10F00B99D78 /* MLC OS X DemoTests */,
-				D0A6CD7E1455E2B400B99D78 /* Configuration */,
+				D02E9F3A146F91760099E4D1 /* Configuration */,
 				D0A6CD321455E10E00B99D78 /* Frameworks */,
 				D0A6CD301455E10E00B99D78 /* Products */,
 			);
@@ -244,19 +317,6 @@
 				D0A6CD591455E10F00B99D78 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D0A6CD7E1455E2B400B99D78 /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				D0A6CD7F1455E2B400B99D78 /* Base.xcconfig */,
-				D0A6CD801455E2B400B99D78 /* Debug.xcconfig */,
-				D0A6CD811455E2B400B99D78 /* iOS.xcconfig */,
-				D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */,
-				D0A6CD831455E2B400B99D78 /* Release.xcconfig */,
-			);
-			name = Configuration;
-			path = ../../Configuration;
 			sourceTree = "<group>";
 		};
 		D0A6CD981455E79900B99D78 /* Classes */ = {
@@ -491,25 +551,29 @@
 /* Begin XCBuildConfiguration section */
 		D0A6CD5F1455E10F00B99D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD801455E2B400B99D78 /* Debug.xcconfig */;
+			baseConfigurationReference = D02E9F3E146F91760099E4D1 /* Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)/MoonlitCocoa.framework/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 			};
 			name = Debug;
 		};
 		D0A6CD601455E10F00B99D78 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD831455E2B400B99D78 /* Release.xcconfig */;
+			baseConfigurationReference = D02E9F40146F91760099E4D1 /* Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = "../../Framework/MoonlitCocoa/build/$(CONFIGURATION)/MoonlitCocoa.framework/**";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 			};
 			name = Release;
 		};
 		D0A6CD621455E10F00B99D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
+			baseConfigurationReference = D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
@@ -520,7 +584,7 @@
 		};
 		D0A6CD631455E10F00B99D78 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
+			baseConfigurationReference = D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				GCC_PREFIX_HEADER = "MLC OS X Demo/MLC OS X Demo-Prefix.pch";
 				INFOPLIST_FILE = "MLC OS X Demo/MLC OS X Demo-Info.plist";
@@ -531,7 +595,7 @@
 		};
 		D0A6CD651455E10F00B99D78 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
+			baseConfigurationReference = D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLC OS X Demo.app/Contents/MacOS/MLC OS X Demo";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
@@ -546,7 +610,7 @@
 		};
 		D0A6CD661455E10F00B99D78 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0A6CD821455E2B400B99D78 /* Mac OS X.xcconfig */;
+			baseConfigurationReference = D02E9F49146F91760099E4D1 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MLC OS X Demo.app/Contents/MacOS/MLC OS X Demo";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
